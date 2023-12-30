@@ -1,0 +1,70 @@
+<!-- lab-test.component.html -->
+
+<div class="content">
+    
+    <div class="container-fluid">
+       
+      <div class="row">
+        <div class="col-md-7 col-lg-8 col-xl-9">
+          <div class="card">
+            <h1 style="text-align: center;">add lab test</h1>
+            <div class="card-body">
+  
+              <!-- LabTest Settings Form -->
+              <form (ngSubmit)="saveLabTestChanges()">
+                <div class="row form-row">
+                  <!-- Existing fields from the previous example -->
+                 
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" class="form-control" [(ngModel)]="labTest.testName" name="testName">
+                    </div>
+                  </div>
+                  
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Availability</label>
+                      <input type="text" class="form-control" [(ngModel)]="labTest.availability" name="availability">
+                    </div>
+                  </div>
+                 
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea class="form-control" rows="3" [(ngModel)]="labTest.description" name="description"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Price</label>
+                      <input type="text" class="form-control" [(ngModel)]="labTest.rates" name="rates" >
+                    </div>
+                  </div>
+
+                  
+                  <!-- Add the remaining fields similarly -->
+                  <!-- lab-test.component.html -->
+
+<!-- ... (previous form fields) ... -->
+
+  
+ 
+  
+  <!-- ... (existing form fields) ... -->
+  
+  
+                </div>
+                <div class="submit-section">
+                  <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+                </div>
+              </form>
+              <!-- /LabTest Settings Form -->
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

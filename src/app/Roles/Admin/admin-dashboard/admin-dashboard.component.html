@@ -1,0 +1,32 @@
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+
+    <app-admin-navbar></app-admin-navbar>
+    <!-- <app-doctor-breadcrumb></app-doctor-breadcrumb> -->
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-1">
+                    <app-admin-sidebar></app-admin-sidebar>
+                </div>
+
+
+                <div class="col-13">
+
+                    <div class="card dash-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- <app-admin-specialities></app-admin-specialities> -->
+                                <router-outlet></router-outlet>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

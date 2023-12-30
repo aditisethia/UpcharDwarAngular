@@ -1,0 +1,23 @@
+<ul class="comments-list">
+    <li *ngFor="let comment of comments">
+        <div class="card">
+      <div class="comment">
+        <img class="avatar rounded-circle" alt="User Image" src="assets/img/patients/patient.jpg">
+        <div class="comment-body">
+          <div class="meta-data">
+            <span class="comment-author"><b>{{ comment.author }}</b></span>
+          <br>
+            <span class="comment-date">Reviewed {{ comment.date }}</span>
+            <div class="review-count rating">
+              <i *ngFor="let star of [1, 2, 3, 4, 5]" class="fas fa-star" [class.filled]="star <= comment.rating"></i>
+            </div>
+          </div>
+          <p class="recommended"><i class="far fa-thumbs-up"></i> I recommend the lab</p>
+          <p class="comment-content">{{ comment.content }}</p>
+          <!-- Add the rest of your comment structure here -->
+        </div>
+      </div>
+    </div>
+    </li>
+  </ul>
+  

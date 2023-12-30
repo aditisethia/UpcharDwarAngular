@@ -1,0 +1,33 @@
+<!-- specialities.component.html -->
+<section class="section section-specialities">
+    <div class="container-fluid">
+        <div class="section-header text-center">
+            <h2>Clinic and Specialities</h2>
+            <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.</p>
+       <b>
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <!-- Slider -->
+                <div class="specialities-slider slider mx-auto">
+                    <!-- Slider Item -->
+                    <ul>
+                        <div style="display: flex; text-align: center;" >
+                            <div class="speciality-item text-center" style="text-align: center; margin-left: 10%;" *ngFor="let specialty of specialties">
+                                <div class="speciality-img">
+                                    <img [src]="specialty.image" class="img-fluid" alt="Speciality">
+                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                </div>
+                                <p style="color: black;">{{ specialty.name }}</p>
+                            </div>
+                        </div>
+                    </ul>
+                    <!-- /Slider Item -->
+                </div>
+                <!-- /Slider -->
+            </div>
+        </div>
+    </b>
+    </div>
+    </div>
+</section>

@@ -1,0 +1,151 @@
+/* pharmacy.component.css */
+.profile-widget {
+    width: 70%; /* Set the desired width */
+    margin: 0 auto; /* Center the card within the container */
+    /* Add any other styling as needed */
+  }
+  
+  .doc-img {
+    /* Adjust the size of the image within the card */
+    max-width: 100%; /* Make the image responsive within its container */
+  }
+  
+  .pro-content {
+    /* Add padding or margin to the content area if needed */
+    padding: 10px;
+  }
+  
+  .available-info {
+    /* Adjust the font size or spacing of the information */
+    font-size: 14px;
+  }
+  
+  .btn {
+    /* Adjust the button size */
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  /* Add any other specific styling as needed for your design */
+  
+  
+
+
+
+
+  *, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+user agent stylesheet
+style {
+    display: none;
+}
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+user agent stylesheet
+:root {
+    view-transition-name: root;
+}
+user agent stylesheet
+html {
+    display: block;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearfix {
+    clear: both;
+}
+.border-card-view-lg, .card-view-lg, .shadow-card-view-lg {
+    border-radius: 20px;
+    padding: 25px;
+    min-height: 150px;
+}
+
+.shadow-card-view, .shadow-card-view-lg, .shadow-card-view-sm, .shadow-card-view-xs {
+    background: #fff;
+    box-shadow: 0 0 15px rgba(24,24,24,.161);
+    overflow: hidden;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+.cart-wave-section, .wave-section {
+    color: #262c67;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+style attribute {
+    visibility: visible;
+}
+.btn, .h1, .h2, .h3, .h4, .h5, .h6, body, h1, h2, h3, h4, h5, h6 {
+    font-family: Nunito;
+    line-height: 2.2rem;
+}
+body {
+    height: 100%;
+    font-size: 13px;
+    padding-bottom: 80px;
+}
+body {
+    margin: 0;
+    color: #333;
+}
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}

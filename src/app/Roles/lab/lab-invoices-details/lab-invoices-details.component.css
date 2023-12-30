@@ -1,0 +1,12 @@
+/* Assuming this is your Angular component styles */
+.full-height-container {
+    height: 100%;
+    min-height: 100vh; /* This ensures at least the full viewport height */
+  }
+  
+  /* You might also want to set full height to html and body elements */
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  

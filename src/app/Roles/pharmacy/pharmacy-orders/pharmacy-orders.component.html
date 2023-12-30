@@ -1,0 +1,132 @@
+<app-home-navbar></app-home-navbar>
+
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar" style="margin-top: 5%;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/'">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a
+                                [routerLink]="'/pharmacydashboard'">Pharma Dashboard</a></li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Orders</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<section class="section section-search">
+    <div class="container-fluid">
+        <div class="banner-wrapper">
+            <div class="banner-header text-center"></div>
+        </div>
+    </div>
+</section>
+
+<div class="row" style="margin-top: 4%;">
+    <div class="col-md-12">
+
+        <div class="medicine-orders-tab">
+            <!-- Medicine Orders Tab -->
+            <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded" style="margin-left: 3%;">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#arriving-orders" data-toggle="tab">Arriving</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#order-history" data-toggle="tab">History</a>
+                </li>
+            </ul>
+            <!-- /Medicine Orders Tab -->
+
+            <div class="tab-content" style="margin-left: 3%;">
+                <!-- Arriving Orders Tab -->
+                <div class="tab-pane show active" id="arriving-orders">
+                    <div class="card card-table mb-0">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Medicine Name</th>
+                                            <th>Quantity</th>
+                                            <th>Delivery Date</th>
+                                            <th>Status</th>
+                                            <th>Invoice</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Loop through arriving orders -->
+                                        <tr *ngFor="let order of arrivingOrders">
+                                            <td>{{ order.medicineName }}</td>
+                                            <td>{{ order.quantity }}</td>
+                                            <td>{{ order.deliveryDate }}</td>
+                                            <td>{{ order.status }}</td>
+                                            <td>
+                                                <div class="table-action">
+                                                    <div class="table-action">
+                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                                            <i class="far fa-eye"></i> View
+                                                        </a>
+                                                        <!-- Add additional actions for order history if needed -->
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Arriving Orders Tab -->
+
+                <!-- Order History Tab -->
+                <div class="tab-pane" id="order-history">
+                    <div class="card card-table mb-0">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Medicine Name</th>
+                                            <th>Quantity</th>
+                                            <th>Delivery Date</th>
+                                            <th>Status</th>
+                                            <th>Invoice</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Loop through order history -->
+                                        <tr *ngFor="let order of orderHistory">
+                                            <td>{{ order.medicineName }}</td>
+                                            <td>{{ order.quantity }}</td>
+                                            <td>{{ order.deliveryDate }}</td>
+                                            <td>{{ order.status }}</td>
+                                            <td>
+                                                <div class="table-action">
+                                                    <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                                        <i class="far fa-eye"></i> View
+                                                    </a>
+                                                    <!-- Add additional actions for order history if needed -->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Order History Tab -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<app-footer></app-footer>

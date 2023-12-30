@@ -1,0 +1,48 @@
+<div style="text-align: center;"> <button mat-raised-button color="primary">+ Add medicines</button></div>
+
+<div class="col-md-7 col-lg-8 col-xl-9">
+    <div class="medicines">
+  
+      <!-- Medicine List -->
+      <div class="medicine-list" *ngFor="let medicine of medicines" style="margin-top: 4%; width: auto;">
+        <div class="profile-info-widget">
+
+
+          <div class="widget-profile pro-widget-content">
+            <div class="profile-info-widget">
+                <a href="#" class="booking-doc-img">
+                    <img [src]="medicine.medicineImage" alt="Medicine Image">
+                </a>
+              
+            </div>
+        </div>
+
+          <!-- <img class="booking-doc-img" [src]="medicine.medicineImage" alt="Medicine Image" style="margin-right: 2%;"> -->
+          <div class="profile-det-info" style="margin-top: 4%;">
+            <h3><b>{{ medicine.medicineName }}</b></h3>
+            <div class="medicine-details">
+              <h5><i class="fas fa-money-bill-wave"></i> Price: {{ medicine.price | currency }}</h5>
+              <h5><i class="fas fa-box"></i> Stock: {{ medicine.stock }}</h5>
+              <!-- Add more details as needed -->
+            </div>
+          </div>
+        </div>
+        <div class="medicine-action">
+          <button style="margin-right: 2%;" class="btn btn-sm bg-info-light" (click)="viewMedicineDetails(medicine)">
+            <i class="far fa-eye"></i> View
+          </button>
+          <button style="margin-right: 2%;" class="btn btn-sm bg-success-light" (click)="addMedicineToCart(medicine)">
+            <i class="fas fa-cart-plus"></i> Edit
+          </button>
+          <button class="btn btn-sm bg-danger-light" (click)="removeMedicineFromInventory(medicine)">
+            <i class="fas fa-trash"></i> Remove
+          </button>
+        </div>
+      </div>
+      <!-- /Medicine List -->
+  
+    </div>
+  </div>
+  
+
+  

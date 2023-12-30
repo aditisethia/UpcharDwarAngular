@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-body">
+      <div class="doctor-widget">
+        <div class="doc-info-left">
+          <div class="doctor-img">
+            <a href="doctor-profile.html">
+              <img [src]="lab.image" class="img-fluid" alt="User Image">
+            </a>
+          </div>
+          <div class="doc-info-cont">
+            <h4 class="doc-name"><a href="doctor-profile.html">{{ lab.name }}</a></h4>
+            <p class="doc-speciality">{{ lab.type }}</p>
+            <p class="lab-department"><img src="assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">Lab Department</p><div class="rating">
+              <i *ngFor="let star of [1, 2, 3, 4, 5]" [class]="star <= lab.rating ? 'fas fa-star filled' : 'fas fa-star'"></i>
+              <span class="d-inline-block average-rating">({{ lab.feedbackCount }})</span>
+            </div>
+            <div class="clinic-details">
+              <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ lab.location }}</p>
+              <ul class="clinic-gallery">
+                <li *ngFor="let feature of lab.features">
+                  <a [href]="feature.imageUrl" data-fancybox="gallery">
+                    <img [src]="feature.imageUrl" alt="Feature">
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="clinic-services">
+              <span *ngFor="let service of lab.services">{{ service }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="doc-info-right">
+          <div class="clini-infos">
+            <ul>
+              <li><i class="far fa-thumbs-up"></i> {{ lab.thumbsUp }}%</li>
+              <li><i class="far fa-comment"></i> {{ lab.feedbackCount }} Feedback</li>
+              <li><i class="fas fa-map-marker-alt"></i> {{ lab.location }}</li>
+              <li><i class="far fa-money-bill-alt"></i> {{ lab.costRange }} <i class="fas fa-info-circle" data-toggle="tooltip" title="{{ lab.tooltip }}"></i></li>
+            </ul>
+          </div>
+          <div class="clinic-booking">
+            <a class="view-pro-btn" href="doctor-profile.html">View Profile</a>
+            <a class="apt-btn" href="booking.html">Book Appointment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

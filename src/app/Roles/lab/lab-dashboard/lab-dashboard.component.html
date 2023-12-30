@@ -1,0 +1,31 @@
+<div class="main-wrapper">
+
+    <app-home-navbar></app-home-navbar>
+    <app-doctor-breadcrumb></app-doctor-breadcrumb>
+    <div class="content">
+          <div class="container-fluid">
+
+                <div class="row">
+                      <div class="col-3">
+                      <app-lab-profile-sidebar></app-lab-profile-sidebar>
+                </div>
+                     
+
+                            <div class="col-8">
+                                 
+                                        <div class="card dash-card">
+                                              <div class="card-body">
+                                                 
+                                                          <router-outlet></router-outlet>
+                                                    
+                                              </div>
+                                        </div>
+                                
+                            </div>
+
+                      </div>
+                </div>
+          </div>
+          <app-footer></app-footer>
+    </div>
+   

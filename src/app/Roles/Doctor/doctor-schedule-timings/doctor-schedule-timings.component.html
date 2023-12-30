@@ -1,0 +1,31 @@
+<!-- src/app/doctor-schedule-timings/doctor-schedule-timings.component.html -->
+<h2>Schedule Time Slots</h2>
+
+<form [formGroup]="scheduleForm">
+  <label for="start-time">Start Time:</label>
+  <input type="time" id="start-time" formControlName="startTime" required>
+
+  <label for="end-time">End Time:</label>
+  <input type="time" id="end-time" formControlName="endTime" required>
+
+  <label for="time-duration">Time Duration (in minutes):</label>
+  <input type="number" id="time-duration" formControlName="timeDuration" required>
+
+  <label for="selected-date">Date:</label>
+  <input type="date" id="selected-date" formControlName="selectedDate" required>
+
+  <button type="button" (click)="generateAllTimeSlots()">Generate All Time Slots</button>
+  <button type="button" (click)="clearTimeSlots()">Clear Time Slots</button>
+</form>
+
+
+<div *ngIf="timeSlots.length">
+  <h3>All Possible Time Slots:</h3>
+  <ul>
+    <li *ngFor="let timeSlot of timeSlots; let i = index">
+      {{ timeSlot.startTime }} - {{ timeSlot.endTime }}
+      <button type="button" (click)="removeTimeSlot(i)">Remove</button>
+    </li>
+  </ul>
+</div>
+<button type="button" (click)="saveSchedule()">Save Schedule</button>

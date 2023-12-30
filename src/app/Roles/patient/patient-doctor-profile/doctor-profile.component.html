@@ -1,0 +1,365 @@
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+
+	<!-- Header -->
+	
+	<!-- /Header -->
+
+	<!-- Breadcrumb -->
+	<div class="breadcrumb-bar">
+		<div class="container-fluid" style="margin-top: 3%;">
+			<div class="row align-items-center">
+				<div class="col-md-12 col-12">
+					<nav aria-label="breadcrumb" class="page-breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Doctor Profile</li>
+						</ol>
+					</nav>
+					<h2 class="breadcrumb-title">Doctor Profile</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Breadcrumb -->
+
+	<!-- Page Content -->
+	<div class="content">
+		<div class="container">
+
+			<!-- Doctor Widget -->
+			<app-doctor></app-doctor>
+			<!-- /Doctor Widget -->
+
+			<!-- Doctor Details Tab -->
+			<div class="card">
+				<div class="card-body pt-0">
+
+					<!-- Tab Menu -->
+					<nav class="user-tabs mb-4">
+						<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+							<li class="nav-item">
+								<a class="nav-link active" href="#doc_overview" data-toggle="tab">Overview</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#doc_reviews" data-toggle="tab">Reviews</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#doc_business_hours" data-toggle="tab">Business Hours</a>
+							</li>
+						</ul>
+					</nav>
+					<!-- /Tab Menu -->
+
+					<!-- Tab Content -->
+					<div class="tab-content pt-0">
+
+						<!-- Overview Content -->
+
+						<div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+							<div class="row">
+								<div class="col-md-12 col-lg-9">
+									<!-- About Details -->
+									<div class="widget about-widget">
+										<h4 class="widget-title">About Me</h4>
+										<p>{{ aboutContent }}</p>
+									</div>
+									<!-- /About Details -->
+
+									<!-- Education Details -->
+									<div class="widget education-widget">
+										<h4 class="widget-title">Education</h4>
+										<div class="experience-box">
+											<ul class="experience-list">
+												<li *ngFor="let education of educationDetails">
+													<div class="experience-user">
+														<div class="before-circle"></div>
+													</div>
+													<div class="experience-content">
+														<div class="timeline-content">
+															<a href="#/" class="name">{{ education.university }}</a>
+															<div>{{ education.degree }}</div>
+															<span class="time">{{ education.time }}</span>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- /Education Details -->
+
+									<!-- Experience Details -->
+									<div class="widget experience-widget">
+										<h4 class="widget-title">Work & Experience</h4>
+										<div class="experience-box">
+											<ul class="experience-list">
+												<li *ngFor="let experience of experienceDetails">
+													<div class="experience-user">
+														<div class="before-circle"></div>
+													</div>
+													<div class="experience-content">
+														<div class="timeline-content">
+															<a href="#/" class="name">{{ experience.clinic }}</a>
+															<span class="time">{{ experience.time }}</span>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- /Experience Details -->
+
+									<!-- Awards Details -->
+									<div class="widget awards-widget">
+										<h4 class="widget-title">Awards</h4>
+										<div class="experience-box">
+											<ul class="experience-list">
+												<li *ngFor="let award of awardsDetails">
+													<div class="experience-user">
+														<div class="before-circle"></div>
+													</div>
+													<div class="experience-content">
+														<div class="timeline-content">
+															<p class="exp-year">{{ award.year }}</p>
+															<h4 class="exp-title">{{ award.title }}</h4>
+															<p>{{ award.description }}</p>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- /Awards Details -->
+
+									<!-- Services List -->
+									<div class="service-list">
+										<h4>Services</h4>
+										<ul class="clearfix">
+											<li *ngFor="let service of servicesList">{{ service }}</li>
+										</ul>
+									</div>
+									<!-- /Services List -->
+
+									<!-- Specializations List -->
+									<div class="service-list">
+										<h4>Specializations</h4>
+										<ul class="clearfix">
+											<li *ngFor="let specialization of specializationsList">{{ specialization }}
+											</li>
+										</ul>
+									</div>
+									<!-- /Specializations List -->
+
+								</div>
+							</div>
+						</div>
+
+						<!-- /Overview Content -->
+					<div role="tabpanel" id="doc_locations" class="tab-pane fade">
+						<!-- Locations Content -->
+						<!-- location-list.component.html -->
+						<div *ngFor="let location of loacation" class="location-list">
+							<div class="row">
+								<!-- Clinic Content -->
+								<div class="col-md-6">
+									<div class="clinic-content">
+										<h4 class="clinic-name"><a href="#">{{ location.name }}</a></h4>
+										<p class="doc-speciality">{{ location.speciality }}</p>
+										<div class="rating">
+											<i class="fas fa-star filled"
+												*ngFor="let _ of [].constructor(location.rating)"></i>
+											<i class="fas fa-star"
+												*ngFor="let _ of [].constructor(5 - location.rating)"></i>
+
+
+											<span class="d-inline-block average-rating">({{ location.rating }})</span>
+										</div>
+										<div class="clinic-details mb-0">
+											<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> {{
+												location.address }} <br><a href="javascript:void(0);">Get Directions</a>
+											</h5>
+											<ul>
+												<li *ngFor="let image of location.images">
+													<a href="{{ image }}" data-fancybox="gallery">
+														<img src="{{ image }}" alt="Feature Image">
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- /Clinic Content -->
+
+								<!-- Clinic Timing -->
+								<div class="col-md-4">
+									<div class="clinic-timing">
+										<div *ngFor="let timing of location.timings">
+											<p class="timings-days">
+												<span>{{ timing.days }}</span>
+											</p>
+											<p class="timings-times">
+												<span *ngFor="let time of timing.times">{{ time }}</span>
+											</p>
+										</div>
+									</div>
+								</div>
+								<!-- /Clinic Timing -->
+
+								<div class="col-md-2">
+									<div class="consult-price">
+										{{ location.consultationPrice | currency:'USD':true:'1.2-2' }}
+									</div>
+								</div>
+							</div>
+						</div>
+
+</div>
+
+						<!-- /Location List -->
+
+					
+					<!-- /Locations Content -->
+
+					<!-- Reviews Content -->
+					<div role="tabpanel" id="doc_reviews" class="tab-pane fade">
+						<!-- Review Listing -->
+						<div class="widget review-listing">
+						  <ul class="comments-list">
+							<!-- Comment List -->
+							<li *ngFor="let review of reviews">
+							  <div class="comment">
+								<img class="avatar avatar-sm rounded-circle" alt="User Image" src="assets/img/patients/patient.jpg">
+								<div class="comment-body">
+								  <div class="meta-data">
+									<span class="comment-author">{{ review.author }}</span>
+									<span class="comment-date">Reviewed {{ review.date }}</span>
+									<div class="review-count rating">
+
+									  <i class="fas fa-star filled" *ngFor="let _ of [].constructor(review.rating)"></i>
+                                      <i class="fas fa-star" *ngFor="let _ of [].constructor(5 - review.rating)"></i>
+
+									</div>
+								  </div>
+								  <p class="recommended" *ngIf="review.recommended">
+									<i class="far fa-thumbs-up"></i> I recommend the doctor
+								  </p>
+								  <p class="comment-content">{{ review.content }}</p>
+								  <!-- Comment Reply and other details go here... -->
+								</div>
+							  </div>
+							</li>
+							<!-- /Comment List -->
+						  </ul>
+						  <!-- Show All and other details go here... -->
+						</div>
+						<!-- /Review Listing -->
+					  
+						<!-- Write Review and other details go here... -->
+					  </div>
+					  
+					<!-- /Reviews Content -->
+
+					<!-- Business Hours Content -->
+					<div role="tabpanel" id="doc_business_hours" class="tab-pane fade">
+						<div class="row">
+						  <div class="col-md-6 offset-md-3">
+							<!-- Business Hours Widget -->
+							<div class="widget business-widget">
+							  <div class="widget-content">
+								<div class="listing-hours">
+								  <div *ngFor="let day of businessHours" [ngClass]="{ 'current': day.openNow, 'closed': day.closed }">
+									<div class="day">{{ day.day }} <span>{{ day.date }}</span></div>
+									<div class="time-items">
+									  <span class="open-status" *ngIf="day.openNow"><span class="badge bg-success-light">Open Now</span></span>
+									  <span class="time">{{ day.openingHours }}</span>
+									</div>
+								  </div>
+								</div>
+							  </div>
+							</div>
+							<!-- /Business Hours Widget -->
+						  </div>
+						</div>
+					  </div>
+					  
+					<!-- /Business Hours Content -->
+
+				</div>
+			</div>
+		</div>
+		<!-- /Doctor Details Tab -->
+</div>
+	</div>
+</div>
+<!-- /Page Content -->
+
+
+
+
+<!-- /Main Wrapper -->
+
+<!-- Voice Call Modal -->
+<div class="modal fade call-modal" id="voice_call">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<!-- Outgoing Call -->
+				<div class="call-box incoming-box">
+					<div class="call-wrapper">
+						<div class="call-inner">
+							<div class="call-user">
+								<img alt="User Image" src="assets/img/doctors/doctor-thumb-02.jpg" class="call-avatar">
+								<h4>Dr. Darren Elder</h4>
+								<span>Connecting...</span>
+							</div>
+							<div class="call-items">
+								<a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal"
+									aria-label="Close"><i class="material-icons">call_end</i></a>
+								<a href="voice-call.html" class="btn call-item call-start"><i
+										class="material-icons">call</i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Outgoing Call -->
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Voice Call Modal -->
+
+<!-- Video Call Modal -->
+<div class="modal fade call-modal" id="video_call">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+
+				<!-- Incoming Call -->
+				<div class="call-box incoming-box">
+					<div class="call-wrapper">
+						<div class="call-inner">
+							<div class="call-user">
+								<img class="call-avatar" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+								<h4>Dr. Darren Elder</h4>
+								<span>Calling ...</span>
+							</div>
+							<div class="call-items">
+								<a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal"
+									aria-label="Close"><i class="material-icons">call_end</i></a>
+								<a href="video-call.html" class="btn call-item call-start"><i
+										class="material-icons">videocam</i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Incoming Call -->
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Video Call Modal -->

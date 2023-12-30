@@ -1,0 +1,31 @@
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+
+      <app-home-navbar></app-home-navbar>
+
+      <div class="content" style="margin-top: 3%;">
+            <div class="container-fluid">
+
+                  <div class="row">
+                        <div class="col-3">
+                        <app-doctor-profile-sidebar></app-doctor-profile-sidebar>
+                  </div>
+
+
+                              <div class="col-8">
+
+                                          <div class="card dash-card">
+                                                <div class="card-body">
+                                                      <div class="row">
+                                                            <router-outlet></router-outlet>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                              </div>
+
+                        </div>
+                  </div>
+            </div>
+            <app-footer></app-footer>
+      </div>

@@ -1,0 +1,293 @@
+/* pharmacy-shop-details.component.css */
+
+/* Style for Pharmacy Shop Widget */
+.card {
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .pharmacy-widget {
+    display: flex;
+  }
+  
+  .pharmacy-info-left,
+  .pharmacy-info-right {
+    flex: 1;
+  }
+  
+  /* Style for Pharmacy Shop Image */
+  .pharmacy-img img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  /* Style for Pharmacy Shop Name */
+  .pharmacy-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for Pharmacy Shop Speciality and Department */
+  .pharmacy-speciality,
+  .pharmacy-department {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .pharmacy-department img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  /* Style for Rating */
+  .rating {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .rating i {
+    color: #ffc107;
+    margin-right: 2px;
+  }
+  
+  .average-rating {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Style for Pharmacy Location */
+  .pharmacy-location {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for Clinic Gallery */
+  .clinic-gallery {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .clinic-gallery li {
+    margin-right: 5px;
+  }
+  
+  .clinic-gallery img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+  
+  /* Style for Pharmacy Services */
+  .clinic-services {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .clinic-services span {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+  }
+  
+  /* Style for Pharmacy Infos (Likes, Feedback, etc.) */
+  .pharmacy-infos {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pharmacy-infos li {
+    margin-right: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Style for Pharmacy Action Buttons */
+  .pharmacy-action {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .btn-white {
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    margin-right: 10px;
+  }
+  
+  /* Style for Pharmacy Booking Button */
+  .pharmacy-booking .apt-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  /* Hover effect for action buttons */
+  .btn-white:hover, .apt-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+/* pharmacy-shop-details.component.css */
+
+/* Style for Pharmacy Shop Widget */
+.card {
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pharmacy-widget {
+  display: flex;
+}
+
+.pharmacy-info-left,
+.pharmacy-info-right {
+  flex: 1;
+}
+
+/* Style for Pharmacy Shop Image */
+.pharmacy-img img {
+    width: 70%;
+  border-radius: 8px;
+}
+
+/* Style for Pharmacy Shop Name */
+.pharmacy-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style for Pharmacy Shop Speciality and Department */
+.pharmacy-speciality,
+.pharmacy-department {
+  font-size: 16px;
+  color: #666;
+}
+
+.pharmacy-department img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+/* Style for Rating */
+.rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.rating i {
+  color: #ffc107;
+  margin-right: 2px;
+}
+
+.average-rating {
+  margin-left: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Style for Pharmacy Location */
+.pharmacy-location {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Style for Clinic Gallery */
+.clinic-gallery {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.clinic-gallery li {
+  margin-right: 5px;
+}
+
+.clinic-gallery img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Style for Pharmacy Services */
+.clinic-services {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.clinic-services span {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+/* Style for Pharmacy Infos (Likes, Feedback, etc.) */
+.pharmacy-infos {
+  list-style: none;
+  padding: 0;
+}
+
+.pharmacy-infos li {
+  margin-right: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Style for Pharmacy Action Buttons */
+.pharmacy-action {
+  display: flex;
+  margin-top: 10px;
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+  margin-right: 10px;
+}
+
+/* Style for Pharmacy Booking Button */
+.pharmacy-booking .apt-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Hover effect for action buttons */
+.btn-white:hover, .apt-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+  

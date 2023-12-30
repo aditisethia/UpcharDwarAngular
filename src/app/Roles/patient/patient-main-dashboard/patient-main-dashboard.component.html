@@ -1,0 +1,24 @@
+<div class="main-wrapper">
+    <app-home-navbar></app-home-navbar>
+
+    <div class="content" style="margin-top: 2%;">
+        <div class="container-fluid">
+            <!-- Breadcrumb -->
+            <!-- /Breadcrumb -->
+
+            <div class="row">
+                <div>
+                    <div class="card-body">
+                        <div class="row">
+                            <router-outlet></router-outlet>
+                            <!-- Place your routed content here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Move app-footer outside of the content div and router-outlet -->
+    
+</div>

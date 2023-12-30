@@ -1,0 +1,196 @@
+<app-home-navbar></app-home-navbar>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar" style="margin-top: 5%;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/'">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a
+                                [routerLink]="'/pharmacydashboard'">Pharma Dashboard</a></li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Details</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+
+        <div class="content">
+            <div class="container">
+
+                <!-- Pharmacy Shop Widget -->
+                <div class="card">
+                    <div class="card-body" style="height: 90%;">
+                        <div class="doctor-widget">
+                            <div class="doc-info-left">
+                                <div class="doctor-img">
+                                    <img [src]="pharmacyShop.image" class="img-fluid" alt="User Image">
+                                </div>
+                                <div class="doc-info-cont">
+                                    <h4 class="doc-name">{{ pharmacyShop.name }}</h4>
+                                    <p class="doc-speciality">{{ pharmacyShop.type }}</p>
+                                    <p class="doc-department"><img [src]="pharmacyShop.departmentImage"
+                                            class="img-fluid" alt="Speciality">{{ pharmacyShop.department }}</p>
+                                    <div class="rating">
+                                        <!-- You can add a dynamic rating system if applicable -->
+                                    </div>
+                                    <div class="clinic-details">
+                                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{
+                                            pharmacyShop.location }} - <a href="javascript:void(0);">Get Directions</a>
+                                        </p>
+                                        <!-- Display the gallery dynamically -->
+                                        <ul class="clinic-gallery">
+                                            <li *ngFor="let image of pharmacyShop.gallery">
+                                                <a [href]="image" data-fancybox="gallery">
+                                                    <img [src]="image" alt="Feature">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clinic-services">
+                                        <span *ngFor="let service of pharmacyShop.services">{{ service }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc-info-right" style="margin-left: 80%;">
+                                <div class="clini-infos">
+                                    <ul>
+                                        <li><i class="far fa-thumbs-up"></i> {{ pharmacyShop.thumbsUpPercentage }}%</li>
+                                        <li><i class="far fa-comment"></i> {{ pharmacyShop.commentsCount }} Feedback
+                                        </li>
+                                        <li><i class="fas fa-map-marker-alt"></i> {{ pharmacyShop.location }}</li>
+                                        <li><i class="far fa-money-bill-alt"></i> ${{ pharmacyShop.hourlyRate }} per
+                                            hour</li>
+                                    </ul>
+                                </div>
+                                <div class="doctor-action">
+                                    <a href="javascript:void(0)" class="btn btn-white fav-btn">
+                                        <i class="far fa-bookmark"></i>
+                                    </a>
+                                    <a href="chat.html" class="btn btn-white msg-btn">
+                                        <i class="far fa-comment-alt"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal"
+                                        data-target="#voice_call">
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+
+                                </div>
+
+
+                                <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+                                    <li class="nav-item">
+                                        <a class="nav-link    "     routerLink="/uploadprescription" style="background-color: rgb(112, 212, 242);"
+                                      data-toggle="tab">Order now</a>
+                                    </li>
+
+                                </ul>
+
+                                <!-- medicines -->
+                                <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded" style="margin-top: 4%;">
+                                    <li class="nav-item">
+                                        <a class="nav-link    " style="background-color: rgb(112, 212, 242);"
+                                            href="#available-medicines" data-toggle="tab">Available Medicines</a>
+                                    </li>
+
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Pharmacy Shop Widget -->
+
+
+
+
+                <div class="tab-content">
+
+                    <!-- Available Medicines Tab -->
+                    <div class="tab-pane show" id="available-medicines">
+
+                        <h2><b>Available Medicines</b></h2>
+
+                        <!-- search -->
+
+                        <div class="search-box">
+                            <form action="templateshub.net">
+
+                                <div class="form-group search-info">
+                                    <input type="text" class="form-control"
+                                        placeholder="Search Cough, Fever  Diseases Etc">
+                                    <span class="form-text">Ex : Medicine or Sugar tablet Shop name etc</span>
+                                </div>
+                                <button type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i>
+                                    <span>Search</span></button>
+                            </form>
+                        </div>
+                        <!-- /Search -->
+                        <div class="card card-table mb-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Medicine Name</th>
+                                                <th>Type</th>
+                                                <th>Price</th>
+                                                <th>Avaibility</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let medicine of availableMedicines">
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <!-- You can display the medicine image here if available -->
+                                                        <a href="javascript:void(0);">{{ medicine.name }}</a>
+                                                    </h2>
+                                                </td>
+                                                <td>{{ medicine.type }}</td>
+                                                <td>{{ medicine.price | currency }}</td>
+                                                <td>{{ medicine.stock }}</td>
+                                         
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Available Medicines Tab -->
+
+
+
+
+                </div>
+                <!-- /medicines -->
+            </div>
+
+        </div>
+        <div style="margin-top: 5%;"><app-footer></app-footer></div>
+
+    </div>
+
+</body>
+
+
+
+
+</html>

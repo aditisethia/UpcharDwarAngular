@@ -1,0 +1,68 @@
+<!-- lab-test.component.html -->
+
+<div class="row">
+  <div class="col-lg-6" *ngFor="let test of labTests">
+    <!-- Lab Widget -->
+    <mat-card style="margin-bottom: 20px;">
+      <div class="profile-widget">
+        <div class="doc-img">
+          <a href="#">
+            <!-- You can add lab-related image or icon here -->
+            <img class="img-fluid" alt="Lab Image" [src]="'https://altahealthgroup.com/wp-content/uploads/2016/12/lab-tests-1024x768.jpg'">
+          </a>
+          <a href="javascript:void(0)" class="fav-btn">
+            <i class="far fa-bookmark"></i>
+          </a>
+        </div>
+        <div class="pro-content">
+          <h3 class="title">
+            <a href="#">{{test.testName}}</a>
+            <!-- If lab is verified, show a checkmark -->
+            <i class="fas fa-check-circle verified"></i>
+          </h3>
+
+          
+            <h5 class="title">
+              <b>Lab Name :</b> <a href="#">{{lab.labName}}</a>
+              <!-- If lab is verified, show a checkmark -->
+              
+            </h5>
+
+          <!-- Display lab rating stars -->
+          <i class="fas fa-star filled" *ngFor="let i of [1, 2, 3, 4, 5]"></i>
+          <span class="d-inline-block average-rating">({{ test.ratings }})</span>
+        </div>
+        <ul class="available-info">
+          <li>
+            <i class="far fa-clock"></i>
+            {{ test.availability ? 'available' : 'not available' }}
+          </li>
+        </ul>
+        <!-- Additional lab-specific details -->
+        <ul class="lab-info">
+          <li><i class="fas fa-info"></i> {{ test.description }}</li>
+          <li><i class="fas fa-dollar-sign"></i> {{ test.rates }}</li>
+         
+        </ul>
+        <div class="row row-sm">
+          <div class="col-6">
+            <!-- Add a link to view lab profile -->
+            <a href="#" class="btn view-btn">Edit</a>
+          </div>
+          <div class="col-6">
+            <!-- Add a link to book lab services -->
+            <a href="#" class="btn book-btn">delete</a>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <!-- /Lab Widget -->
+
+    
+  </div>
+  <mat-paginator #paginator  class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
+    [pageSize]="pageSize" [disabled]="disabled" [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
+    [pageIndex]="pageIndex" aria-label="Select page">
+</mat-paginator>
+</div>

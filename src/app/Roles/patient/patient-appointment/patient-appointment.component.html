@@ -1,0 +1,48 @@
+<div id="pat_appointments" class="tab-pane fade show active">
+    <div class="card card-table mb-0">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Doctor</th>
+                            <th>Appt Date</th>
+                            <th>Booking Date</th>
+                            <th>Amount</th>
+                            <th>Follow Up</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let appointment of appointments">
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a [href]="appointment.doctor.profileLink" class="avatar avatar-sm mr-2">
+                                        <img class="avatar-img rounded-circle" [src]="appointment.doctor.avatar" alt="User Image">
+                                    </a>
+                                    <a [href]="appointment.doctor.profileLink">{{ appointment.doctor.name }} <span>{{ appointment.doctor.specialty }}</span></a>
+                                </h2>
+                            </td>
+                            <td>{{ appointment.appointmentDate }}</td>
+                            <td>{{ appointment.bookingDate }}</td>
+                            <td>{{ appointment.amount }}</td>
+                            <td>{{ appointment.followUpDate }}</td>
+                            <td><span class="badge badge-pill bg-success-light">{{ appointment.status }}</span></td>
+                            <td class="text-right">
+                                <div class="table-action">
+                                    <a [href]="appointment.actions.print" class="btn btn-sm bg-primary-light">
+                                        <i class="fas fa-print"></i> Print
+                                    </a>
+                                    <a [href]="appointment.actions.view" class="btn btn-sm bg-info-light">
+                                        <i class="far fa-eye"></i> View
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

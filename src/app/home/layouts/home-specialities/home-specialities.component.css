@@ -1,0 +1,74 @@
+/* Add these styles to your stylesheet */
+
+/* Adjust the container width and margin as needed */
+#specialitiesCarousel {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Style the carousel items (specialties) */
+.carousel-item {
+    text-align: center;
+}
+
+/* Style the specialty item */
+.speciality-item {
+    margin: 20px;
+}
+
+/* Style the specialty image */
+.speciality-img {
+    position: relative;
+}
+
+.speciality-img img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style the circle icon over the image */
+.speciality-img span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Style the specialty name */
+.speciality-item p {
+    margin-top: 10px;
+}
+
+/* Style the carousel controls */
+.carousel-control-prev, .carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    height: 50px;
+    width: 50px;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    background-color: #007bff; /* Change the color as needed */
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: #0056b3; /* Change the hover color as needed */
+}
+
+/* Style the carousel indicators (optional) */
+.carousel-indicators {
+    margin-top: 20px;
+}
+
+.carousel-indicators li {
+    background-color: #007bff; /* Change the color as needed */
+    border: 1px solid #007bff; /* Change the border color as needed */
+}
+
+.carousel-indicators .active {
+    background-color: #0056b3; /* Change the active color as needed */
+    border: 1px solid #0056b3; /* Change the active border color as needed */
+}

@@ -1,0 +1,156 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card dash-card">
+      <div class="card-body">
+        <div class="row">
+          <div *ngFor="let widget of dashWidgets" class="col-md-12 col-lg-4">
+            <div class="dash-widget dct-border-rht">
+              <div class="circle-bar" [ngClass]="'circle-bar' + (widget === dashWidgets[0] ? 1 : widget === dashWidgets[1] ? 2 : 3)">
+                <div class="circle-graph" [attr.data-percent]="widget.percentage">
+                  <img [src]="widget.icon" class="img-fluid" alt="{{widget.title}}">
+                </div>
+              </div>
+              <div class="dash-widget-info">
+                  <a href="patient-profile.html" class="avatar avatar-sm mr-2">
+                      <img class="avatar-img rounded-circle" src="{{ widget.icon }}" alt="User Image">
+                    </a>
+                <h6>{{ widget.title }}</h6>
+                <h3>{{ widget.value }}</h3>
+                <p class="text-muted">{{ widget.subtitle }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- ... (existing HTML code) ... -->
+
+<div class="row">
+    <div class="col-md-12">
+      <h4 class="mb-4">Lab Request</h4>
+      <div class="appointment-tab">
+        <!-- Appointment Tab -->
+        <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+          <li class="nav-item">
+            <a class="nav-link active" href="#upcoming-labTest" data-toggle="tab">Upcoming</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#today-labTest" data-toggle="tab">Today</a>
+          </li>
+        </ul>
+        <!-- /Appointment Tab -->
+  
+        <div class="tab-content">
+          <!-- ... (existing tab content HTML) ... -->
+  
+          <!-- Upcoming Appointment Tab -->
+          <div class="tab-pane show " id="upcoming-labTest">
+            <div class="card card-table mb-0">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover table-center mb-0">
+                    <thead>
+                      <tr>
+                        <th>client Name</th>
+                        <th>Request Date</th>
+                        <th>Purpose</th>
+                        <th>Test</th>
+                        <th class="text-center">Paid Amount</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let appointment of upcomingLabTest">
+                        <td>
+                          <h2 class="table-avatar">
+                            <a href="patient-profile.html" class="avatar avatar-sm mr-2">
+                              <img class="avatar-img rounded-circle" src="{{ appointment.patientAvatar }}" alt="User Image">
+                            </a>
+                            <a href="patient-profile.html">{{ appointment.clientName }} <span>{{ appointment.clientId }}</span></a>
+                          </h2>
+                        </td>
+                        <td>{{ appointment.requestDate }} <span class="d-block text-info">{{ appointment.requestTime }}</span></td>
+                        <td>{{ appointment.purpose }}</td>
+                        <td>{{ appointment.fortest }}</td>
+                        <td class="text-center">{{ appointment.paidAmount }}</td>
+                        <td class="text-right">
+                          <div class="table-action">
+                            <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                              <i class="far fa-eye"></i> View
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                              <i class="fas fa-check"></i> Accept
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+                              <i class="fas fa-times"></i> Cancel
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Upcoming Appointment Tab -->
+  
+          <!-- Today Appointment Tab -->
+          <div class="tab-pane show active" id="today-labTest">
+            <div class="card card-table mb-0">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover table-center mb-0">
+                    <thead>
+                      <tr>
+                        <th>client Name</th>
+                        <th>Request Date</th>
+                        <th>Purpose</th>
+                        <th>Test</th>
+                        <th class="text-center">Paid Amount</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let appointment of todayLabTest">
+                        <td>
+                          <h2 class="table-avatar">
+                            <a href="patient-profile.html" class="avatar avatar-sm mr-2">
+                              <img class="avatar-img rounded-circle" src="{{ appointment.patientAvatar }}" alt="User Image">
+                            </a>
+                            <a href="patient-profile.html">{{ appointment.clientName }} <span>{{ appointment.clientId }}</span></a>
+                          </h2>
+                        </td>
+                        <td>{{ appointment.requestDate }} <span class="d-block text-info">{{ appointment.requestTime }}</span></td>
+                        <td>{{ appointment.purpose }}</td>
+                        <td>{{ appointment.fortest }}</td>
+                        <td class="text-center">{{ appointment.paidAmount }}</td>
+                        <td class="text-right">
+                          <div class="table-action">
+                            <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                              <i class="far fa-eye"></i> View
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                              <i class="fas fa-check"></i> Accept
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+                              <i class="fas fa-times"></i> Cancel
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Today Appointment Tab -->
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

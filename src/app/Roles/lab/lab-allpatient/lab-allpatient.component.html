@@ -1,0 +1,32 @@
+<div class="col-md-9 col-lg-8 col-xl-9">
+    <div class="row row-grid">
+      <div class="col-md-9 col-lg-2 col-xl-2" *ngFor="let patient of patients">
+        <div class="card widget-profile pat-widget-profile">
+          <div class="card-body">
+            <div class="pro-widget-content">
+              <div class="profile-info-widget">
+                <a [routerLink]="['/patient-profile', patient.patientId]" class="booking-doc-img">
+                  <img [src]="patient.image" alt="User Image">
+                </a>
+                <div class="profile-det-info">
+                  <h3><a [routerLink]="['/patient-profile', patient.patientId]">{{ patient.name }}</a></h3>
+                  <div class="patient-details">
+                    <h5><b>Patient ID :</b> {{ patient.patientId }}</h5>
+                    <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> {{ patient.location }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="patient-info">
+              <ul>
+                <li>Phone <span>{{ patient.phone }}</span></li>
+                <li>Age <span>{{ patient.age }}</span></li>
+                <li>Blood Group <span>{{ patient.bloodGroup }}</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

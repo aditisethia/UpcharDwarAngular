@@ -1,0 +1,206 @@
+<!-- Main Angular Component -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-7 col-lg-8 col-xl-9">
+      <!-- Basic Information -->
+      <div class="card">
+        <div class="card-body">
+          {{ lab | json }}
+          <h4 class="card-title">Lab Registration</h4>
+          <form [formGroup]="labForm" enctype="multipart/form-data">
+            <div class="row form-row">
+              <div class="col-md-6">
+                <div class="upload-img">
+                  <div class="change-photo-btn">
+                      <label for="image">Image:</label>
+                      <input type="file" (change)="onUploadFiles($event,2)" name="files" multiple class="form-control" />
+                     
+                  </div>
+              </div>
+              </div>
+
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Lab Name<span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [placeholder]="lab.labName"
+                    formControlName="phone"
+                    readonly
+                  />
+                  <div *ngIf="labForm.get('labName')?.errors?.['required'] && labForm.get('labName')?.touched">
+                    <small class="text-danger">Phone is required.</small>
+                  </div>
+                  <div *ngIf="labForm.get('labName')?.errors?.['pattern'] && labForm.get('labName')?.touched">
+                    <small class="text-danger">Invalid phone format.</small>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Email<span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [placeholder]="lab.email"
+                    formControlName="email"
+                    readonly
+                  />
+                  <div *ngIf="labForm.get('email')?.errors?.['required'] && labForm.get('email')?.touched">
+                    <small class="text-danger">Phone is required.</small>
+                  </div>
+                  <div *ngIf="labForm.get('email')?.errors?.['pattern'] && labForm.get('email')?.touched">
+                    <small class="text-danger">Invalid phone format.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Phone <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Phone"
+                    formControlName="phone"
+                    [(ngModel)]="lab.phone"
+                  />
+                  <div *ngIf="labForm.get('phone')?.errors?.['required'] && labForm.get('phone')?.touched">
+                    <small class="text-danger">Phone is required.</small>
+                  </div>
+                  <div *ngIf="labForm.get('phone')?.errors?.['pattern'] && labForm.get('phone')?.touched">
+                    <small class="text-danger">Invalid phone format.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Area <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Area"
+                    formControlName="area"
+                    [(ngModel)]="lab.location.area"
+                  />
+                  <div *ngIf="labForm.get('area')?.errors?.['required'] && labForm.get('area')?.touched">
+                    <small class="text-danger">Area is required.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Address Line <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Address Line"
+                    formControlName="addressLine"
+                    [(ngModel)]="lab.location.addressLine"
+                  />
+                  <div *ngIf="labForm.get('addressLine')?.errors?.['required'] && labForm.get('addressLine')?.touched">
+                    <small class="text-danger">Address Line is required.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Description <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Address Line"
+                    formControlName="biography"
+                    [(ngModel)]="lab.biography"
+                  />
+                  <div *ngIf="labForm.get('biography')?.errors?.['required'] && labForm.get('biography')?.touched">
+                    <small class="text-danger">Description is required.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>City <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter City"
+                    formControlName="city"
+                    [(ngModel)]="lab.location.city"
+                  />
+                  <div *ngIf="labForm.get('city')?.errors?.['required'] && labForm.get('city')?.touched">
+                    <small class="text-danger">City is required.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Country <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Country"
+                    formControlName="country"
+                    [(ngModel)]="lab.location.country"
+                  />
+                  <div *ngIf="labForm.get('country')?.errors?.['required'] && labForm.get('country')?.touched">
+                    <small class="text-danger">Country is required.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Pincode <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Pincode"
+                    formControlName="pinCode"
+                    [(ngModel)]="lab.location.pinCode"
+                  />
+                  <div *ngIf="labForm.get('pinCode')?.errors?.['required'] && labForm.get('pinCode')?.touched">
+                    <small class="text-danger">Pincode is required.</small>
+                  </div>
+                </div>
+              </div>
+
+            
+        
+              <form enctype="multipart/form-data">
+                <fieldset>
+                  <div class="form-group">
+                    <div>
+                      <input type="file" (change)="onUploadFiles($event,1)" name="files" multiple class="form-control" />
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+
+
+              <div class="submit-section submit-btn-bottom">
+                <button
+                  type="button"
+                  class="btn btn-primary submit-btn"
+                  (click)="onSubmit()"
+                >
+                  Register Lab
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

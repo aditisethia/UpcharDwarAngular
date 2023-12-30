@@ -1,0 +1,192 @@
+<app-home-navbar></app-home-navbar>
+
+<section class="section section-search">
+    <div class="container-fluid">
+        <div class="banner-wrapper">
+            <div class="banner-header text-center"></div></div></div></section>
+
+<!-- Home Banner -->
+<section style="margin-top: 5%;">
+    <div>
+        <div class="banner-wrapper">
+            <div class="banner-header text-center">
+                <h1>Search Medicines, Pharmacy Stores</h1>
+                <p style="color: rgb(164, 191, 214);">Discover the best pharmacies, the city nearest to you.</p>
+            </div>
+
+            <!-- search -->
+
+            <div class="search-box">
+                <form action="templateshub.net">
+                    <div class="form-group search-location">
+                        <input type="text" class="form-control" placeholder="Search Location">
+                        <span class="form-text">Based on your Location</span>
+                    </div>
+                    <div class="form-group search-info">
+                        <input type="text" class="form-control" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
+                        <span class="form-text">Ex : Medicine or Sugar tablet Shop name etc</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i> <span>Search</span></button>
+                </form>
+            </div>
+            <!-- /Search -->
+
+        </div>
+    </div>
+</section>
+<!-- /Home Banner -->
+
+
+
+<section class="wave-section card-section" style="text-align: center;">
+    <div class="content row">
+
+        <div style="width: 30%; margin-right: 20%; margin-left: 10%;" ng-class="{'shadow-card-view':isMobileView,'shadow-card-view-lg':!isMobileView}"
+            class="clearfix shadow-card-view-lg col-md-6 col-xs-12 p-l-0">
+            <div  >
+                <div class="col-xs-8 p-l-0 p-r-10">
+                    <div class="bold m-b-15 smdTxt">Upload Prescription to place order</div>
+                    <div class="col-xs-9 p-l-0 p-r-0 light-bold">
+                        <div class="m-b-20">Upload only .jpg .png or .pdf files, size limit is 15 MB</div>
+                        <div class="m-b-15">
+
+
+                            <!-- <input type="file" class="upload" > -->
+                            <div class="change-photo-btn">
+                                <span><i class=" btn br-10 upload" type="file"></i>Order via Prescription</span>
+                                <input type="file" class="upload" ng-click="prescriptionUpload()">
+                              </div>
+                            <!-- <button  >
+                                <span> Order via Prescription</span>
+                                
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 p-l-10 p-r-0">
+                    <img src="https://www.medibuddy.in/assets/icons/medicine/rx.svg" alt="RX" height="125">
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 30%;" ng-class="{'shadow-card-view':isMobileView,'shadow-card-view-lg':!isMobileView}"
+            class="clearfix shadow-card-view-lg col-md-6 col-xs-12 p-l-0">
+            <div >
+                <div class="col-xs-8 p-l-0 p-r-10">
+                    <div class="bold m-b-15 smdTxt">Consult With Our Doctor</div>
+                    <div class="col-xs-9 p-l-0 p-r-0 light-bold">
+                        <div class="m-b-20">first consult with doctor then upload on right side..</div>
+                        <div class="m-b-15">
+                            <div class="change-photo-btn">
+                                <span><i class=" btn br-10 upload" ></i>Get Prescription</span>
+                                <input  class="upload" ng-click="prescriptionUpload()">
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 p-l-10 p-r-0">
+                    <img src="https://www.medibuddy.in/assets/icons/medicine/rx.svg" alt="RX" height="125">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<div style="margin-top: 5%;">
+
+
+
+
+    <span style="text-align: center; color: rgb(177, 210, 240); font-size: 2cm "> <b>Our Best Shops</b> </span>
+
+    <br><br>
+    <!-- Pharmacy Shop Section -->
+    <section class="section section-pharmacy" style="margin-top: 5%;">
+        <style>
+            .pharmacy-slider {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .profile-widget {
+                display: inline-block;
+                margin-right: 10px;
+                width: 50%;
+                /* Set the width to 50% for a smaller size */
+            }
+
+            .doc-img {
+                max-width: 100%;
+            }
+
+            .pro-content {
+                padding: 10px;
+            }
+
+            .available-info {
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        </style>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="section-header">
+                        <h2>Discover Your Health Hub: Our Pharmacy Shops</h2>
+                        <p>Step into a world of health and well-being at our pharmacy shops. Uncover a vast array of premium healthcare products and personalized services aimed at enhancing your overall wellness journey.</p>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-8">
+                    <div class="pharmacy-slider">
+                        <!-- Pharmacy Shop Widgets in a horizontally scrollable row -->
+                        <div class="profile-widget" *ngFor="let shop of pharmacyShops">
+                            <div class="doc-img">
+                                <img class="img-fluid" [src]="shop.image" alt="Shop Image">
+                            </div>
+                            <div class="pro-content">
+                                <h3 class="title">{{ shop.name }}</h3>
+                                <p class="speciality">{{ shop.description }}</p>
+                                <!-- You can add additional details specific to pharmacy shops here -->
+                                <ul class="available-info">
+                                    <li>
+                                        <i class="far fa-map-marker-alt"></i> {{ shop.location }}
+                                    </li>
+                                    <!-- Add more details if needed -->
+                                </ul>
+                                <div class="row row-sm">
+                                    <div class="col-6">
+                                        <a [routerLink]="'/pharmacydetails'" class="btn view-btn">View Details</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <!-- You can replace this with your specific functionality for pharmacy shops -->
+                                        <a routerLink="/uploadprescription" class="btn view-btn">Order Medicine</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Pharmacy Shop Widgets -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Pharmacy Shop Section -->
+
+  
+
+
+</div>
+
+
+
+
+<app-footer></app-footer>

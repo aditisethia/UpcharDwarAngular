@@ -1,0 +1,43 @@
+<div class="col-md-7 col-lg-8 col-xl-9">
+    <div class="appointments">
+      <!-- Appointment List -->
+      <div class="request-list" *ngFor="let request of requests">
+        <div class="card">
+          <div class="card-body">
+            <div class="profile-info-widget">
+              <a [routerLink]="['/patient-profile', request.patientId]" class="booking-doc-img">
+                <img [src]="request.patientImage" alt="User Image">
+              </a>
+              <div class="profile-det-info">
+                <h3><a [routerLink]="['/patient-profile', request.patientId]">{{ request.patientName }}</a></h3>
+                <div class="patient-details">
+                  <h5><i class="far fa-clock"></i> {{ request.appointmentDate | date: 'd MMM yyyy, h:mm a' }}</h5>
+                  <h5><i class="fas fa-map-marker-alt"></i> {{ request.location }}</h5>
+                  <h5><i class="fas fa-envelope"></i> {{ request.email }}</h5>
+                  <h5 class="mb-0"><i class="fas fa-phone"></i> {{ request.phone }}</h5>
+                </div>
+                <div class="lab-tests">
+                  <h5 class="mb-0">Lab Tests:</h5>
+                  <ul>
+                    <li *ngFor="let labTest of request.labTests">{{ labTest }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="request-action">
+              <a href="#" class="btn btn-sm bg-info-light" (click)="viewAppointmentDetails(request)">
+                <i class="far fa-eye"></i> View
+              </a>
+              <a href="javascript:void(0);" class="btn btn-sm bg-success-light" (click)="acceptAppointment(request)">
+                <i class="fas fa-check"></i> Accept
+              </a>
+              <a href="javascript:void(0);" class="btn btn-sm bg-danger-light" >
+                <i class="fas fa-times"></i> Cancel
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

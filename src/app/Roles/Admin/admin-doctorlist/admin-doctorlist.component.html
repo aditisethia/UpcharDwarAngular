@@ -1,0 +1,66 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">List of Doctors</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Doctor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="datatable table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Doctor Name</th>
+                                        <th>Speciality</th>
+                                        <th>Member Since</th>
+                                        <th>Earned</th>
+                                        <th>Account Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let doctor of doctors">
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <a [routerLink]="['/profile', doctor.id]" class="avatar avatar-sm mr-2">
+                                                    <img class="avatar-img rounded-circle" [src]="doctor.imagePath"
+                                                        alt="User Image">
+                                                </a>
+                                                <a [routerLink]="['/profile', doctor.id]">{{ doctor.name }}</a>
+                                            </h2>
+                                        </td>
+                                        <td>{{ doctor.specialty }}</td>
+                                        <td>{{ doctor.memberSince }}</td>
+                                        <td>{{ doctor.earned }}</td>
+                                        <td>
+                                            <div class="status-toggle">
+                                                <input type="checkbox" id="status_{{ doctor.id }}" class="check"
+                                                    [checked]="doctor.status">
+                                                <label for="status_{{ doctor.id }}" class="checktoggle">checkbox</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /Page Wrapper -->

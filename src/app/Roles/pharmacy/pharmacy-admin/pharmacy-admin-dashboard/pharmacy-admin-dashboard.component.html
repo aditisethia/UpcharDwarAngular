@@ -1,0 +1,40 @@
+
+<!doctype html>
+<html lang="en">
+<body>
+    
+
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+
+    <app-admin-navbar></app-admin-navbar>
+    
+    <div class="content" style="margin-top: 3%;">
+          <div class="container-fluid">
+
+                <div class="row">
+                      <div class="col-3">
+                        <app-pharmacy-admin-sidebar></app-pharmacy-admin-sidebar>
+                </div>
+                     
+
+                            <div class="col-8">
+                                 
+                                        <div class="card dash-card">
+                                              <div class="card-body">
+                                                    <div class="row">
+                                                          <router-outlet></router-outlet>
+                                                    </div>
+                                              </div>
+                                        </div>
+                                
+                            </div>
+
+                      </div>
+                </div>
+          </div>
+
+    </div>
+    </body>
+    </html>
+    <app-footer></app-footer>

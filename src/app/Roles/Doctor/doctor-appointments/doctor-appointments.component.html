@@ -1,0 +1,61 @@
+						 			<!-- Breadcrumb -->
+                   <div class="breadcrumb-bar">
+                    <div class="container-fluid">
+                      <div class="row align-items-center">
+                        <div class="col-md-12 col-12">
+                          <nav aria-label="breadcrumb" class="page-breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            </ol>
+                          </nav>
+                          <h2 class="breadcrumb-title">Dashboard</h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /Breadcrumb -->
+<div class="col-md-7 col-lg-8 col-xl-9">
+    <div class="appointments">
+
+      <!-- Appointment List -->
+      <div class="appointment-list" *ngFor="let appointment of appointments">
+        <div class="profile-info-widget">
+          <a [routerLink]="['/patient-profile', appointment.id]" class="booking-doc-img">
+            <img [src]="appointment.appointmentTime" alt="User Image">
+          </a>
+          <div class="profile-det-info">
+            <h3><a [routerLink]="['/patient-profile', appointment.patientName]">{{ appointment.patientName }}</a></h3>
+            <div class="patient-details">
+              <h5><i class="far fa-clock"></i> {{ appointment.appointmentDate | date: 'd MMM yyyy, h:mm a' }}</h5>
+              <h5><i class="fas fa-map-marker-alt"></i> {{ appointment.purpose }}</h5>
+              <h5><i class="fas fa-envelope"></i> {{ appointment.email }}</h5>
+              <h5 class="mb-0"><i class="fas fa-phone"></i> {{ appointment.mobile }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="appointment-action">
+          <a href="#" class="btn btn-sm bg-info-light" (click)="viewAppointmentDetails(appointment)">
+            <i class="far fa-eye"></i> View
+          </a>
+          <a href="javascript:void(0);" class="btn btn-sm bg-success-light" (click)="acceptAppointment(appointment)">
+            <i class="fas fa-check"></i> Accept
+          </a>
+          <a href="javascript:void(0);" class="btn btn-sm bg-danger-light" (click)="cancelAppointment(appointment)">
+            <i class="fas fa-times"></i> Cancel
+          </a>
+        </div>
+      </div>
+
+      <!-- /Appointment List -->
+
+    
+
+      <mat-paginator #paginator  class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
+      [pageSize]="pageSize" [disabled]="disabled" [showFirstLastButtons]="showFirstLastButtons"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
+      [pageIndex]="pageIndex" aria-label="Select page">
+  </mat-paginator>
+
+    </div>
+  </div>

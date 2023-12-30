@@ -1,0 +1,92 @@
+<!-- Lab Section -->
+<div class="lab-section">
+
+    <!-- Lab Header -->
+    <!-- <app-lab-navbar></app-lab-navbar> -->
+    <!-- /Lab Header -->
+
+    <!-- Lab Breadcrumb -->
+    <!-- <app-search-lab-bread-crum></app-search-lab-bread-crum> -->
+    <!-- /Lab Breadcrumb -->
+
+    <!-- Lab Page Content -->
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+
+                    <!-- Lab Search Filter -->
+                    <div class="card search-filter">
+                        <div class="card-header">
+                            <h4 class="card-title mb-0">Search Filter</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="filter-widget">
+                                <div class="cal-icon">
+                                    <input type="text" class="form-control datetimepicker" placeholder="Select Date">
+                                </div>
+                            </div>
+                            <div class="filter-widget">
+                                <h4>Lab Type</h4>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="lab_type" [(ngModel)]="basicLabChecked">
+                                        <span class="checkmark"></span> Basic Lab
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="lab_type" [(ngModel)]="advancedLabChecked">
+                                        <span class="checkmark"></span> Advanced Lab
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-widget">
+                                <h4>Select Test</h4>
+                                <div *ngFor="let test of labTests">
+                                    <label class="custom_check">
+                                        <input type="checkbox" name="select_test" [(ngModel)]="test.checked">
+                                        <span class="checkmark"></span> {{ test.name }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="btn-search">
+                                <button type="button" class="btn btn-block" (click)="searchLab()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Lab Search Filter -->
+
+                </div>
+
+                <div class="col-md-12 col-lg-8 col-xl-9">
+
+                    <app-lab-list-for-patient></app-lab-list-for-patient>
+
+                    <div class="load-more text-center">
+                        <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /Lab Page Content -->
+
+    <!-- Lab Footer -->
+    <footer class="footer">
+
+        <!-- Lab Footer Top -->
+        <!-- Add Lab-specific content as needed -->
+
+        <!-- Lab Footer Bottom -->
+        <!-- Add Lab-specific content as needed -->
+
+    </footer>
+    <!-- /Lab Footer -->
+
+</div>
+<!-- /Lab Section -->
+
