@@ -1,6 +1,16 @@
+
+
+import { ScheduleRequest } from './../../../payload/response/Request/ScheduleRequest';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Doctor } from 'src/app/entity/Doctor';
+import { TimeSlotRequest } from 'src/app/payload/response/Request/TimeSlotRequest';
+import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-doctor-schedule-timings',
@@ -9,10 +19,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DoctorScheduleTimingsComponent implements OnInit {
   scheduleForm: FormGroup;
-  timeSlots: TimeSlot[] = [];
-  finaltimeslotes :TimeSlot[]=[];
+  timeSlots: TimeSlotRequest[] = [];
+  ScheduleRequest: ScheduleRequest = new ScheduleRequest();
+  doctor: Doctor = new Doctor();
+  drid: any;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+
+  constructor(private http: HttpClient, private fb: FormBuilder, private scheduleservice: DoctorScheduleService,private route:Router) {
     this.scheduleForm = this.fb.group({
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
@@ -21,9 +34,37 @@ export class DoctorScheduleTimingsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // Initialization logic, if needed
+  getFormattedTodayDate(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
+
+
+  ngOnInit(): void {
+
+
+    this.ScheduleRequest.doctor = { id: 0 }; // Initialize the doctor property
+
+    var userString = localStorage.getItem('user');
+    if (userString) {
+      var user = JSON.parse(userString);
+      console.log(user.email + user.id);
+      if (user.id) {
+        this.scheduleservice.getdoctorbyuserid(user.id).subscribe((data: any) => {
+          this.doctor = data.doctor;
+          this.drid = data.doctor.id;
+          console.log(data);
+          console.log(this.doctor);
+          this.ScheduleRequest.doctor.id = data.doctor.id;
+        });
+      }
+    }
+  }
+
+
   generateAllTimeSlots(): void {
     const formValues = this.scheduleForm.value;
 
@@ -40,9 +81,13 @@ export class DoctorScheduleTimingsComponent implements OnInit {
         // Always add the time slot to the array
         this.timeSlots.push({
           startTime: this.formatTime(startDateTime),
-          endTime: this.formatTime(endTime)
-        });
+          endTime: this.formatTime(endTime),
+          isBooked: false,
+          isDeleted: false,
 
+        });
+        // this.ScheduleRequest.doctor.id=this.doctor.id;
+        // this.ScheduleRequest.selectedDate = formValues.selecteddate;
         startDateTime.setMinutes(startDateTime.getMinutes() + formValues.timeDuration);
       }
     }
@@ -55,9 +100,12 @@ export class DoctorScheduleTimingsComponent implements OnInit {
     return date.toTimeString().slice(0, 5);
   }
 
+
+
   clearTimeSlots(): void {
     this.timeSlots = [];
   }
+
 
   removeTimeSlot(index: number): void {
     // Remove the time slot at the specified index
@@ -67,16 +115,59 @@ export class DoctorScheduleTimingsComponent implements OnInit {
 
 
 
-  saveSchedule(){
+  saveSchedule() {
+    const formValues = this.scheduleForm.value;
+    console.log(this.drid + "at save schedule");
+
+    this.ScheduleRequest.doctor.id = this.doctor.id;
+    if (formValues.selectedDate && this.timeSlots.length > 0) {
+      this.ScheduleRequest.selectedDate = formValues.selectedDate;
+      this.ScheduleRequest.timeSlots = this.timeSlots;
+      console.log(this.ScheduleRequest)
+      this.scheduleservice.generatetimeslotesandschedule(this.ScheduleRequest).subscribe((data: any) => {
+        console.log('Schedule saved successfully!', data);
+        Swal.fire(({
+          title: "Scheduled",
+          text: "Time slotes has been successfully Scheduled",
+          icon: "success"
+        }));
+         this.route.navigate(['/doctordashboard/myschedules']);
+
+      }, (error: any) => {
+        console.error('Error saving schedule:', error);
+      });
+
+    } else {
+      console.warn('Please select a date and add time slots before saving.');
+
+
+    }
+
+
+
 
   }
 
+  formatTimeto12hr(time: string): string {
+    const [hours, minutes] = time.split(':');
+    let period = 'AM';
 
+    let formattedHours = parseInt(hours, 10);
+
+    if (formattedHours >= 12) {
+      period = 'PM';
+      formattedHours = formattedHours === 12 ? 12 : formattedHours - 12;
+    }
+
+    return `${formattedHours}:${minutes} ${period}`;
+  }
 
 
 }
 
-interface TimeSlot {
-  startTime: string;
-  endTime: string;
-}
+
+
+
+
+
+
