@@ -112,8 +112,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatChipsModule} from '@angular/material/chips';
-
+import { DatePipe } from '@angular/common';
 import { LabRegistrationComponent } from './common/pages/registrations/lab-registration/lab-registration.component';
+import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.component';
 
 
 @NgModule({
@@ -199,8 +200,9 @@ import { LabRegistrationComponent } from './common/pages/registrations/lab-regis
     DoctorRegistrationFormComponent,
     LoginComponent,
     LabRegistrationComponent,
- 
-  
+    MySchedulesComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -223,6 +225,7 @@ import { LabRegistrationComponent } from './common/pages/registrations/lab-regis
     ReactiveFormsModule,
     MatPaginatorModule,
     MatChipsModule,
+    DatePipe,
 
   ],
   providers: [

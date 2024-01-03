@@ -58,6 +58,7 @@ import { DoctorRegistrationFormComponent } from './common/pages/registrations/do
 import { PatientRegistrationComponent } from './common/pages/registrations/patient-registration/patient-registration.component';
 import { RegisterComponent } from './common/pages/registrations/register/register.component';
 import { LabRegistrationComponent } from './common/pages/registrations/lab-registration/lab-registration.component';
+import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.component';
 
 
 
@@ -152,6 +153,10 @@ const routes: Routes = [
       {
         path: "doctorappointments",
         component: DoctorAppointmentsComponent
+      },
+      {
+        path: "myschedules",
+        component: MySchedulesComponent
       },
       {
         path: "doctorallpatients",

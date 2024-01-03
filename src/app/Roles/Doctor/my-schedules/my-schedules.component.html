@@ -1,0 +1,36 @@
+<!--
+<!-- {{ScheduleRequest|json}} -->
+<!-- src/app/doctor-schedule-timings/doctor-schedule-timings.component.html -->
+<div style="text-align: center;"><button style="text-align: center;" mat-raised-button color="primary"  [routerLink]="'/doctordashboard/doctorscheduletimings'" class="button">Add Schedule +</button></div>
+
+<div *ngIf="ScheduleRequest && ScheduleRequest.length > 0">
+  <h2>All Schedules</h2>
+  <ul>
+    <li *ngFor="let schedule of ScheduleRequest">
+      <div><strong>Schedule ID:</strong> {{ schedule.id }}</div>
+      <div><strong>Selected Date:</strong> {{ schedule.selectedDate }}</div>
+      <div><strong>Day of Week:</strong> {{ getDayOfWeek(schedule.selectedDate) }}</div>
+
+      <div><strong>Doctor ID:</strong> {{ schedule.doctor.id }}</div>
+      <div>
+        <strong>Time Slots:</strong>
+        <ul>
+          <li *ngFor="let timeSlot of schedule.timeSlots">
+            {{ formatTime(timeSlot.startTime) }} -
+            {{ formatTime(timeSlot.endTime) }}
+
+            {{timeSlot.isBooked ? "booked":"Not Booked"}}
+
+          </li>
+        </ul>
+      </div>
+      <div><strong>Active:</strong> {{ schedule.isActive ? "Yes" : "No" }}</div>
+      <button mat-raised-button color="accent" (click)="deleteScheduleConfirmation(schedule.id)" class="button">delete</button>
+      <hr />
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!ScheduleRequest || ScheduleRequest.length === 0">
+  <p>No schedules available.</p>
+</div> -->

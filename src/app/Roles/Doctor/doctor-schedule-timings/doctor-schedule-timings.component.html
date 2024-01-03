@@ -9,13 +9,13 @@
   <input type="time" id="end-time" formControlName="endTime" required>
 
   <label for="time-duration">Time Duration (in minutes):</label>
-  <input type="number" id="time-duration" formControlName="timeDuration" required>
+  <input type="number" id="time-duration" formControlName="timeDuration" [min]="getFormattedTodayDate()" required>
 
   <label for="selected-date">Date:</label>
   <input type="date" id="selected-date" formControlName="selectedDate" required>
 
   <button type="button" (click)="generateAllTimeSlots()">Generate All Time Slots</button>
-  <button type="button" (click)="clearTimeSlots()">Clear Time Slots</button>
+
 </form>
 
 
@@ -23,9 +23,11 @@
   <h3>All Possible Time Slots:</h3>
   <ul>
     <li *ngFor="let timeSlot of timeSlots; let i = index">
-      {{ timeSlot.startTime }} - {{ timeSlot.endTime }}
+      {{ formatTimeto12hr(timeSlot.startTime) }} - {{ formatTimeto12hr(timeSlot.endTime) }}
       <button type="button" (click)="removeTimeSlot(i)">Remove</button>
     </li>
   </ul>
+  <button type="button" (click)="saveSchedule()">Save Schedule</button>
+  <button type="button" (click)="clearTimeSlots()">Clear Time Slots</button>
 </div>
-<button type="button" (click)="saveSchedule()">Save Schedule</button>
+
