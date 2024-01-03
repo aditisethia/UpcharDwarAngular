@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UpdateLabTestRequest } from 'src/app/payload/UpdateLabTestRequest';
+import { CreateLabTestResponse } from 'src/app/payload/response/CreateLabTestResponse';
+import { UpdateLabTestResponse } from 'src/app/payload/response/UpdateLabTestResponse';
+import { LabTestService } from 'src/app/services/Lab-service/lab-test.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-labtest',
@@ -7,50 +13,52 @@ import { Component } from '@angular/core';
 })
 export class EditLabtestComponent {
 
-  labTest: {
-    name: string;
-    image: string;
-    location: string;
-    availability: string;
-    feeRange: string;
-    description: string;
-    price: string;
-    rate: string;
-    time: string;
-  } = {
-    name: 'sugarTest',
-    image: 'https://altahealthgroup.com/wp-content/uploads/2016/12/lab-tests-1024x768.jpg',
-    location: 'City X',
-    availability: 'Mon-Fri, 9 AM - 5 PM',
-    feeRange: '$50 - $100',
-    description: 'Pathology is the study of disease and injury. The word pathology also refers to the study of disease in general, incorporating a wide range of biology research fields and medical practices.',
-    price: '$60',
-    rate: 'Normal',
-    time: '',
-  };
+labTest !:any;
+labTestId=0;
+  labtestcg: UpdateLabTestRequest = new UpdateLabTestRequest;
+
+constructor(private labTestService:LabTestService, private _route: ActivatedRoute, private router:Router){}
 
 
-  //private labTestService: LabTestService
-  constructor() {}
+
 
   ngOnInit(): void {
-    // Load the lab test details from your service (replace 'labTestId' with the actual ID or identifier)
-    //this.loadLabTestDetails('labTestId');
+   this.labTestId= this._route.snapshot.params['id'];
+   console.log(this.labTestId);
+   
+    this.loadLabTestDetails(this.labTestId);
+    
   }
 
-  private loadLabTestDetails(id: string) {
-    // Assuming you have a labTestService with a method like getLabTestById
-    //const loadedLabTest = this.labTestService.getLabTestById(id);
-
-    // Check if a lab test with the specified ID was found
-   // if (loadedLabTest) {
-    //  this.labTest = loadedLabTest;
+  private loadLabTestDetails(id: any) {
+        this.labTestService.getLabTestById(id).subscribe((data:any)=>{
+          this.labTest=data.LABTEST;
+          console.log(this.labTest);
+          
+        })
     }
   
+    updateLabTest(id: any) {
+      console.log(this.labtestcg+"hellooo");
 
-  updateLabTest() {
-    // Assuming you have a labTestService with a method like updateLabTest
-    //this.labTestService.updateLabTest(this.labTest);
-    // You may want to handle success or error cases here
-  }
+      const updateData: UpdateLabTestRequest = {
+        testName: this.labtestcg.testName || this.labTest.testName,
+        ratings: this.labtestcg.ratings || this.labTest.ratings,
+        description: this.labtestcg.description || this.labTest.description,
+        rates: this.labtestcg.rates || this.labTest.rates,
+        availability: this.labtestcg.availability !== undefined ? this.labtestcg.availability : this.labTest.availability,
+      };
+  
+      this.labTestService.updateLabTest(id, updateData).subscribe(
+        (data: any) => {
+          console.log(data.updateLabTest);
+          Swal.fire(data.message);
+          this.router.navigate(['/labdashboard/labslist']);
+        },
+        (error) => {
+          console.error('Error updating lab test:', error);
+          Swal.fire('Error updating lab test. Please try again.');
+        }
+      );
+    }
 }
