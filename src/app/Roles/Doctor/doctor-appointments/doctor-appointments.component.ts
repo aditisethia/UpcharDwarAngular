@@ -58,10 +58,6 @@ getAllAppointmentOfDoctor(){
     pageNo = 0; // Replace with your actual page number
      pageSize = 5; // Replace with your actual page size
     sortBy = 'id'; // Replace with your actual sort field
-      
-   
-
-  
 length = 50;
 pageIndex = 0;
 pageSizeOptions = [1, 2, 5];

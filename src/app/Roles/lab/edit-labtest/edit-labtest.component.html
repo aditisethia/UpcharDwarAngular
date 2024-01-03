@@ -1,5 +1,5 @@
 <!-- lab-test.component.html -->
-
+{{labtestcg|json}}
 <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -8,71 +8,37 @@
           <h1 style="text-align: center;">Update Lab Test</h1>
           <div class="card-body">
             <!-- LabTest Settings Form -->
-            <form (ngSubmit)="updateLabTest()">
+            <form (ngSubmit)="updateLabTest(labTest.id)">
               <div class="row form-row">
                 <div class="col-12 col-md-6">
                   <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="labTest.name">
+                    <input type="text" class="form-control" name="testName" [(ngModel)]="labtestcg.testName" [placeholder]="labTest.testName">
                   </div>
                 </div>
+               
+                
+                
                 <div class="col-12 col-md-6">
                   <div class="form-group">
-                    <label>Image</label>
-                    <input type="text" class="form-control" [(ngModel)]="labTest.image">
-                  </div>
-                </div><div class="col-md-6">
-                  <!-- Image URL -->
-                  <div class="form-group">
-                    <label for="image">Image</label>
-                    <div class="input-group">
-                      <input type="text" id="image" class="form-control" [(ngModel)]="labTest.image" aria-describedby="image-addon">
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="image-addon">
-                          <img src="{{ labTest.image }}" alt="Preview" class="img-preview">
-                        </span>
-                      </div>
-                    </div>
+                    <label>Availability</label>
+                    <input type="text" class="form-control" [(ngModel)]="labtestcg.availability" name="availability" [placeholder]="labTest.availability">
                   </div>
                 </div>
                 
                 <div class="col-12 col-md-6">
                   <div class="form-group">
-                    <label>Location</label>
-                    <input type="text" class="form-control" [(ngModel)]="labTest.location">
-                  </div>
-                </div>
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
-                    <label>Availability</label>
-                    <input type="text" class="form-control" [(ngModel)]="labTest.availability">
-                  </div>
-                </div>
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
-                    <label>Fee Range</label>
-                    <input type="text" class="form-control" [(ngModel)]="labTest.feeRange">
-                  </div>
-                </div>
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" [(ngModel)]="labTest.description"></textarea>
+                    <textarea class="form-control" rows="3" [(ngModel)]="labTest.description" name="description"  [placeholder]="labTest.description"></textarea>
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
                   <div class="form-group">
                     <label>Price</label>
-                    <input type="text" class="form-control" [(ngModel)]="labTest.price">
+                    <input type="text" class="form-control" [(ngModel)]="labtestcg.rates" name="rates" [placeholder]="labTest.rates">
                   </div>
                 </div>
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
-                    <label>Timing</label>
-                    <input type="text" class="form-control" [(ngModel)]="labTest.time">
-                  </div>
                 </div>
-              </div>
               <div class="submit-section">
                 <button type="submit" class="btn btn-primary submit-btn">Update Lab Test</button>
               </div>
