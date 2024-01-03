@@ -47,11 +47,11 @@
         <div class="row row-sm">
           <div class="col-6">
             <!-- Add a link to view lab profile -->
-            <a href="#" class="btn view-btn">Edit</a>
+            <a  class="btn view-btn"  [routerLink]="'/labdashboard/editlabTest/'+test.id">Edit</a>
           </div>
           <div class="col-6">
-            <!-- Add a link to book lab services -->
-            <a href="#" class="btn book-btn">delete</a>
+            <!-- Assuming test.labtestid is the lab test ID -->
+            <button class="btn book-btn"  (click)="deleteLabTest( test.id )">Delete</button>
           </div>
         </div>
       </div>

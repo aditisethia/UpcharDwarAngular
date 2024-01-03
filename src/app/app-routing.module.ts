@@ -310,7 +310,7 @@ const routes: Routes = [
        component:CreateLabtestComponent,
     },
     {
-      path:"editlabTest",
+      path:"editlabTest/:id",
       component:EditLabtestComponent,
     }
    ]
