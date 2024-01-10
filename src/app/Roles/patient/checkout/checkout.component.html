@@ -1,3 +1,5 @@
+
+
 <!-- Main Wrapper -->
 <div class="main-wrapper">
 
@@ -32,7 +34,7 @@
                     <!-- checkout-form.component.html -->
                     <div class="card-body">
                         <!-- Checkout Form -->
-                        <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+                        <form (ngSubmit)="makePayment()" #checkoutForm="ngForm">
 
                             <!-- Personal Information -->
                             <div class="info-widget">
@@ -41,35 +43,35 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group card-label ">
                                             <label>First Name</label>
-                                            <input class="form-control" type="text" [(ngModel)]="userData.firstName"
-                                                name="firstName" required>
+                                            <input class="form-control" type="text"  [placeholder]="appointmentData.patient.patientName"
+                                              [readOnly]="true"  name="firstName" required>
                                         </div>
                                       </div>
                                       <div class="col-md-6 col-sm-12">
                                         <div class="form-group card-label">
-                                            <label>LAST Name</label>
-                                            <input class="form-control" type="text" [(ngModel)]="userData.lastName"
-                                                name="firstName" required>
+                                            <label>City</label>
+                                            <input class="form-control" type="text" [placeholder]="appointmentData.patient.city"
+                                            [readOnly]="true" name="firstName" required>
                                         </div>
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                         <div class="form-group card-label">
                                             <label>EMAIL</label>
-                                            <input class="form-control" type="text" [(ngModel)]="userData.email"
-                                                name="firstName" required>
+                                            <input class="form-control" type="text" [placeholder]="appointmentData.patient.email"
+                                            [readOnly]="true" name="firstName" required>
                                         </div>
                                         </div>
                                         <div class="col-md-6 col-sm-12">
                                         <div class="form-group card-label">
                                             <label>PHONE</label>
-                                            <input class="form-control" type="text" [(ngModel)]="userData.phone"
+                                            <input class="form-control" type="text" [placeholder]="appointmentData.patient.mobile"
                                                 name="firstName" required>
                                         </div>
                                         </div>
                                     <!-- </div> -->
                                     <!-- ... (similar changes for other personal information fields) -->
                                 </div>
-                                <div class="exist-customer">Existing Customer? <a href="#">Click here to login</a></div>
+                                <!-- <div class="exist-customer">Existing Customer? <a href="#">Click here to login</a></div> -->
                             </div>
                             <!-- /Personal Information -->
 
@@ -77,12 +79,12 @@
                                 <h4 class="card-title">Payment Method</h4>
 
                                 <!-- Credit Card Payment -->
-                                <label class="payment-radio credit-card-option">
+                                <!-- <label class="payment-radio credit-card-option">
                                     <input type="radio" name="paymentMethod" [(ngModel)]="userData.paymentMethod" value="creditCard" checked>
                                     <span class="checkmark"></span>
                                     Credit card
-                                  </label>
-                                  <div class="row">
+                                  </label> -->
+                                  <!-- <div class="row">
                                     <div class="col-md-6">
                                       <div class="form-group card-label">
                                         <label for="card_name">Name on Card</label>
@@ -95,7 +97,7 @@
                                         <input class="form-control" id="card_number" placeholder="1234  5678  9876  5432" type="text" [(ngModel)]="userData.cardNumber" name="cardNumber" required>
                                       </div>
                                     </div>
-                                    
+
                                     <div class="col-md-4">
                                       <div class="form-group card-label">
                                         <label for="expiry_year">Expiry Year</label>
@@ -108,18 +110,18 @@
                                         <input class="form-control" id="cvv" type="text" [(ngModel)]="userData.cvv" name="cvv" required>
                                       </div>
                                     </div>
-                                  </div>
+                                  </div> -->
                                 <!-- /Credit Card Payment -->
 
                                 <!-- Paypal Payment -->
-                                <div class="payment-list">
+                                <!-- <div class="payment-list">
                                     <label class="payment-radio paypal-option">
                                         <input type="radio" name="paymentMethod" [(ngModel)]="userData.paymentMethod"
                                             value="paypal">
                                         <span class="checkmark"></span>
                                         Paypal
                                     </label>
-                                </div>
+                                </div> -->
                                 <!-- /Paypal Payment -->
 
                                 <!-- Terms Accept -->
@@ -162,10 +164,10 @@
                             <!-- Booking Doctor Info -->
                             <div class="booking-doc-info">
                                 <a href="doctor-profile.html" class="booking-doc-img">
-                                    <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                                    <img [src]="IMG_URLs + appointmentData.doctor.imageName" alt="User Image">
                                 </a>
                                 <div class="booking-info">
-                                    <h4><a href="doctor-profile.html">Dr. Darren Elder</a></h4>
+                                    <h4><a href="doctor-profile.html">{{appointmentData.doctor.name}}</a></h4>
                                     <div class="rating">
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
@@ -175,7 +177,8 @@
                                         <span class="d-inline-block average-rating">35</span>
                                     </div>
                                     <div class="clinic-details">
-                                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA</p>
+                                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{appointmentData.doctor.city
+                                        }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -184,19 +187,19 @@
                             <div class="booking-summary">
                                 <div class="booking-item-wrap">
                                     <ul class="booking-date">
-                                        <li>Date <span>16 Nov 2019</span></li>
-                                        <li>Time <span>10:00 AM</span></li>
+                                        <li>Date <span>{{appointmentData.appointmentDate}}</span></li>
+                                        <li>Time <span>{{appointmentData.timeslote.startTime}}</span></li>
                                     </ul>
                                     <ul class="booking-fee">
-                                        <li>Consulting Fee <span>$100</span></li>
-                                        <li>Booking Fee <span>$10</span></li>
-                                        <li>Video Call <span>$50</span></li>
+                                        <li>Consulting Fee <span>₹{{appointmentData.doctor.rate}}</span></li>
+                                        <li>Booking Fee <span> ₹10</span></li>
+                                        <li>Video Call <span> ₹50</span></li>
                                     </ul>
                                     <div class="booking-total">
                                         <ul class="booking-total-list">
                                             <li>
                                                 <span>Total</span>
-                                                <span class="total-cost">$160</span>
+                                                <span class="total-cost"> ₹{{appointmentData.doctor.rate+60}}</span>
                                             </li>
                                         </ul>
                                     </div>

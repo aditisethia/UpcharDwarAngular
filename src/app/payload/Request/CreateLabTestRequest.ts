@@ -1,4 +1,4 @@
-import { Lab } from "../Roles/patient/lab-forpatient/lab-forpatient.component";
+import { Lab } from "../../Roles/patient/lab-forpatient/lab-forpatient.component";
 
 export class CreateLabTestRequest{
     private id: number=0;

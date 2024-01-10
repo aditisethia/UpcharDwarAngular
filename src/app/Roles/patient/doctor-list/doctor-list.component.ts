@@ -1,4 +1,5 @@
-import {  Doctor_Request } from './../../../payload/response/Request/Doctor_Request';
+import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
+import {  Doctor_Request } from '../../../payload/Request/Doctor_Request';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,7 +18,7 @@ doctor:Doctor_Request[] | undefined;
 
 
 
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient,private doctorService:DoctorserviceService){}
 
 
   ngOnInit(): void {

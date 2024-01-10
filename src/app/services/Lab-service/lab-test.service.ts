@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateLabTestRequest } from 'src/app/payload/CreateLabTestRequest';
+import { CreateLabTestRequest } from 'src/app/payload/Request/CreateLabTestRequest';
 import baseUrl from '../user/helper';
 import { Observable } from 'rxjs';
-import { PageAppointmentRequest } from 'src/app/payload/PageAppointmentRequest';
-import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
-import { UpdateLabTestRequest } from 'src/app/payload/UpdateLabTestRequest';
-import { UpdateLabTestResponse } from 'src/app/payload/response/UpdateLabTestResponse';
+import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
+import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
+import { UpdateLabTestRequest } from 'src/app/payload/Request/UpdateLabTestRequest';
+import { UpdateLabTestResponse } from 'src/app/payload/response/Response/UpdateLabTestResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class LabTestService {
   constructor( private  _http:HttpClient) { }
 
 
-  //creating labTest  
+  //creating labTest
   createLabTest(labTest:CreateLabTestRequest){
     return this._http.post(`${baseUrl}/labTest/save`,labTest);
   }
@@ -27,11 +27,11 @@ export class LabTestService {
     console.log(userId+"he")
     const url = `${baseUrl}/lab/user/${userId}`;
     console.log(url);
-    
+
     return this._http.get(url);
   }
-  
-  
+
+
   //deleting labTest by labTestId
   deleteLabTest(labTestId: any){
     const url=`${baseUrl}/labTest/delete/${labTestId}`;
@@ -49,10 +49,10 @@ export class LabTestService {
 
   //get LabTest by id
   getLabTestById(labTestId:any){
- 
-    
+
+
     const url=`${baseUrl}/labTest/get/${labTestId}`;
-    return this._http.get(url); 
+    return this._http.get(url);
   }
-  
+
 }

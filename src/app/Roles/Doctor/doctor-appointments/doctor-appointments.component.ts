@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { AppointmentListRequest } from 'src/app/payload/AppointmentListRequest';
-import { AppointmentListResponse } from 'src/app/payload/response/AppointmentListResponse';
-import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
+import { AppointmentListRequest } from 'src/app/payload/Request/AppointmentListRequest';
+import { AppointmentListResponse } from 'src/app/payload/response/Response/AppointmentListResponse';
+import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AppointmentserviceService } from 'src/app/services/doctor-service/appoi
   styleUrls: ['./doctor-appointments.component.css']
 })
 export class DoctorAppointmentsComponent implements OnInit {
- 
+
 
   viewAppointmentDetails(appointment: any) {
     // Logic to  viewing appointment details
@@ -39,7 +39,7 @@ this.getAllAppointmentOfDoctor();
 
 getAllAppointmentOfDoctor(){
   console.log('ts');
-  
+
   this.appointmentService.getAllAppointmentOfDoctor(this.pageNo,this.pageSize,this.sortBy).subscribe(
     (data: PageAppointmentResponse) => {
          this.appointments = data.contents;
@@ -53,7 +53,7 @@ getAllAppointmentOfDoctor(){
 
 
 
- 
+
 
     pageNo = 0; // Replace with your actual page number
      pageSize = 5; // Replace with your actual page size
@@ -73,8 +73,8 @@ handlePageEvent(e: PageEvent) {
   this.length = e.length;
   this.pageSize = e.pageSize;
   this.pageIndex = e.pageIndex;
-  
+
     this.getAllAppointmentOfDoctor();
 }
-  
+
 }

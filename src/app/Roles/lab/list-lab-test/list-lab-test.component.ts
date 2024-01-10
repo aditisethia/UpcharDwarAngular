@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { error } from 'jquery';
-import { LabRegistrationResponse } from 'src/app/payload/response/LabRegistrationResponse';
-import { LabTestListResponse } from 'src/app/payload/response/LabTestListResponse';
-import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
+import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
+import { LabTestListResponse } from 'src/app/payload/response/Response/LabTestListResponse';
+import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { LabTestService } from 'src/app/services/Lab-service/lab-test.service';
 import Swal from 'sweetalert2';
@@ -25,27 +25,27 @@ export class ListLabTestComponent implements OnInit{
     this.lab = new LabRegistrationResponse();
   }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
-    
+
     this.labService.lab.subscribe((data: any) => {
       this.lab = data.Lab;
       this.labId=this.lab.id;
       console.log(data.Lab);
-      
-      
-      
+
+
+
       console.log(this.labId+"labIDINLIST");
     });
 
     this.getAllTestOfLab()
-  
+
   }
- 
+
 
 getAllTestOfLab(){
   console.log(this.labId+"heyy")
-  
+
   this.labService.getAllLabTestOfLab(this.pageNo,this.pageSize,this.sortBy ,this.labId).subscribe(
     (data: PageAppointmentResponse) => {
          this.labTests = data.contents;
@@ -74,7 +74,7 @@ handlePageEvent(e: PageEvent) {
   this.length = e.length;
   this.pageSize = e.pageSize;
   this.pageIndex = e.pageIndex;
-  
+
     this.getAllTestOfLab();
 }
 
@@ -93,5 +93,5 @@ deleteLabTest(labTestId: any) {
 }
 
 
-  
+
 }

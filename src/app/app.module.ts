@@ -1,3 +1,4 @@
+
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -121,7 +122,9 @@ import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-li
 
 @NgModule({
   declarations: [
+
     ListLabTestComponent,
+
     AppComponent,
     HomeComponent,
     HomeNavbarComponent,
@@ -204,8 +207,10 @@ import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-li
     PatientLabTestListComponent,
 
 
+
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -228,6 +233,7 @@ import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-li
     MatChipsModule,
     DatePipe,
     MatCardModule
+
 
   ],
   providers: [

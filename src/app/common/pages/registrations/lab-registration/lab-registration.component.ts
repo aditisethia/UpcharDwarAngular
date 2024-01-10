@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Lab } from 'src/app/entity/Lab';
 import { Location } from 'src/app/entity/Location';
-import { LabRegistrationRequest } from 'src/app/payload/LabRegistrationRequest';
+import { LabRegistrationRequest } from 'src/app/payload/Request/LabRegistrationRequest';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { LoginService } from 'src/app/services/user/login.service';
 import Swal from 'sweetalert2';
@@ -90,7 +90,7 @@ export class LabRegistrationComponent implements OnInit {
         '',
          [Validators.required, Validators.pattern(/^\d{6}$/)],
        ],
-    
+
       biography: ['', Validators.required],
       labDocuments: ["", Validators.required],
     });
