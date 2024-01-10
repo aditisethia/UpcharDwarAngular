@@ -1,4 +1,4 @@
-import { Doctor } from "../entity/Doctor";
+import { Doctor } from "../../entity/Doctor";
 
 export class AppointMentRequest {
     id: any;

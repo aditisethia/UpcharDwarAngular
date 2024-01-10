@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PatientRequest } from 'src/app/payload/ParientRequest';
+import { PatientRequest } from 'src/app/payload/Request/ParientRequest';
 import baseUrl from '../user/helper';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PatientResponse } from 'src/app/payload/response/PatientResponse';
-import { PageAppointmentRequest } from 'src/app/payload/PageAppointmentRequest';
-import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
+import { PatientResponse } from 'src/app/payload/response/Response/PatientResponse';
+import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
+import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +47,10 @@ export class PatientserviceService {
     return this._http.get<PageAppointmentResponse>(url,{headers});
   }
 
+  getpatientbyemail(email:any){
+    const url =`${baseUrl}/patient/by-email/${email}`
+
+    return this._http.get(url);
+  }
 
 }

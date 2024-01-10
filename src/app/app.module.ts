@@ -1,3 +1,4 @@
+
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -119,6 +120,7 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HomeComponent,
     HomeNavbarComponent,
@@ -203,8 +205,10 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
     MySchedulesComponent,
 
 
+
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -226,6 +230,7 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
     MatPaginatorModule,
     MatChipsModule,
     DatePipe,
+
 
   ],
   providers: [

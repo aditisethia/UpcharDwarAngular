@@ -1,13 +1,13 @@
 
 
-import { ScheduleRequest } from './../../../payload/response/Request/ScheduleRequest';
+import { ScheduleRequest } from '../../../payload/Request/ScheduleRequest';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Doctor } from 'src/app/entity/Doctor';
-import { TimeSlotRequest } from 'src/app/payload/response/Request/TimeSlotRequest';
+import { TimeSlotRequest } from 'src/app/payload/Request/TimeSlotRequest';
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
 import Swal from 'sweetalert2';
 
@@ -44,10 +44,7 @@ export class DoctorScheduleTimingsComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
     this.ScheduleRequest.doctor = { id: 0 }; // Initialize the doctor property
-
     var userString = localStorage.getItem('user');
     if (userString) {
       var user = JSON.parse(userString);
@@ -84,7 +81,7 @@ export class DoctorScheduleTimingsComponent implements OnInit {
           endTime: this.formatTime(endTime),
           isBooked: false,
           isDeleted: false,
-
+          id: 0
         });
         // this.ScheduleRequest.doctor.id=this.doctor.id;
         // this.ScheduleRequest.selectedDate = formValues.selecteddate;

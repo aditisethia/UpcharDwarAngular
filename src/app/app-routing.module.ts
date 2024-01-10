@@ -235,13 +235,15 @@ const routes: Routes = [
     path:"patientdashboard",
     component:PatientDashboardComponent,
    },
+
    {
     path:"doctorprofile",
     component:DoctorProfileComponent,
   },
   {
-    path:"doctorappointmentbooking",
+    path:"doctorappointmentbooking/:drid",
     component:PatientDoctorAppointmentBookingComponent,
+    pathMatch:'full'
   },
   {
     path:"searchdoctor",

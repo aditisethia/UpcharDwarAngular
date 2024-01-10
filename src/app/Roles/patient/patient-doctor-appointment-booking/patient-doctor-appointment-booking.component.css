@@ -1,0 +1,62 @@
+
+.time-slots {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.time-slots > div {
+  flex: 0 0 calc(14.2% - 10px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.button-73 {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,sans-serif;
+ font-size: x-small;
+  font-weight: 600;
+  letter-spacing: -.2px;
+  margin: 4%;
+  margin-top: 1%;
+  outline: none;
+
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-73[disabled] {
+  filter: blur(1px); /* You can adjust the blur amount as needed */
+  cursor: not-allowed;
+  pointer-events: none; /* Prevent clicks on the disabled button */
+}
+
+.button-73:hover {
+  background-color: #b1b3da;
+  box-shadow: #201e74 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button-73:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .button-73[_ngcontent-ng-c2866981101] {
+    font-size: 0.6rem;
+    padding: -0.35rem 5rem;
+  }
+}

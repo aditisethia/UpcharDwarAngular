@@ -1,5 +1,5 @@
-import { LabDocuments } from "../entity/LabDocument";
-import { Location } from "../entity/Location";
+import { LabDocuments } from "../../entity/LabDocument";
+import { Location } from "../../entity/Location";
 
 export class LabRegistrationRequest{
 id: number =0 // Use 'null' for new registration
