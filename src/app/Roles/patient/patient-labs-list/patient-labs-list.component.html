@@ -1,0 +1,112 @@
+<!-- Page Content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+
+                <!-- Search Filter -->
+                <div class="card search-filter">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Search Filter</h4>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <h4>Lab Name</h4>
+                        <mat-form-field class="example-full-width">
+                          <span matPrefix>  </span>
+                         
+                          <input type="tel" matInput placeholder="name" name= "labName" [(ngModel)]= "searching.labName" (input)="filter()">
+                          <button matSuffix mat-button color="primary"><mat-icon >search</mat-icon></button>
+                          </mat-form-field>
+                      
+                          <h4>Search By area</h4>
+                          <mat-form-field class="example-full-width">
+                           
+                            <span matPrefix>  </span>
+                           
+                            <input type="tel" matInput placeholder="enter area" name= "area"  [(ngModel)]= "searching.location.area" (input)="filter()">
+                            <button matSuffix mat-button color="primary"><mat-icon >search</mat-icon></button>
+                            </mat-form-field>
+                        <div class="filter-widget">
+                            <h4>Select Specialist</h4>
+                            <!-- Add specialist options here -->
+                        </div>
+                        <div class="btn-search">
+                            <button type="button" class="btn btn-block">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Search Filter -->
+
+            </div>
+
+            <div class="col-md-12 col-lg-8 col-xl-9">
+
+                <div *ngIf="labs.length === 0">No labs available</div>
+
+                <div *ngFor="let lab of labs; let i = index">
+                  
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="doctor-widget">
+                              
+                                <div class="doc-info-left">
+                                    <div class="doctor-img">
+                                        <a href="#" class="booking-doc-img">
+                                            <div><figure><img alt="jobBox" [src]="IMG_URLs + lab.imageName" height="150px" width="100px"></figure></div>
+                                        </a>
+                                    </div>
+                                    <div class="doc-info-cont">
+                                        <h3 class="doc-name">{{ lab.labName }}</h3>
+                                        <h3 class="bi bi-envelope-open" >&nbsp;{{ lab.email }}</h3>
+                                        <h3 class="bi bi-file-earmark-text-fill">&nbsp;{{lab.biography}}</h3>
+
+                                        <div  *ngIf="lab.labReviewRatings && lab.labReviewRatings.length > 0">
+                                            <div *ngFor="let labReview of lab.labReviewRatings">
+                                                <div class="rating" >
+                                                    <i class="fas fa-star" *ngFor="let star of starsArray"></i>
+                                                    <span class="d-inline-block average-rating" >({{ labReview.rating }})</span>
+                                                </div>
+                                                <p>{{ labReview.review }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="clinic-details" *ngIf="lab.location">
+                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{lab.location.area}}{{lab.location.addressLine}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="doc-info-right">
+                                    <div class="clini-infos">
+                                        <ul>
+                                            <li>
+                                                <i class="far fa-thumbs-up"></i>
+                                                {{ lab.isApproved ? 'Approved' : 'Not Approved' }}
+                                            </li>
+                              
+                                            <li><i class="fas fa-phone"></i> {{ lab.phone }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="clinic-booking">
+                                        <a class="view-pro-btn" >View Profile</a>
+                                        <a class="apt-btn" [routerLink]="'/patientmaindashboard/labTestList/'+lab.id">View LabTest</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+             
+               
+            </div>
+        </div>
+        <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
+            [pageSize]="pageSize" [disabled]="disabled" [showFirstLastButtons]="showFirstLastButtons"
+            [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
+            [pageIndex]="pageIndex" aria-label="Select page">
+        </mat-paginator>
+    </div>
+    
+</div>
+<!-- /Page Content -->
+

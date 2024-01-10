@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AdminAppointmentsComponent } from './Roles/Admin/admin-appointments/admin-appointments.component';
@@ -29,7 +29,7 @@ import { LabInvoicesDetailsComponent } from './Roles/lab/lab-invoices-details/la
 import { LabProfileSettingComponent } from './Roles/lab/lab-profile-setting/lab-profile-setting.component';
 import { LabRequestClientComponent } from './Roles/lab/lab-request-client/lab-request-client.component';
 import { LabReviewratingComponent } from './Roles/lab/lab-reviewrating/lab-reviewrating.component';
-import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.component';
+
 import { CheckoutComponent } from './Roles/patient/checkout/checkout.component';
 import { PatientChangePasswordComponent } from './Roles/patient/patient-change-password/patient-change-password.component';
 import { PatientDashboardHomeComponent } from './Roles/patient/patient-dashboard-home/patient-dashboard-home.component';
@@ -41,7 +41,7 @@ import { PatientFavrouiteDoctorComponent } from './Roles/patient/patient-favroui
 import { PatientMainDashboardComponent } from './Roles/patient/patient-main-dashboard/patient-main-dashboard.component';
 import { PatientProfileSettingComponent } from './Roles/patient/patient-profile-setting/patient-profile-setting.component';
 import { SearchDoctorComponent } from './Roles/patient/search-doctor/search-doctor.component';
-import { SearchLabsComponent } from './Roles/patient/search-labs/search-labs.component';
+
 import { PharmacyAdminDashboardDataComponent } from './Roles/pharmacy/pharmacy-admin/pharmacy-admin-dashboard-data/pharmacy-admin-dashboard-data.component';
 import { PharmacyAdminDashboardComponent } from './Roles/pharmacy/pharmacy-admin/pharmacy-admin-dashboard/pharmacy-admin-dashboard.component';
 import { PharmacyAdminManagemedicinesComponent } from './Roles/pharmacy/pharmacy-admin/pharmacy-admin-managemedicines/pharmacy-admin-managemedicines.component';
@@ -59,6 +59,9 @@ import { PatientRegistrationComponent } from './common/pages/registrations/patie
 import { RegisterComponent } from './common/pages/registrations/register/register.component';
 import { LabRegistrationComponent } from './common/pages/registrations/lab-registration/lab-registration.component';
 import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.component';
+import { PatientLabsListComponent } from './Roles/patient/patient-labs-list/patient-labs-list.component';
+import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.component';
+import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-list/patient-lab-test-list.component';
 
 
 
@@ -227,6 +230,14 @@ const routes: Routes = [
   { path: "patientmaindashboard",
   component: PatientMainDashboardComponent,
   children:[
+    {
+      path:"lablist",
+      component:PatientLabsListComponent
+    },
+    {
+      path:"labTestList/:id",
+      component:PatientLabTestListComponent,
+    },
    {
      path:"",
      component:PatientDashboardHomeComponent,
@@ -267,10 +278,7 @@ const routes: Routes = [
     path:"favrouitedoctor",
     component:PatientFavrouiteDoctorComponent,
   },
-  {
-    path:"searchlabs",
-    component:SearchLabsComponent,
-  }
+ 
 
 ]
   },
@@ -282,10 +290,7 @@ const routes: Routes = [
       path:"labdatadashboard",
       component:LabDashboardDataComponent,
     },
-    {
-      path:"labslist",
-      component:ListLabTestComponent
-    },
+   
     {
       path:"patientrequestforlabtest",
       component:LabRequestClientComponent,
@@ -317,6 +322,10 @@ const routes: Routes = [
     {
       path:"editlabTest/:id",
       component:EditLabtestComponent,
+    },
+    {
+      path:"labslist",
+      component:ListLabTestComponent
     }
    ]
   },

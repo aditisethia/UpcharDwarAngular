@@ -22,8 +22,10 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
  if(token!=null){
  authReq=authReq.clone({
-    setParams:{Authorization:`${token}`},
-});
+   setParams:{Authorization:`${token}`},
+ });
+
+
 
 }
 
