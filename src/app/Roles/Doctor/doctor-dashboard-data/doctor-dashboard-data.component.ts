@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AppointMentRequest } from 'src/app/payload/AppointmentRequest';
+import { AppointMentRequest } from 'src/app/payload/Request/AppointmentRequest';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import Swal from 'sweetalert2';
 
@@ -31,7 +31,7 @@ export class DoctorDashboardDataComponent implements OnInit {
 
 
     this.getUpcomingAppointments();
-    
+
     // [
     //   { patientName: 'Richard Wilson', appointmentDate: '16 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$150', patientAvatar: 'assets/img/patients/patient1.jpg' },
     //   { patientName: 'aman patidar', appointmentDate: '15 Nov 2019', purpose: 'fever', appointmentType: 'old Patient', paidAmount: '$110', patientAvatar: 'assets/img/patients/patient2.jpg' },
@@ -98,7 +98,7 @@ export class DoctorDashboardDataComponent implements OnInit {
         if (totalPatientWidget) {
           totalPatientWidget.value = data.TOTALUPCOMINGAPPOINTMENTS;
           console.log(data);
-          
+
         }
       },
       (error: HttpErrorResponse) => {
@@ -115,7 +115,7 @@ export class DoctorDashboardDataComponent implements OnInit {
        this.upcomingAppointments = data.upcomingAppointment || [];
        console.log(data);
        console.log(data.id+"hello at id test")
-    
+
         }
       ,
       (error: HttpErrorResponse) => {
@@ -129,12 +129,12 @@ export class DoctorDashboardDataComponent implements OnInit {
     this._doctorService.getTodaysAppointment().subscribe(
       (data: any) => {
         // Update the Total Patient value in dashWidgets
-       
+
        this.todayAppointments= data.todaysAppointment || [];
        console.log(data);
        console.log(data.id+"hello at id test")
-      
-       
+
+
         }
       ,
       (error: HttpErrorResponse) => {

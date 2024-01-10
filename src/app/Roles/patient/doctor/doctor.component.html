@@ -4,7 +4,7 @@
         <div class="doc-info-left">
           <div class="doctor-img">
             <a href="doctor-profile.html">
-              <img [src]="doctor.imageName" class="img-fluid" alt="User Image">
+              <img  [src]="IMG_URLs +doctor.imageName" class="img-fluid" alt="User Image">
             </a>
           </div>
           <div class="doc-info-cont">
@@ -37,8 +37,8 @@
           </div>
           <div class="clinic-booking">
             <a class="view-pro-btn" href="doctor-profile.html">View Profile</a>
-            <a class="apt-btn" href="booking.html">Book Appointment</a>
-          </div>
+            <a class="apt-btn" [routerLink]="'/patientmaindashboard/doctorappointmentbooking/'+doctor.id">Book Appintment
+         </a>
         </div>
       </div>
     </div>

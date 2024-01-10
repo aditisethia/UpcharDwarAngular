@@ -3,9 +3,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { data } from 'jquery';
 import { UserServiceService } from 'src/app/services/user/user-service.service';
-
-
 import Swal from 'sweetalert2';
+
+
 
 @Component({
   selector: 'app-register',

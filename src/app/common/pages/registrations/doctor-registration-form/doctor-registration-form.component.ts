@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { event } from 'jquery';
 import { Doctor } from 'src/app/entity/Doctor';
-import { DoctorRequest } from 'src/app/payload/DoctorRequest';
+import { DoctorRequest } from 'src/app/payload/Request/DoctorRequest';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
@@ -29,7 +29,7 @@ export class DoctorRegistrationFormComponent implements OnInit {
   constructor(private _doctorService: DoctorserviceService, private loginService: LoginService) { }
 
   doctor!: DoctorRequest;
-   
+
   specialities: Speciality[] = [];
   specility: Speciality = new Speciality();
   qualification = [] = [new DoctorQualification()];
@@ -41,18 +41,18 @@ export class DoctorRegistrationFormComponent implements OnInit {
   ngOnInit() {
   this.loginService.getCurrentUser().subscribe((data:any)=>
   {
-   this.doctor=data; 
+   this.doctor=data;
    this.doctor.awards =[];
        this.doctor.email = data.email;
       this.doctor.name = data.name;
-     
-      
+
+
   });
 
 
     this.doctor = new DoctorRequest();
     this.doctor.awards = [];
- 
+
 
     //});
     this.getAllSpecilities();

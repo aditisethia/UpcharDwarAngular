@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UpdateLabTestRequest } from 'src/app/payload/UpdateLabTestRequest';
-import { CreateLabTestResponse } from 'src/app/payload/response/CreateLabTestResponse';
-import { UpdateLabTestResponse } from 'src/app/payload/response/UpdateLabTestResponse';
+import { UpdateLabTestRequest } from 'src/app/payload/Request/UpdateLabTestRequest';
+import { CreateLabTestResponse } from 'src/app/payload/response/Response/CreateLabTestResponse';
+import { UpdateLabTestResponse } from 'src/app/payload/response/Response/UpdateLabTestResponse';
 import { LabTestService } from 'src/app/services/Lab-service/lab-test.service';
 import Swal from 'sweetalert2';
 
@@ -25,19 +25,19 @@ constructor(private labTestService:LabTestService, private _route: ActivatedRout
   ngOnInit(): void {
    this.labTestId= this._route.snapshot.params['id'];
    console.log(this.labTestId);
-   
+
     this.loadLabTestDetails(this.labTestId);
-    
+
   }
 
   private loadLabTestDetails(id: any) {
         this.labTestService.getLabTestById(id).subscribe((data:any)=>{
           this.labTest=data.LABTEST;
           console.log(this.labTest);
-          
+
         })
     }
-  
+
     updateLabTest(id: any) {
       console.log(this.labtestcg+"hellooo");
 
@@ -48,7 +48,7 @@ constructor(private labTestService:LabTestService, private _route: ActivatedRout
         rates: this.labtestcg.rates || this.labTest.rates,
         availability: this.labtestcg.availability !== undefined ? this.labtestcg.availability : this.labTest.availability,
       };
-  
+
       this.labTestService.updateLabTest(id, updateData).subscribe(
         (data: any) => {
           console.log(data.updateLabTest);
