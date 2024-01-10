@@ -122,17 +122,8 @@ import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-li
 
 @NgModule({
   declarations: [
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ListLabTestComponent,
-=======
-
->>>>>>> 93e3b544d4169e93f7fa3165547bde14d2f120a5
-=======
 
     ListLabTestComponent,
-
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
     AppComponent,
     HomeComponent,
     HomeNavbarComponent,
