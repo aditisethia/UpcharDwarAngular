@@ -124,7 +124,6 @@ import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-li
   declarations: [
 
     ListLabTestComponent,
-
     AppComponent,
     HomeComponent,
     HomeNavbarComponent,

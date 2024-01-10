@@ -3,16 +3,19 @@ import { Injectable } from '@angular/core';
 import { LabRegistrationRequest } from 'src/app/payload/Request/LabRegistrationRequest';
 import baseUrl from '../user/helper';
 import { BehaviorSubject, Observable } from 'rxjs';
-
 import { PageAppointmentRequest } from 'src/app/payload/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
 import { LabRegistrationResponse } from 'src/app/payload/response/LabRegistrationResponse';
 import { CreateLabTestRequest } from 'src/app/payload/CreateLabTestRequest';
 import { Lab } from 'src/app/entity/Lab';
-
 import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
+import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
+import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
+import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
+
+
 
 
 @Injectable({
