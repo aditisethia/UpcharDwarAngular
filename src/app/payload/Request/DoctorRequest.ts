@@ -1,5 +1,5 @@
-import { DoctorQualification } from "../entity/DoctorQualification";
-import { Speciality } from "../entity/speciality";
+import { DoctorQualification } from "../../entity/DoctorQualification";
+import { Speciality } from "../../entity/speciality";
 
 export class DoctorRequest {
     id: number=0;

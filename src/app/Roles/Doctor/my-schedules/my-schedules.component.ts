@@ -1,5 +1,5 @@
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
-import { ScheduleRequest } from './../../../payload/response/Request/ScheduleRequest';
+import { ScheduleRequest } from '../../../payload/Request/ScheduleRequest';
 import { Component, OnInit } from '@angular/core';
 import { data, error } from 'jquery';
 import Swal from 'sweetalert2';

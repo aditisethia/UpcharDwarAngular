@@ -2,8 +2,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateLabTestRequest } from 'src/app/payload/CreateLabTestRequest';
-import { LabRegistrationResponse } from 'src/app/payload/response/LabRegistrationResponse';
+import { CreateLabTestRequest } from 'src/app/payload/Request/CreateLabTestRequest';
+import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { LabTestService } from 'src/app/services/Lab-service/lab-test.service';
 import { LoginService } from 'src/app/services/user/login.service';
@@ -46,7 +46,7 @@ export class LabDashboardComponent implements OnInit {
       //   console.log('Lab Data not available');
       // }
     });
-  
+
   //Call the getLabByUserId method from LabService
 
     this.labService.getLabByUserId(this.user.id).subscribe((response: LabRegistrationResponse | null) => {
@@ -55,6 +55,6 @@ export class LabDashboardComponent implements OnInit {
       this.labService.labSubject.next(response);
       console.log('Response from getLabByUserId:', response);
     });
-   
+
 }
 }

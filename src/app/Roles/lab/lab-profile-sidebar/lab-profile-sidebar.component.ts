@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LabRegistrationResponse } from 'src/app/payload/response/LabRegistrationResponse';
+import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { LoginService } from 'src/app/services/user/login.service';
 
@@ -23,12 +23,12 @@ export class LabProfileSidebarComponent {
       this.lab = data.Lab;
       this.labId=this.lab.id;
       console.log(data.Lab);
-      
 
-  
- 
+
+
+
   });
-  
+
 }
-  
+
 }

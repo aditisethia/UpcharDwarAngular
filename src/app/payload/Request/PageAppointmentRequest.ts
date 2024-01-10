@@ -1,5 +1,5 @@
 
-import { AppointmentListResponse } from "./response/AppointmentListResponse";
+import { AppointmentListResponse } from "../response/Response/AppointmentListResponse";
 export class PageAppointmentRequest{
 contents: any[]=[];
 pageNo: number=0;
