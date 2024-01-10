@@ -1,20 +1,22 @@
 import { LabDocuments } from "./LabDocument";
 import { LabTest } from "./LabTest";
+import { Location } from "./Location";
 
 export class Lab {
   id: number=0;
-  labName: string='';
-  email: string='';
-  password: string='';
+  labName: any=null;
+  email: any=null;
+  password: any=null;
   isApproved: boolean = false;
-  phone: string='';
-  documentType: string='';
-  imageName: string='';
-  biography: string='';
+  phone: any=null;
+  documentType: any=null;
+  imageName: any=null;
+  biography: any=null;
   isDeleted: boolean = false;
-
+   
   labDocument: LabDocuments[]=[];
   labTests: LabTest[]=[];
- // labReviewRatings: LabReviewRating[];
+  //labReviewRatings: LabReviewRating[]=[];
 userId:number=0;
+  location:Location=new Location();
 }

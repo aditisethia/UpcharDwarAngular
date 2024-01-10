@@ -1,4 +1,4 @@
-  <div class="widget-profile pro-widget-content">
+  <div class="widget-profile pro-widget-content" >
             <div class="profile-info-widget">
                 <a href="#" class="booking-doc-img">
                     <img src="assets/img/patients/patient.jpg" alt="User Image">
@@ -21,10 +21,19 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+
+
                     <li>
                         <a href="favourites.html">
                             <i class="fas fa-bookmark"></i>
                             <span>Favourites</span>
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a [routerLink]="'/patientmaindashboard/lablist'">
+                            <i class="fas fa-columns"></i>
+                            <span>All Labs</span>
                         </a>
                     </li>
                     <li>
@@ -34,6 +43,8 @@
                             <small class="unread-msg">23</small>
                         </a>
                     </li>
+
+
                     <li>
                         <a href="profile-settings.html">
                             <i class="fas fa-user-cog"></i>

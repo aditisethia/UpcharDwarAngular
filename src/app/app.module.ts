@@ -3,7 +3,6 @@ import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -71,13 +70,13 @@ import { LabProfileSettingComponent } from './Roles/lab/lab-profile-setting/lab-
 import { LabProfileSidebarComponent } from './Roles/lab/lab-profile-sidebar/lab-profile-sidebar.component';
 import { LabRequestClientComponent } from './Roles/lab/lab-request-client/lab-request-client.component';
 import { LabReviewratingComponent } from './Roles/lab/lab-reviewrating/lab-reviewrating.component';
-import { LabComponent } from './Roles/lab/lab/lab.component';
-import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.component';
+
+
 import { CheckoutComponent } from './Roles/patient/checkout/checkout.component';
 import { DoctorListComponent } from './Roles/patient/doctor-list/doctor-list.component';
 import { DoctorComponent } from './Roles/patient/doctor/doctor.component';
 import { LabForpatientComponent } from './Roles/patient/lab-forpatient/lab-forpatient.component';
-import { LabListForPatientComponent } from './Roles/patient/lab-list-for-patient/lab-list-for-patient.component';
+
 import { PatientAppointmentComponent } from './Roles/patient/patient-appointment/patient-appointment.component';
 import { PatientChangePasswordComponent } from './Roles/patient/patient-change-password/patient-change-password.component';
 import { PatientDashboardHomeComponent } from './Roles/patient/patient-dashboard-home/patient-dashboard-home.component';
@@ -91,7 +90,7 @@ import { PatientProfileSettingComponent } from './Roles/patient/patient-profile-
 import { PatientSidebarComponent } from './Roles/patient/patient-sidebar/patient-sidebar.component';
 import { SearchDoctorBreadCrumComponent } from './Roles/patient/search-doctor-bread-crum/search-doctor-bread-crum.component';
 import { SearchDoctorComponent } from './Roles/patient/search-doctor/search-doctor.component';
-import { SearchLabsComponent } from './Roles/patient/search-labs/search-labs.component';
+
 import { PatientRegistrationComponent } from './common/pages/registrations/patient-registration/patient-registration.component';
 import { RegisterComponent } from './common/pages/registrations/register/register.component';
 import { DoctorAllpatientComponent } from './Roles/Doctor/doctor-allpatient/doctor-allpatient.component';
@@ -104,7 +103,7 @@ import { DoctorInvoicesComponent } from './Roles/Doctor/doctor-invoices/doctor-i
 import { DoctorProfileSidebarComponent } from './Roles/Doctor/doctor-profile-sidebar/doctor-profile-sidebar.component';
 import { DoctorProfilesettingComponent } from './Roles/Doctor/doctor-profilesetting/doctor-profilesetting.component';
 import { DoctorScheduleTimingsComponent } from './Roles/Doctor/doctor-schedule-timings/doctor-schedule-timings.component';
-
+import { MatCardModule } from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -116,10 +115,15 @@ import {MatChipsModule} from '@angular/material/chips';
 import { DatePipe } from '@angular/common';
 import { LabRegistrationComponent } from './common/pages/registrations/lab-registration/lab-registration.component';
 import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.component';
+import { PatientLabsListComponent } from './Roles/patient/patient-labs-list/patient-labs-list.component';
+import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.component';
+import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-list/patient-lab-test-list.component';
 
 
 @NgModule({
   declarations: [
+
+    ListLabTestComponent,
 
     AppComponent,
     HomeComponent,
@@ -170,8 +174,7 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
     LabDashboardDataComponent,
     LabChangepasswordComponent,
     LabBannerComponent,
-    LabComponent,
-    ListLabTestComponent,
+
     LabProfileSidebarComponent,
     LabRequestClientComponent,
     LabInvoicesDetailsComponent,
@@ -180,14 +183,11 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
     LabReviewratingComponent,
     EditLabtestComponent,
     CreateLabtestComponent,
-    LabListForPatientComponent,
     LabForpatientComponent,
-    SearchLabsComponent,
     LoginComponent,
     RegisterComponent,
     OtpValidationComponent,
     PatientRegistrationComponent,
-
     PharmacyDashboardComponent,
     PharmacyDetailsComponent,
     PharmacyUploadPrescriptionComponent,
@@ -203,6 +203,8 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
     LoginComponent,
     LabRegistrationComponent,
     MySchedulesComponent,
+    PatientLabsListComponent,
+    PatientLabTestListComponent,
 
 
 
@@ -230,6 +232,7 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
     MatPaginatorModule,
     MatChipsModule,
     DatePipe,
+    MatCardModule
 
 
   ],

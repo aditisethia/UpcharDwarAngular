@@ -3,9 +3,17 @@ import { Injectable } from '@angular/core';
 import { LabRegistrationRequest } from 'src/app/payload/Request/LabRegistrationRequest';
 import baseUrl from '../user/helper';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+import { PageAppointmentRequest } from 'src/app/payload/PageAppointmentRequest';
+import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
+import { LabRegistrationResponse } from 'src/app/payload/response/LabRegistrationResponse';
+import { CreateLabTestRequest } from 'src/app/payload/CreateLabTestRequest';
+import { Lab } from 'src/app/entity/Lab';
+
 import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
+
 
 @Injectable({
   providedIn: 'root'
@@ -81,4 +89,20 @@ export class LabServiceService {
     return this._http.get<PageAppointmentResponse>(url,{headers});
   }
 
+
+  getAllLab(pageNo:number , pageSize:number ,sortBy :string):Observable<PageAppointmentRequest> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const url =`${baseUrl}/lab/all/${pageNo}/${pageSize}/${sortBy}`;
+    return this._http.get<PageAppointmentResponse>(url,{headers});
+
+  }
+
+ 
+  
+  searchLab(pageNo:number , pageSize:number , lab:Lab ,sortBy : string){
+    const url=`${baseUrl}/lab/search/${pageNo}/${pageSize}/${sortBy}`;
+    return this._http.post(url,lab);
+  }
 }
