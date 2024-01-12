@@ -3,39 +3,12 @@ import { Injectable } from '@angular/core';
 import { LabRegistrationRequest } from 'src/app/payload/Request/LabRegistrationRequest';
 import baseUrl from '../user/helper';
 import { BehaviorSubject, Observable } from 'rxjs';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
-=======
-
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
-import { PageAppointmentRequest } from 'src/app/payload/PageAppointmentRequest';
-import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
-import { LabRegistrationResponse } from 'src/app/payload/response/LabRegistrationResponse';
-import { CreateLabTestRequest } from 'src/app/payload/CreateLabTestRequest';
+import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
 import { Lab } from 'src/app/entity/Lab';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
-import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
->>>>>>> 93e3b544d4169e93f7fa3165547bde14d2f120a5
-=======
-=======
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
 
-import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
-import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
-import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRegistrationResponse';
 
-<<<<<<< HEAD
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
-=======
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
 
 @Injectable({
   providedIn: 'root'
@@ -98,6 +71,17 @@ export class LabServiceService {
         this.labSubject.next(response);
         return response;
       });
+  }
+
+
+  getLabByLabId(labId:any):Observable<any | null>{
+    const url=`${baseUrl}/lab/getLab/${labId}`;
+    return this._http.get<any>(url)
+    .pipe((response:any) => {
+      // Emit the lab data to the observable
+      this.labSubject.next(response);
+      return response;
+    });
   }
 
   public  IMAGE_URL= 'http://localhost:8080/api/getImageApi/';

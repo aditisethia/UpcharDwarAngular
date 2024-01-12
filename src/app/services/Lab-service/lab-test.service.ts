@@ -16,6 +16,12 @@ export class LabTestService {
   constructor( private  _http:HttpClient) { }
 
 
+  public createTransaction(amount:any){
+     return this._http.get("${baseUrl}/labBooking/createTransaction/"+amount);
+  }
+
+
+
   //creating labTest
   createLabTest(labTest:CreateLabTestRequest){
     return this._http.post(`${baseUrl}/labTest/save`,labTest);

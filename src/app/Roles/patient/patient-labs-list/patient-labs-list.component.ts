@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Lab } from 'src/app/entity/Lab';
 import { Location } from 'src/app/entity/Location';
+import { GetLabRequest } from 'src/app/payload/Request/GetLabRequest';
 import { SearchLabRequest } from 'src/app/payload/SearchLabRequest';
-import { GetLabRequest } from 'src/app/payload/response/Request/GetLabRequest';
-import { PageAppointmentResponse } from 'src/app/payload/response/pageAppointmentResponse';
+
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 
 @Component({

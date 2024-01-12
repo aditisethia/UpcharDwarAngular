@@ -118,27 +118,14 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
 import { PatientLabsListComponent } from './Roles/patient/patient-labs-list/patient-labs-list.component';
 import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.component';
 import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-list/patient-lab-test-list.component';
+import { LabCheckoutComponent } from './Roles/patient/lab-checkout/lab-checkout.component';
+
 
 
 @NgModule({
   declarations: [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ListLabTestComponent,
-=======
-
->>>>>>> 93e3b544d4169e93f7fa3165547bde14d2f120a5
-=======
 
     ListLabTestComponent,
-
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
-=======
-
-    ListLabTestComponent,
-
->>>>>>> bbc093a2e9818646d011c5e06c7072c5f9c7c41b
     AppComponent,
     HomeComponent,
     HomeNavbarComponent,
@@ -219,6 +206,8 @@ import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-li
     MySchedulesComponent,
     PatientLabsListComponent,
     PatientLabTestListComponent,
+    LabCheckoutComponent,
+  
 
 
 
