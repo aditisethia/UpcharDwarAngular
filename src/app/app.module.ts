@@ -118,6 +118,8 @@ import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.c
 import { PatientLabsListComponent } from './Roles/patient/patient-labs-list/patient-labs-list.component';
 import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.component';
 import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-list/patient-lab-test-list.component';
+import { LabCheckoutComponent } from './Roles/patient/lab-checkout/lab-checkout.component';
+
 
 
 @NgModule({
@@ -203,6 +205,8 @@ import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-li
     MySchedulesComponent,
     PatientLabsListComponent,
     PatientLabTestListComponent,
+    LabCheckoutComponent,
+  
 
 
 

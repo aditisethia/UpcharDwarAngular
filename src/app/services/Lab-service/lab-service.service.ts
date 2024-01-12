@@ -73,6 +73,17 @@ export class LabServiceService {
       });
   }
 
+
+  getLabByLabId(labId:any):Observable<any | null>{
+    const url=`${baseUrl}/lab/getLab/${labId}`;
+    return this._http.get<any>(url)
+    .pipe((response:any) => {
+      // Emit the lab data to the observable
+      this.labSubject.next(response);
+      return response;
+    });
+  }
+
   public  IMAGE_URL= 'http://localhost:8080/api/getImageApi/';
 
   getAllLabTestOfLab(pageNo: number, pageSize: number, sortBy: string ,labId:number): Observable<PageAppointmentRequest> {

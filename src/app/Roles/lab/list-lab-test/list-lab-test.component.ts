@@ -38,6 +38,12 @@ export class ListLabTestComponent implements OnInit{
       console.log(this.labId+"labIDINLIST");
     });
 
+
+
+
+
+    
+
     this.getAllTestOfLab()
 
   }
