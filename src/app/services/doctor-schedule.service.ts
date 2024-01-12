@@ -19,6 +19,8 @@ export class DoctorScheduleService {
 
   generatetimeslotesandschedule(ScheduleRequest:any){
 
+    console.log("Service--->>>>>>>>>>>>"+ScheduleRequest);
+
     return this.http.post(`${baseUrl}/schedule/create`,ScheduleRequest);
   }
 
