@@ -124,7 +124,6 @@ import { LabCheckoutComponent } from './Roles/patient/lab-checkout/lab-checkout.
 
 @NgModule({
   declarations: [
-
     ListLabTestComponent,
     AppComponent,
     HomeComponent,

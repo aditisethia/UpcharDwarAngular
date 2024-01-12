@@ -105,8 +105,8 @@ export class LabServiceService {
 
   }
 
- 
-  
+
+
   searchLab(pageNo:number , pageSize:number , lab:Lab ,sortBy : string){
     const url=`${baseUrl}/lab/search/${pageNo}/${pageSize}/${sortBy}`;
     return this._http.post(url,lab);

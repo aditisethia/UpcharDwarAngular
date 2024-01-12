@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Lab } from 'src/app/entity/Lab';
 import { LabAppointment_Request } from 'src/app/payload/Request/LabAppointment_Request';
 import { LabTestListResponse } from 'src/app/payload/response/Response/LabTestListResponse';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 import { LabAppointmentServiceService } from 'src/app/services/Lab-service/lab-appointment-service.service';
+
+
 
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { LabTestService } from 'src/app/services/Lab-service/lab-test.service';
@@ -57,6 +60,7 @@ export class PatientLabTestListComponent implements OnInit {
   }
 
 
+
   getpatientbyemail() {
 
     //console.log(this.pemail);
@@ -72,7 +76,11 @@ export class PatientLabTestListComponent implements OnInit {
 
   }
 
-  getAllTestOfLab() {
+
+
+
+     getAllTestOfLab(){
+    this.labId= this._route.snapshot.params['id'];
 
     console.log(this.labId);
     this.labService.getAllLabTestOfLab(this.pageNo, this.pageSize, this.sortBy, this.labId).subscribe(
@@ -166,7 +174,10 @@ export class PatientLabTestListComponent implements OnInit {
   handlePageEvent(e: PageEvent) {
     this.pageNo = e.pageIndex;
     this.pageSize = e.pageSize;
-    this.getAllTestOfLab();
+
+  
+
+      this.getAllTestOfLab();
   }
 
 }
