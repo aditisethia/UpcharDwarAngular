@@ -4,6 +4,7 @@ import { Patient } from 'src/app/entity/Patient';
 
 export class Appointment_Request {
   appointmentDate!: any;
+  status: any;
   purpose!: string;
   timeslote: TimeSlotRequest = new TimeSlotRequest;
   patient: Patient = new Patient;
@@ -11,3 +12,4 @@ export class Appointment_Request {
   doctorInvoice: any;
   patientAppointmentFile: any;
 }
+

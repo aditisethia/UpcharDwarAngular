@@ -2,7 +2,7 @@
 <div class="main-wrapper">
 
 	<!-- Header -->
-	
+
 	<!-- /Header -->
 
 	<!-- Breadcrumb -->
@@ -28,7 +28,52 @@
 		<div class="container">
 
 			<!-- Doctor Widget -->
-			<app-doctor></app-doctor>
+      <div class="card">
+        <div class="card-body">
+          <div class="doctor-widget">
+            <div class="doc-info-left">
+              <div class="doctor-img">
+                <a href="doctor-profile.html">
+                  <img  [src]="IMG_URLs +doctorInfos?.imageName" class="img-fluid" alt="User Image">
+                </a>
+              </div>
+              <div class="doc-info-cont">
+                <h4 class="doc-name"><a href="doctor-profile.html">{{ doctorInfos?.name}}</a></h4>
+                <p class="doc-speciality">{{ doctorInfos?.speciality?.spName }}</p>
+                <p class="doc-department"><img src="assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">Orthopaedics</p>
+                <!-- <div class="rating">
+                  <i *ngFor="let star of [1, 2, 3, 4, 5]" [class]="star <= doctor.rating ? 'fas fa-star filled' : 'fas fa-star'"></i>
+                  <span class="d-inline-block average-rating">({{ doctor.feedbackCount }})</span>
+                </div> -->
+                <div class="clinic-details">
+                  <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ doctorInfos?.city }}</p>
+                  <ul class="clinic-gallery">
+
+                  </ul>
+                </div>
+                <div class="clinic-services">
+                  <span *ngFor="let service of doctorInfos?.awards">{{ service }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="doc-info-right">
+              <div class="clini-infos">
+                <!-- <ul>
+                  <li><i class="far fa-thumbs-up"></i> {{ doctor.thumbsUp }}%</li>
+                  <li><i class="far fa-comment"></i> {{ doctor.feedbackCount }} Feedback</li>
+                  <li><i class="fas fa-map-marker-alt"></i> {{ doctor.location }}</li>
+                  <li><i class="far fa-money-bill-alt"></i> {{ doctor.costRange }} <i class="fas fa-info-circle" data-toggle="tooltip" title="{{ doctor.tooltip }}"></i></li>
+                </ul> -->
+              </div>
+              <div class="clinic-booking">
+                <!-- <a class="view-pro-btn" [routerLink]="'/patientmaindashboard/doctorprofile/'+doctorInfos?.id">View Profile</a> -->
+                <a class="apt-btn" [routerLink]="'/patientmaindashboard/doctorappointmentbooking/'+doctorInfos?.id">Book Appintment
+             </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
 			<!-- /Doctor Widget -->
 
 			<!-- Doctor Details Tab -->
@@ -220,7 +265,7 @@
 
 						<!-- /Location List -->
 
-					
+
 					<!-- /Locations Content -->
 
 					<!-- Reviews Content -->
@@ -256,10 +301,10 @@
 						  <!-- Show All and other details go here... -->
 						</div>
 						<!-- /Review Listing -->
-					  
+
 						<!-- Write Review and other details go here... -->
 					  </div>
-					  
+
 					<!-- /Reviews Content -->
 
 					<!-- Business Hours Content -->
@@ -284,7 +329,7 @@
 						  </div>
 						</div>
 					  </div>
-					  
+
 					<!-- /Business Hours Content -->
 
 				</div>

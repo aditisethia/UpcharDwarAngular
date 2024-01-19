@@ -4,6 +4,8 @@ import { Appointment_Request } from 'src/app/payload/Request/Appointment_Request
 import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import { RazorpayService } from 'src/app/services/razorpay/razorpay.service';
+import { TimesloteService } from 'src/app/services/doctor-service/timeslote.service';
+
 declare var Razorpay: any;
 
 
@@ -16,13 +18,17 @@ export class CheckoutComponent implements OnInit {
 
   appointmentData: Appointment_Request = new Appointment_Request();
 
+bookingStatus: BookingStatus = {
+  isBooked: true
+};
+
 
   order = {
       // Replace with your actual amount
     currency: 'INR',  // Replace with your actual currency
     id: String  // Replace with your actual order ID
   };
-  constructor(private razorpayService: RazorpayService, private appointmentService: AppointmentserviceService, private doctorService: DoctorserviceService) { }
+  constructor(private razorpayService: RazorpayService, private appointmentService: AppointmentserviceService, private doctorService: DoctorserviceService,private timesloteservice:TimesloteService) { }
   IMG_URLs = this.doctorService.IMAGE_URL;
 
 
@@ -38,7 +44,8 @@ export class CheckoutComponent implements OnInit {
     this.razorpayService.createOrder(amount).subscribe((order: any) => {
       console.log("order-->>>>>"+order);
       console.log(order);
-      this.order.id=order.id;
+      this.order.id=order.orderId
+      ;
 
 console.log("fuckinng id---->>>>>>"+this.order.id);
 
@@ -48,7 +55,7 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
         currency: order.currency,
         name: 'UpcharDwar',
         description: 'Payment for services',
-        order_id: order.id,
+        order_id: this.order.id,
         handler: (response: any) => {
           console.log("at make payment deep");
           console.log("orderid--->>>>>>>>>>");
@@ -84,7 +91,20 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
   capturePayment(paymentId: string, orderId: string): void {
     this.razorpayService.capturePayment(paymentId, orderId).subscribe((response: any) => {
       console.log('Payment captured successfully:', response);
-      // Handle success or failure
+      this.timesloteservice.booktimeslote(this.appointmentData.timeslote.id,this.bookingStatus).subscribe((data:any)=>{
+      console.log(this.appointmentData.timeslote.id);
+      console.log("checkpoint----->>>>>"+this.appointmentData);
+
+      this.appointmentService.addappointment(this.appointmentData).subscribe((data:any)=>{
+      console.log(data);
+
+      })
+      })
+
+    }, (error: any) => {
+
+      console.log(error);
+
     });
     return
   }
@@ -135,3 +155,7 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
 
 
 }
+interface BookingStatus {
+  isBooked: boolean;
+}
+

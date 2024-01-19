@@ -54,7 +54,7 @@ export class DoctorScheduleTimingsComponent implements OnInit {
           this.doctor = data.doctor;
           this.drid = data.doctor.id;
           console.log(data);
-          console.log(this.doctor);
+          console.log(this.doctor+this.drid);
           this.ScheduleRequest.doctor.id = data.doctor.id;
         });
       }
