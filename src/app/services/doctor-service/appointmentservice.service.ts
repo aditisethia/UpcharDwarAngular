@@ -24,6 +24,10 @@ export class AppointmentserviceService {
     return this._http.post<PageAppointmentRequest>(endpoint, request, { headers });
   }
 
+  addappointment(appointment:any){
+
+    return this._http.post(`${baseUrl}/appointment/book`,appointment);
+  }
 
   getAllAppointmentOfDoctor(pageNo: number, pageSize: number, sortBy: string): Observable<PageAppointmentRequest> {
     const headers = new HttpHeaders({

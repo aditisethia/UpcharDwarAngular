@@ -1,4 +1,14 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Appointment_Request } from 'src/app/payload/Request/Appointment_Request ';
+import { DoctorRequest } from 'src/app/payload/Request/DoctorRequest';
+import { ScheduleRequest } from 'src/app/payload/Request/ScheduleRequest';
+import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
+import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
+import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
+import { TimesloteService } from 'src/app/services/doctor-service/timeslote.service';
+import { PatientserviceService } from 'src/app/services/patient-service/patientservice.service';
+import { LoginService } from 'src/app/services/user/login.service';
 
 @Component({
   selector: 'app-doctor-profile',
@@ -6,9 +16,39 @@ import { Component } from '@angular/core';
   styleUrls: ['./doctor-profile.component.css']
 })
 export class DoctorProfileComponent {
+
+  doctorInfos: DoctorRequest | undefined;
+  Averagedoctorrating: number | undefined;
+  drid: any | undefined;
+  IMG_URLs = this.doctorService.IMAGE_URL;
+
+
+
+  constructor(private tsservice:TimesloteService,private patientservic:PatientserviceService,private appointmentService: AppointmentserviceService,private router: Router,private loginservice: LoginService, private doctorService: DoctorserviceService, private scheduleService: DoctorScheduleService, private route: ActivatedRoute, private doctorservice: DoctorserviceService) { }
+
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.drid = this.route.snapshot.params['drid'];
+      console.log(this.drid);
+
+    this.getdoctorbyid(this.drid);
+
+    });
+  }
+
+
+  getdoctorbyid(drid: any) {
+    this.doctorservice.getdoctorbyydrId(drid).subscribe((doctor: any) => {
+      this.doctorInfos = doctor;
+      console.log(doctor);
+
+    })
+  }
+
   aboutContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
   loacation=[
-    
+
       {
         name: 'Smile Cute Dental Care Center',
         speciality: 'MDS - Periodontology and Oral Implantology, BDS',
@@ -66,7 +106,7 @@ export class DoctorProfileComponent {
       recommended: true,
       content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
     },
-   
+
   ];
 
   businessHours: any[] = [

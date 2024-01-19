@@ -1,6 +1,8 @@
-import { Component ,Input} from '@angular/core';
-import { Doctor } from 'src/app/entity/DoctorList';
+import { Component ,Input, OnInit} from '@angular/core';
+import { Doctor } from 'src/app/entity/Doctor';
+
 import { Doctor_Request } from 'src/app/payload/Request/Doctor_Request';
+import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 
 
@@ -12,7 +14,11 @@ import { DoctorserviceService } from 'src/app/services/doctor-service/doctorserv
 export class DoctorComponent {
   @Input()
   doctor!: Doctor_Request;
-  IMG_URLs = this.doctorService.IMAGE_URL;
-  constructor(private doctorService:DoctorserviceService){
 
-}}
+  constructor(private doctorService:DoctorserviceService,private scheduleservice: DoctorScheduleService){ }
+
+
+  IMG_URLs = this.doctorService.IMAGE_URL;
+
+  }
+

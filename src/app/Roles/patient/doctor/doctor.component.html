@@ -36,7 +36,7 @@
             </ul> -->
           </div>
           <div class="clinic-booking">
-            <a class="view-pro-btn" href="doctor-profile.html">View Profile</a>
+            <a class="view-pro-btn" [routerLink]="'/patientmaindashboard/doctorprofile/'+doctor.id">View Profile</a>
             <a class="apt-btn" [routerLink]="'/patientmaindashboard/doctorappointmentbooking/'+doctor.id">Book Appintment
          </a>
         </div>

@@ -254,7 +254,7 @@ const routes: Routes = [
    },
 
    {
-    path:"doctorprofile",
+    path:"doctorprofile/:drid",
     component:DoctorProfileComponent,
   },
   {
@@ -286,7 +286,7 @@ const routes: Routes = [
     path:"favrouitedoctor",
     component:PatientFavrouiteDoctorComponent,
   },
- 
+
 
 ]
   },
@@ -298,7 +298,7 @@ const routes: Routes = [
       path:"labdatadashboard",
       component:LabDashboardDataComponent,
     },
-   
+
     {
       path:"patientrequestforlabtest",
       component:LabRequestClientComponent,
