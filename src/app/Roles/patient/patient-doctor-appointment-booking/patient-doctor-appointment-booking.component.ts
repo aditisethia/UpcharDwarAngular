@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/user/login.service';
 import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
 import { PatientserviceService } from 'src/app/services/patient-service/patientservice.service';
-import { TimesloteService } from 'src/app/services/timeslote.service';
+import { TimesloteService } from 'src/app/services/doctor-service/timeslote.service';
+
 
 @Component({
   selector: 'app-patient-doctor-appointment-booking',
@@ -74,6 +75,8 @@ export class PatientDoctorAppointmentBookingComponent {
   }
 
   fetchSchedules(doctorId: number): void {
+    console.log("doctorid----->>>>>>"+doctorId);
+
     this.scheduleService.getschedulesbydoctorid(doctorId).subscribe((data: any) => {
       this.ScheduleRequest = data;
       this.schedules = data;

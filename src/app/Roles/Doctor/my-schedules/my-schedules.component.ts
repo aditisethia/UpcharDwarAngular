@@ -3,6 +3,7 @@ import { ScheduleRequest } from '../../../payload/Request/ScheduleRequest';
 import { Component, OnInit } from '@angular/core';
 import { data, error } from 'jquery';
 import Swal from 'sweetalert2';
+import { Doctor } from 'src/app/entity/Doctor';
 
 @Component({
   selector: 'app-my-schedules',
@@ -11,17 +12,43 @@ import Swal from 'sweetalert2';
 })
 export class MySchedulesComponent implements OnInit {
 
+
   ScheduleRequest: ScheduleRequest[] | undefined;
+  drid: any;
+  doctor: Doctor = new Doctor();
 
   constructor(private scheduleservice: DoctorScheduleService) { }
-  ngOnInit(): void {
 
-    this.scheduleservice.getschedulesbydoctorid(1).subscribe((data: any) => {
-      console.log(data);
-      this.ScheduleRequest = data;
-    }, (error: any) => {
-      console.log(error);
-    });
+  ngOnInit(): void {
+    var userString = localStorage.getItem('user');
+
+    if (userString) {
+      var user = JSON.parse(userString);
+      console.log(user.email + user.id);
+
+      if (user.id) {
+        this.scheduleservice.getdoctorbyuserid(user.id).subscribe((data: any) => {
+          this.doctor = data.doctor;
+          this.drid = data.doctor.id;
+          console.log(data);
+
+          // Call the second API only after the first API call is completed
+          this.loadSchedules();
+        });
+      }
+    }
+  }
+
+  loadSchedules() {
+    this.scheduleservice.getschedulesbydoctorid(this.drid).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.ScheduleRequest = data;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 
   getDayOfWeek(dateString: string): string {
