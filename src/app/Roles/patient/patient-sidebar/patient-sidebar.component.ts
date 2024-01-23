@@ -1,22 +1,49 @@
-import { Component } from '@angular/core';
+import { Patient } from 'src/app/entity/Patient';
+import { LoginService } from 'src/app/services/user/login.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PatientserviceService } from 'src/app/services/patient-service/patientservice.service';
+import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 
 @Component({
   selector: 'app-patient-sidebar',
   templateUrl: './patient-sidebar.component.html',
   styleUrls: ['./patient-sidebar.component.css']
 })
-export class PatientSidebarComponent {
+export class PatientSidebarComponent implements OnInit{
 
-  constructor(private  router: Router){}
+  email!: string;
+  patient: Patient = new Patient;
 
-  logout(): void {
-    // Clear local storage
-    localStorage.clear();
-    this.router.navigate(['/'])
-    window.location.reload();
 
+  constructor(private doctorService:DoctorserviceService,private  router: Router,private loginService:LoginService,private patientservice:PatientserviceService){}
+  IMG_URLs = this.doctorService.IMAGE_URL;
+
+
+
+  ngOnInit(): void {
+    var userString = localStorage.getItem('user');
+
+    if (userString) {
+      var user = JSON.parse(userString);
+      console.log(user.email + user.id);
+   this.email=user.email;
+      if (user.id) {
+
+   this.patientservice.getpatientbyemail(this.email).subscribe((patient:any)=>{
+
+    this.patient=patient;
+    console.log(patient);
+
+   })
+
+    }
   }
+  }
+  logout(){
+      this.loginService.logout();
+  }
+
 
 
 

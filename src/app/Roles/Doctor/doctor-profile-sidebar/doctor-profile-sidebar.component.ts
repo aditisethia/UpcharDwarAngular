@@ -5,6 +5,7 @@ import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service'
 
 import { Doctor } from 'src/app/entity/Doctor';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
+import { LoginService } from 'src/app/services/user/login.service';
 
 @Component({
   selector: 'app-doctor-profile-sidebar',
@@ -18,7 +19,7 @@ export class DoctorProfileSidebarComponent implements OnInit{
   drid: any;
   doctor: Doctor = new Doctor();
 
-  constructor(private scheduleservice: DoctorScheduleService,private labService:LabServiceService) { }
+  constructor(private scheduleservice: DoctorScheduleService,private labService:LabServiceService,private loginService:LoginService) { }
   IMG_URLs = this.labService.IMAGE_URL;
 
   ngOnInit(): void {
@@ -38,6 +39,11 @@ export class DoctorProfileSidebarComponent implements OnInit{
         });
       }
     }
+  }
+
+  // logout user
+  logOut(){
+   this.loginService.logout();
   }
 
 }

@@ -3,6 +3,7 @@ import { TimeSlotRequest } from "./TimeSlotRequest";
 import { Patient } from 'src/app/entity/Patient';
 
 export class Appointment_Request {
+  bookingdate:any;
   appointmentDate!: any;
   status: any;
   purpose!: string;
@@ -12,4 +13,3 @@ export class Appointment_Request {
   doctorInvoice: any;
   patientAppointmentFile: any;
 }
-

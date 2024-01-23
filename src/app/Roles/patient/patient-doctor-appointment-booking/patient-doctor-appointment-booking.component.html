@@ -92,7 +92,7 @@
                             class="button-73"
                             role="button"
                             [disabled]="timeSlot.isBooked"
-                            (click)="selectTimeSlot(timeSlot.id)"
+                            (click)="selectTimeSlot(timeSlot.id, schedule.selectedDate)"
                           >
                             {{ formatTime(timeSlot.startTime) }} -
                             {{ formatTime(timeSlot.endTime) }}

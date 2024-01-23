@@ -63,15 +63,15 @@ export class HomePopularSectionComponent implements OnInit {
 
 
   }
-  doctor: Doctor[] = [
-    { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-01.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
-    { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-02.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
-    { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-03.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
-    { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-04.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
-    { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-05.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
+  // doctor: Doctor[] = [
+  //   { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-01.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
+  //   { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-02.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
+  //   { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-03.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
+  //   { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-04.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
+  //   { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-05.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
 
-    // Add more doctors as needed
-  ];
+  //   // Add more doctors as needed
+  // ];
 
 
 
@@ -88,8 +88,9 @@ export class HomePopularSectionComponent implements OnInit {
 
 // doctor.model.ts
 export interface Doctor {
+  id:number;
   name: string;
-  image: string;
+  imageName: string;
   specialization: string;
   rating: number;
   location: string;
