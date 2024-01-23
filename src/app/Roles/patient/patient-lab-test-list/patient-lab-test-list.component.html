@@ -1,67 +1,81 @@
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Sidebar -->
-      <div class="col-md-3">
-        <app-patient-sidebar></app-patient-sidebar> 
-      </div>
+<app-home-navbar></app-home-navbar>
 
-      <!-- Lab Tests -->
-      <div class="col-md-9 col-log-6 col-xl-4 " *ngFor="let test of labTests">
-        <!-- Lab Widget -->
-        <mat-card style="margin-bottom: 20px;">
-          <div class="profile-widget">
-            <div class="doc-img">
-              <a href="#">
-                <img class="img-fluid" alt="Lab Image"
-                  [src]="'https://altahealthgroup.com/wp-content/uploads/2016/12/lab-tests-1024x768.jpg'">
-              </a>
-              <a href="javascript:void(0)" class="fav-btn">
-                <i class="far fa-bookmark"></i>
-              </a>
-            </div>
-            <div class="pro-content">
-              <h3 class="title">
-                <a href="#">{{ test.testName }}</a>
-                <i class="fas fa-check-circle verified"></i>
-              </h3>
-              <!-- Display lab rating stars -->
-              <div class="ratings">
-                <i class="fas fa-star filled" *ngFor="let i of [1, 2, 3, 4, 5]"></i>
-                <span class="d-inline-block average-rating">({{ test.ratings }})</span>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <app-patient-sidebar></app-patient-sidebar>
+    </div>
+
+    <div class="col-9">
+      <div class="content">
+        <div class="card dash-card">
+          <div class="card-body">
+            <div class="row">
+                                    
+              <!-- Lab Tests -->
+              <div class="col-md-9 col-log-6 col-xl-4 " *ngFor="let test of labTests">
+                <!-- Lab Widget -->
+                <mat-card style="margin-bottom: 20px;">
+                  <div class="profile-widget">
+                    <div class="doc-img">
+                      <a href="#">
+                        <img class="img-fluid" alt="Lab Image"
+                          [src]="'https://altahealthgroup.com/wp-content/uploads/2016/12/lab-tests-1024x768.jpg'">
+                      </a>
+                      <a href="javascript:void(0)" class="fav-btn">
+                        <i class="far fa-bookmark"></i>
+                      </a>
+                    </div>
+                    <div class="pro-content">
+                      <h3 class="title">
+                        <a href="#">{{ test.testName }}</a>
+                        <i class="fas fa-check-circle verified"></i>
+                      </h3>
+                      <!-- Display lab rating stars -->
+                      <div class="ratings">
+                        <i class="fas fa-star filled" *ngFor="let i of [1, 2, 3, 4, 5]"></i>
+                        <span class="d-inline-block average-rating">({{ test.ratings }})</span>
+                      </div>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="far fa-clock"></i>
+                        {{ test.availability ? 'Available' : 'Not Available' }}
+                      </li>
+                    </ul>
+                    <!-- Additional lab-specific details -->
+                    <ul class="lab-info">
+                      <li><i class="fas fa-info"></i> {{ test.description }}</li>
+                      <li><i class="fas fa-dollar-sign"></i> {{ test.rates }}</li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <!-- Add a link to view lab profile -->
+                       
+                          <!-- Add a link to view lab profile -->
+                          <a class="btn view-btn" (click)="bookLabTest(test.id)">Book Lab Test</a>
+                      
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+        
               </div>
             </div>
-            <ul class="available-info">
-              <li>
-                <i class="far fa-clock"></i>
-                {{ test.availability ? 'Available' : 'Not Available' }}
-              </li>
-            </ul>
-            <!-- Additional lab-specific details -->
-            <ul class="lab-info">
-              <li><i class="fas fa-info"></i> {{ test.description }}</li>
-              <li><i class="fas fa-dollar-sign"></i> {{ test.rates }}</li>
-            </ul>
-            <div class="row row-sm">
-              <div class="col-6">
-                <!-- Add a link to view lab profile -->
-               
-                  <!-- Add a link to view lab profile -->
-                  <a class="btn view-btn" (click)="bookLabTest(test.id)">Book Lab Test</a>
-              
-              </div>
-            </div>
+           
+              <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
+                [pageSize]="pageSize" [disabled]="disabled" [showFirstLastButtons]="showFirstLastButtons"
+                [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
+                [pageIndex]="pageIndex" aria-label="Select page">
+              </mat-paginator>
+        
           </div>
-        </mat-card>
-
+        </div>
+          </div>
+        </div>
       </div>
     </div>
-   
-      <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
-        [pageSize]="pageSize" [disabled]="disabled" [showFirstLastButtons]="showFirstLastButtons"
-        [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
-        [pageIndex]="pageIndex" aria-label="Select page">
-      </mat-paginator>
 
-  </div>
-</div>
+
+<app-footer></app-footer>
+
