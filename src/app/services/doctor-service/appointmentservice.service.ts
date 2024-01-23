@@ -45,4 +45,13 @@ export class AppointmentserviceService {
   setAppointmentData(data: Appointment_Request) {
     this.appointmentData.next(data);
   }
+
+  getAppointmentsByPatientId(patientId: number, page: number, size: number): Observable<Appointment_Request[]> {
+    const url = `${baseUrl}/appointment/patient/${patientId}`;
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this._http.get<Appointment_Request[]>(url, { params });
+  }
 }

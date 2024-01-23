@@ -1,6 +1,6 @@
 <!-- Header -->
 <header class="header">
-  <nav class="navbar navbar-expand-lg header-nav">
+  <nav class="navbar navbar-expand-lg header-nav" >
     <div class="navbar-header">
       <a id="mobile_btn" href="javascript:void(0);">
         <span class="bar-icon">
@@ -173,7 +173,7 @@
               src="https://cdn1.vectorstock.com/i/1000x1000/23/10/patient-heart-rounded-icon-vector-6462310.jpg"
               alt="User Image"
               class="avatar-img rounded-circle" /></a
-          ><a _ngcontent-ng-c1322614984="" href="profile.html">{{user.name}}</a>
+          ><a _ngcontent-ng-c1322614984="" *ngIf="user" href="profile.html">{{user.name}}</a>
         </h2>
 
       </li>

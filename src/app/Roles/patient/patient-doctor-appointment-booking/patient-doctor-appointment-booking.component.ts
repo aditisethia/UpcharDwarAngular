@@ -26,15 +26,15 @@ export class PatientDoctorAppointmentBookingComponent {
   Averagedoctorrating: number | undefined;
   drid: any | undefined;
   schedules: any[] = [];
-  ScheduleRequest: ScheduleRequest[] | undefined;
+  ScheduleRequest: ScheduleRequest[] = [];
   AppointMentRequest: Appointment_Request = new Appointment_Request;
   selectedDate: string = '';
   IMG_URLs = this.doctorService.IMAGE_URL;
   todaydate: string | undefined;
-  pemail:any;
+  pemail: any;
 
 
-  constructor(private tsservice:TimesloteService,private patientservic:PatientserviceService,private appointmentService: AppointmentserviceService,private router: Router,private loginservice: LoginService, private doctorService: DoctorserviceService, private scheduleService: DoctorScheduleService, private route: ActivatedRoute, private doctorservice: DoctorserviceService) { }
+  constructor(private tsservice: TimesloteService, private patientservic: PatientserviceService, private appointmentService: AppointmentserviceService, private router: Router, private loginservice: LoginService, private doctorService: DoctorserviceService, private scheduleService: DoctorScheduleService, private route: ActivatedRoute, private doctorservice: DoctorserviceService) { }
 
 
   ngOnInit(): void {
@@ -51,21 +51,21 @@ export class PatientDoctorAppointmentBookingComponent {
     //getting cyrrent user
     this.loginservice.getCurrentUser().subscribe((currentuser: any) => {
       // this.AppointMentRequest.patient = currentuser.id;
- this.pemail=currentuser.email;
-   if(this.pemail!==null){
-    this.getpatientbyemail();
-   }
+      this.pemail = currentuser.email;
+      if (this.pemail !== null) {
+        this.getpatientbyemail();
+      }
 
     });
   }
 
 
 
-  getpatientbyemail(){
+  getpatientbyemail() {
 
     //console.log(this.pemail);
-    this.patientservic.getpatientbyemail(this.pemail).subscribe((data:any)=>{
-      this.AppointMentRequest.patient=data;
+    this.patientservic.getpatientbyemail(this.pemail).subscribe((data: any) => {
+      this.AppointMentRequest.patient = data;
       console.log("hello");
       console.log(this.AppointMentRequest);
 
@@ -75,31 +75,19 @@ export class PatientDoctorAppointmentBookingComponent {
   }
 
   fetchSchedules(doctorId: number): void {
-    console.log("doctorid----->>>>>>"+doctorId);
+    console.log("doctorid----->>>>>>" + doctorId);
 
     this.scheduleService.getschedulesbydoctorid(doctorId).subscribe((data: any) => {
       this.ScheduleRequest = data;
       this.schedules = data;
     });
-    this.getdate();
+
   }
 
 
   // getting todays date
 
-  getdate() {
-    const currentDate: Date = new Date();
 
-    const year: number = currentDate.getFullYear();
-    const month: number = currentDate.getMonth() + 1; // Note: Months are zero-indexed, so add 1
-    const day: number = currentDate.getDate();
-
-    const formattedDate: string = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-    this.todaydate = formattedDate;
-
-    this.AppointMentRequest.appointmentDate = this.todaydate;
-    console.log("Current Date:", formattedDate);
-  }
 
   //for FORMATE time in 12hr from 24hr
 
@@ -146,12 +134,15 @@ export class PatientDoctorAppointmentBookingComponent {
 
   //for selecting timeslote and set purpose
 
-  selectTimeSlot(timeSlot: any) {
+  selectTimeSlot(timeSlot: any,selecteddate:any) {
     console.log(timeSlot);
+console.log(selecteddate);
+this.AppointMentRequest.appointmentDate=selecteddate;
     // this.AppointMentRequest.timeslote.id = timeSlot;
-    this.tsservice.gettimeslotesbyuserid(timeSlot).subscribe((data:any)=>{
-      this.AppointMentRequest.timeslote=data;
+    this.tsservice.gettimeslotesbyuserid(timeSlot).subscribe((data: any) => {
+      this.AppointMentRequest.timeslote = data;
       console.log(data);
+
 
     })
     Swal.fire({
@@ -170,7 +161,7 @@ export class PatientDoctorAppointmentBookingComponent {
       },
       allowOutsideClick: () => !Swal.isLoading()
     }).then((result: any) => {
-      if (result.isConfirmed ||this.AppointMentRequest.doctor!==null || this.AppointMentRequest.patient!==null ||this.AppointMentRequest.timeslote!==null) {
+      if (result.isConfirmed || this.AppointMentRequest.doctor !== null || this.AppointMentRequest.patient !== null || this.AppointMentRequest.timeslote !== null) {
         const inputValue = result.value;
         this.AppointMentRequest.purpose = inputValue;
         console.log(this.AppointMentRequest);

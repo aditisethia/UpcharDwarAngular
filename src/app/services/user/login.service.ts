@@ -2,45 +2,46 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import baseUrl from './helper';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   public loginStatusSubject=new Subject<boolean>();
- 
 
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient,private router:Router) { }
    //current user:which is logged in
   public getCurrentUser(){
     return this.http.get(`${baseUrl}/auth/current-user`)
   }
 
-  
+
   //generate token
 
   public generateToken(loginData: any) {
     console.log("...........");
-    
+
     return this.http.post(`${baseUrl}/auth/login`, loginData);
   }
 
   //setlogin user: set token in localstorage
 
   public setLoginUser(token: any) {
-  
+
     localStorage.setItem('token', token);
-    
+
     return true;
   }
 
 
   public isLoggedIn() {
     let tokenStr = localStorage.getItem("token")
-    if (tokenStr == undefined || tokenStr == '' || tokenStr == null) 
+    if (tokenStr == undefined || tokenStr == '' || tokenStr == null)
       return false;
-    
+
       return true;
 
   }
@@ -49,6 +50,7 @@ export class LoginService {
   public logout() {
     localStorage.removeItem('token');
    localStorage.removeItem('user');
+   this.router.navigate(['login'])
    return true;
   }
   //get token
@@ -62,12 +64,12 @@ export class LoginService {
   //getUser
   public getUser() {
     let userStr = localStorage.getItem("user");
-    if (userStr != null) 
+    if (userStr != null)
       return JSON.parse(userStr);
-    
+
       this.logout();
       return null;
-    
+
   }
 
   //get user role
@@ -83,6 +85,6 @@ export class LoginService {
     return roles;
   }
 
-  
-  
+
+
 }

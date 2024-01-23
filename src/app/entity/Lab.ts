@@ -4,7 +4,7 @@ import { Location } from "./Location";
 
 export class Lab {
   id: number=0;
-  labName: any=null;
+  labName!: string;
   email: any=null;
   password: any=null;
   isApproved: boolean = false;
@@ -13,7 +13,7 @@ export class Lab {
   imageName: any=null;
   biography: any=null;
   isDeleted: boolean = false;
-   
+
   labDocument: LabDocuments[]=[];
   labTests: LabTest[]=[];
   //labReviewRatings: LabReviewRating[]=[];

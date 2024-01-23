@@ -1,0 +1,5 @@
+.booking-doc-img .avatar-img {
+  width: 50px; /* Adjust the width as per your requirement */
+  height: 50px; /* Adjust the height as per your requirement */
+  object-fit: cover; /* Preserve aspect ratio while resizing */
+}
