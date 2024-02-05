@@ -49,6 +49,8 @@ constructor(private labTestService:LabTestService, private _route: ActivatedRout
         availability: this.labtestcg.availability !== undefined ? this.labtestcg.availability : this.labTest.availability,
       };
 
+
+      
       this.labTestService.updateLabTest(id, updateData).subscribe(
         (data: any) => {
           console.log(data.updateLabTest);
