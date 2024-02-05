@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'UpcharDwarfront';
 
-  
+
 }

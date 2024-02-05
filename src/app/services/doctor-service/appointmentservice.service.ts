@@ -15,6 +15,36 @@ export class AppointmentserviceService {
 
   constructor(private _http:HttpClient) { }
 
+  //upcoming appointments
+
+  getupcomingappointmentofdoctor(doctorId:any){
+
+    return this._http.get(`${baseUrl}/appointment/doctor/${doctorId}/upcoming-appointments`);
+  }
+
+  //todays appointments of doctor
+  gettodayappointmentofdoctor(doctorId:any){
+
+    return this._http.get(`${baseUrl}/appointment/doctor/today/${doctorId}`)
+  }
+  //appointment for doctor
+  getDoctorAppointments(doctorId:any,page: number, size: number): Observable<any> {
+    // set up query parameters
+    const params = new HttpParams()
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+  // make the HTTP request with the dynamic doctorId
+  const url = `${baseUrl}/appointment/doctor/${doctorId}`;
+  console.log(url);
+  console.log(params);
+
+
+  return this._http.get<any>(url, { params });
+}
+
+
+
   getAllAppointments(request: AppointmentListRequest, pageNo: number, pageSize: number, sortBy: string): Observable<PageAppointmentRequest> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

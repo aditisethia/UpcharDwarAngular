@@ -1,0 +1,14 @@
+.booking-doc-img .avatar-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid #20c0f3; /* Adjust the border width and color as needed */
+  border-radius: 50%; /* Ensure the image is displayed as a circle */
+}
+.booking-doc-img1 .avatar-img1 {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #20c0f3; /* Adjust the border width and color as needed */
+  border-radius: 50%; /* Ensure the image is displayed as a circle */
+}

@@ -3,6 +3,7 @@ import { TimeSlotRequest } from "./TimeSlotRequest";
 import { Patient } from 'src/app/entity/Patient';
 
 export class Appointment_Request {
+  id:any;
   bookingdate:any;
   appointmentDate!: any;
   status: any;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
 
 @Component({
   selector: 'app-doctor-allpatient',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class DoctorAllpatientComponent implements OnInit {
   patients: any[] = []; // Add your patient data here
 
-  constructor() { }
+  constructor(private appointmentService:AppointmentserviceService ) { }
 
   ngOnInit(): void {
     // Fetch or initialize your patient data
@@ -49,8 +50,6 @@ export class DoctorAllpatientComponent implements OnInit {
         bloodGroup: 'B+',
         image: 'assets/img/patients/patient2.jpg'
       },
-      // Add more patients here
-      // ...
       {
         name: 'Harry Williams',
         patientId: 'PT0011',
@@ -72,4 +71,7 @@ export class DoctorAllpatientComponent implements OnInit {
       // Add other patients here
     ];
   }
+
+
+
 }
