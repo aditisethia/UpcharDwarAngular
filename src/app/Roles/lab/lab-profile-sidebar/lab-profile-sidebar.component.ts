@@ -31,4 +31,9 @@ export class LabProfileSidebarComponent {
 
 }
 
+logout(){
+  this.loginService.logout();
+}
+
+
 }

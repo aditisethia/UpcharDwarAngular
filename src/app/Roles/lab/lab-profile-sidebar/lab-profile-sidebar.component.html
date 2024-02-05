@@ -6,7 +6,7 @@
             </a>
             <div class="profile-det-info">
                 <h3>{{lab.labName}}</h3>
-                
+
                 <div class="patient-details">
                     <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
                 </div>
@@ -54,7 +54,7 @@
                         <span>update lab Test</span>
                     </a>
                 </li>
-                
+
                 <li>
                     <a [routerLink]="'/labdashboard/invoicedetails'">
                         <i class="fas fa-file-invoice"></i>
@@ -80,7 +80,7 @@
                         <span>Profile Settings</span>
                     </a>
                 </li>
-               
+
                 <li>
                     <a [routerLink]="'/labdashboard/changepassword'">
                         <i class="fas fa-lock"></i>
@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index-2.html">
+                    <a (click)="logout()">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
                     </a>

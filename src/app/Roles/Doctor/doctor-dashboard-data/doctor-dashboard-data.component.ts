@@ -1,6 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AppointMentRequest } from 'src/app/payload/Request/AppointmentRequest';
+import { Appointment_Request } from 'src/app/payload/Request/Appointment_Request ';
+import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
+import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
+import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import Swal from 'sweetalert2';
 
@@ -11,7 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class DoctorDashboardDataComponent implements OnInit {
 
-  getTotalPetient: number = 0;
+ getTotalPetient: number = 0;
+ doctorId:number=0;
 
   dashWidgets = [
     { icon: 'assets/img/icon-01.png', title: 'Total Patient', value: 1500, subtitle: 'Till Today', percentage: 75 },
@@ -19,44 +23,75 @@ export class DoctorDashboardDataComponent implements OnInit {
     { icon: 'assets/img/icon-03.png', title: 'Appointments', value: 85, subtitle: '06, Apr 2019', percentage: 50 }
   ];
 
-  constructor(private _doctorService: DoctorserviceService) {
+  constructor(private scheduleservice:DoctorScheduleService,private labService: LabServiceService, private _doctorService: DoctorserviceService, private appointmentservice: AppointmentserviceService) {}
 
-  }
-
-
-  upcomingAppointments: AppointMentRequest[] | undefined; // Replace 'any' with your actual data type
-  todayAppointments: AppointMentRequest[] | undefined; // Replace 'any' with your actual data type
+  IMG_URLs = this.labService.IMAGE_URL;
+  upcomingAppointments: Appointment_Request[] = []; // Replace 'any' with your actual data type
+  todayAppointments: Appointment_Request[] = []; // Replace 'any' with your actual data type
 
   ngOnInit() {
 
+    var userString = localStorage.getItem('user');
 
-    this.getUpcomingAppointments();
+    if (userString) {
+      var user = JSON.parse(userString);
+      // console.log(user.email + user.id);
+      if (user.id) {
+        this.scheduleservice.getdoctorbyuserid(user.id).subscribe((data: any) => {
+          this.doctorId = data.doctor.id;
+          console.log("->>>>>>>>>"+this.doctorId);
+          this.getUpcomingAppointments(this.doctorId);
+          this.getTotalPetientTillToday();
+          this.getTodaysTotalpetient();
+          this.getTodaysAppointments(this.doctorId);
+        });
 
-    // [
-    //   { patientName: 'Richard Wilson', appointmentDate: '16 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$150', patientAvatar: 'assets/img/patients/patient1.jpg' },
-    //   { patientName: 'aman patidar', appointmentDate: '15 Nov 2019', purpose: 'fever', appointmentType: 'old Patient', paidAmount: '$110', patientAvatar: 'assets/img/patients/patient2.jpg' },
-    //   { patientName: 'jay solanki', appointmentDate: '15 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$200', patientAvatar: 'assets/img/patients/patient3.jpg' },
-    //   { patientName: 'rohit  sharma', appointmentDate: '17 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$500', patientAvatar: 'assets/img/patients/patient4.jpg' },
-    //   { patientName: 'kapil solanki', appointmentDate: '18 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$750', patientAvatar: 'assets/img/patients/patient5.jpg' },
-    //   // Add more upcoming appointments
-    // ];
+      }
 
-    // this.todayAppointments = [
-    //   { patientName: 'jay solanki', appointmentDate: '11 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$200', patientAvatar: 'assets/img/patients/patient3.jpg' },
-    //   { patientName: 'rohit  sharma', appointmentDate: '11 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$500', patientAvatar: 'assets/img/patients/patient4.jpg' },
-    //   { patientName: 'kapil solanki', appointmentDate: '11 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$750', patientAvatar: 'assets/img/patients/patient5.jpg' },
-    //   { patientName: 'Richard Wilson', appointmentDate: '11 Nov 2019', purpose: 'General', appointmentType: 'New Patient', paidAmount: '$150', patientAvatar: 'assets/img/patients/patient1.jpg' },
-    //   { patientName: 'aman patidar', appointmentDate: '11 Nov 2019', purpose: 'fever', appointmentType: 'old Patient', paidAmount: '$110', patientAvatar: 'assets/img/patients/patient2.jpg' },
+    }
 
-    // ];
-    this.getTotalPetientTillToday();
 
-    this.getTodaysTotalpetient();
-
-  this. getTotalUpcomingAppointments();
-
-  this.getTodaysAppointments();
   }
+
+  getUpcomingAppointments(doctorid: any) {
+    this.appointmentservice.getupcomingappointmentofdoctor(doctorid).subscribe(
+      (data: any) => {
+        this.upcomingAppointments = data;
+        // Update the Total Patient value in dashWidgets
+        const totalPatientWidget = this.dashWidgets.find(widget => widget.title === 'Appointments');
+        if (totalPatientWidget) {
+          totalPatientWidget.value = data.TOTALUPCOMINGAPPOINTMENTS;
+          console.log(data);
+
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+
+
+
+  getTodaysAppointments(doctorId:any) {
+    this.appointmentservice.gettodayappointmentofdoctor(doctorId).subscribe(
+      (data: any) => {
+        // Update the Total Patient value in dashWidgets
+
+        this.todayAppointments = data;
+        console.log(data);
+        console.log(data.id + "hello at id test")
+
+
+      }
+      ,
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+
+
 
   getTotalPetientTillToday() {
     this._doctorService.getTotalPetient().subscribe(
@@ -74,6 +109,7 @@ export class DoctorDashboardDataComponent implements OnInit {
     );
   }
 
+
   getTodaysTotalpetient() {
     this._doctorService.getTodaysPatient().subscribe(
       (data: any) => {
@@ -90,73 +126,20 @@ export class DoctorDashboardDataComponent implements OnInit {
     );
   }
 
-  getTotalUpcomingAppointments() {
-    this._doctorService.getTotalUpcomingAppointment().subscribe(
-      (data: any) => {
-        // Update the Total Patient value in dashWidgets
-        const totalPatientWidget = this.dashWidgets.find(widget => widget.title === 'Appointments');
-        if (totalPatientWidget) {
-          totalPatientWidget.value = data.TOTALUPCOMINGAPPOINTMENTS;
-          console.log(data);
-
-        }
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
-  }
-
-  getUpcomingAppointments() {
-    this._doctorService.getUpcomingAppointment().subscribe(
-      (data: any) => {
-        // Update the Total Patient value in dashWidgets
-
-       this.upcomingAppointments = data.upcomingAppointment || [];
-       console.log(data);
-       console.log(data.id+"hello at id test")
-
-        }
-      ,
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
-  }
 
 
-  getTodaysAppointments() {
-    this._doctorService.getTodaysAppointment().subscribe(
-      (data: any) => {
-        // Update the Total Patient value in dashWidgets
-
-       this.todayAppointments= data.todaysAppointment || [];
-       console.log(data);
-       console.log(data.id+"hello at id test")
-
-
-        }
-      ,
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
-  }
 
   cancelAppointment(appointmentId: number): void {
     this._doctorService.cancelAppointment(appointmentId).subscribe(
       response => {
         console.log('Appointment canceled successfully:', response);
-        Swal.fire("cancelled","cancel","success");
+        Swal.fire("cancelled", "cancel", "success");
         // Handle the response as needed
       },
-      (      error: any) => {
+      (error: any) => {
         console.error('Error canceling appointment:', error);
         // Handle errors
       }
     );
   }
-  }
-
-
-
+}

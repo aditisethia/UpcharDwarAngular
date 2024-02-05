@@ -68,16 +68,14 @@ export class PatientLabsListComponent {
       (data: any) => {
         this.labs = data.contents;
         console.log(data);
-
         console.log(this.labs);
-        //this.students=data;
-        //this.length=data.totalElements;
       },
       (error) => {
         console.error(error);
       }
     )
   }
+
 
   // In your component class
 
@@ -128,13 +126,14 @@ makeLabFavorite(labId: number): void {
 
 
 
+
   // searching the students
   filter() {
 
-    if(this.searching.labName===""&&this.searching.location.area==""){
+    if (this.searching.labName === "" && this.searching.location.area == "") {
       this.getAllLab()
     }
-    else{
+    else {
 
       this.labService.searchLab(this.pageIndex, this.pageSize, this.searching, this.sortBy).subscribe(
         (data: any) => {
@@ -180,7 +179,7 @@ makeLabFavorite(labId: number): void {
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
 
-      this.filter()
+    this.filter()
   }
 
 

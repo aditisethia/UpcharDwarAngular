@@ -16,5 +16,12 @@ export class SearchService {
       const params = new HttpParams().set('searchTerm', text);
       return this.http.get(`${baseUrl}/user/search`, { params });
     }
+
+    serchDoctor(keyword:any){
+
+      const params = new HttpParams().set('keyword',keyword);
+      return this.http.get(`${baseUrl}/doctor/doctors/by-keyword`,{params});
+
+    }
   }
 

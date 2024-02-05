@@ -73,8 +73,7 @@ import { LabReviewratingComponent } from './Roles/lab/lab-reviewrating/lab-revie
 
 
 import { CheckoutComponent } from './Roles/patient/checkout/checkout.component';
-import { DoctorListComponent } from './Roles/patient/doctor-list/doctor-list.component';
-import { DoctorComponent } from './Roles/patient/doctor/doctor.component';
+
 import { LabForpatientComponent } from './Roles/patient/lab-forpatient/lab-forpatient.component';
 
 import { PatientAppointmentComponent } from './Roles/patient/patient-appointment/patient-appointment.component';
@@ -90,6 +89,7 @@ import { PatientProfileSettingComponent } from './Roles/patient/patient-profile-
 import { PatientSidebarComponent } from './Roles/patient/patient-sidebar/patient-sidebar.component';
 import { SearchDoctorBreadCrumComponent } from './Roles/patient/search-doctor-bread-crum/search-doctor-bread-crum.component';
 import { SearchDoctorComponent } from './Roles/patient/search-doctor/search-doctor.component';
+
 
 import { PatientRegistrationComponent } from './common/pages/registrations/patient-registration/patient-registration.component';
 import { RegisterComponent } from './common/pages/registrations/register/register.component';
@@ -161,8 +161,6 @@ import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-l
     PatientAppointmentComponent,
     SearchDoctorComponent,
     SearchDoctorBreadCrumComponent,
-    DoctorComponent,
-    DoctorListComponent,
     DoctorProfileComponent,
     PatientDoctorAppointmentBookingComponent,
     PatientMainDashboardComponent,
@@ -207,8 +205,10 @@ import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-l
     PatientLabsListComponent,
     PatientLabTestListComponent,
     LabCheckoutComponent,
+
     PatientFavoriteLabsComponent,
   
+
 
 
 
