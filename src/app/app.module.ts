@@ -122,7 +122,6 @@ import { LabCheckoutComponent } from './Roles/patient/lab-checkout/lab-checkout.
 import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-labs/patient-favorite-labs.component';
 
 
-
 @NgModule({
   declarations: [
     ListLabTestComponent,
