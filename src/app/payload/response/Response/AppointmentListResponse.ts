@@ -1,3 +1,4 @@
+import { Patient } from 'src/app/entity/Patient';
 export class AppointmentListResponse{
     id: number=0;
     patientName: string='';
@@ -9,4 +10,5 @@ export class AppointmentListResponse{
     dId: number=0;
     email: string='';
     mobile: string='';
+    patient: Patient = new Patient;
   }

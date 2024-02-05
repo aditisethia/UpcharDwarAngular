@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { AppointmentListRequest } from 'src/app/payload/Request/AppointmentListRequest';
+import { Doctor } from 'src/app/entity/Doctor';
 import { AppointmentListResponse } from 'src/app/payload/response/Response/AppointmentListResponse';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
+import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
+import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
 import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
 
 @Component({
@@ -12,6 +14,12 @@ import { AppointmentserviceService } from 'src/app/services/doctor-service/appoi
 })
 export class DoctorAppointmentsComponent implements OnInit {
 
+  drid: any;
+  doctor: Doctor = new Doctor();
+  appointments: AppointmentListResponse[] = []; // Assuming the data structure for patients
+
+  IMG_URLs = this.labService.IMAGE_URL;
+  constructor(private labService:LabServiceService,private scheduleservice: DoctorScheduleService,private appointmentService: AppointmentserviceService) {}
 
   viewAppointmentDetails(appointment: any) {
     // Logic to  viewing appointment details
@@ -27,23 +35,43 @@ export class DoctorAppointmentsComponent implements OnInit {
     // Logic to cancel
   //   console.log('Cancel appointment:', appointment);
    }
-   appointments: AppointmentListResponse[] = []; // Assuming the data structure for patients
 
-  constructor(private appointmentService: AppointmentserviceService) {}
 
   ngOnInit(): void {
-this.getAllAppointmentOfDoctor();
+    var userString = localStorage.getItem('user');
+
+    if (userString) {
+      var user = JSON.parse(userString);
+      console.log(user.email + user.id);
+
+      if (user.id) {
+        this.scheduleservice.getdoctorbyuserid(user.id).subscribe((data: any) => {
+          this.doctor = data.doctor;
+          this.drid = data.doctor.id;
+
+          this.getAllAppointmentOfDoctor();
+          console.log(data);
+
+
+        });
+      }
+    }
+
   }
 
 
 
 getAllAppointmentOfDoctor(){
-  console.log('ts');
 
-  this.appointmentService.getAllAppointmentOfDoctor(this.pageNo,this.pageSize,this.sortBy).subscribe(
-    (data: PageAppointmentResponse) => {
-         this.appointments = data.contents;
-           this.length=data.totalElements;
+  console.log("hello");
+
+console.log(this.drid);
+
+  this.appointmentService.getDoctorAppointments(this.drid,this.pageNo,this.pageSize).subscribe(
+    (data: any) => {
+         this.appointments = data.content;
+           console.log(data);
+
         },
         (error) => {
            console.error(error);

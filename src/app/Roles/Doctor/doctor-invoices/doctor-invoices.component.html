@@ -15,9 +15,7 @@
                     </div>
                   </div>
                   <!-- /Breadcrumb -->
-<div class="col-md-7 col-lg-8 col-xl-9">
-    <div class="card card-table">
-      <div class="card-body">
+
 
         <!-- Invoice Table -->
         <div class="table-responsive">
@@ -32,27 +30,27 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let invoice of invoices">
+              <tr *ngFor="let invoice of doctorinvoice">
                 <td>
-                  <a [href]="'invoice-view.html' + invoice.invoiceNo">{{ invoice.invoiceNo }}</a>
+                  <a [href]="'invoice-view.html' + invoice.id">invoice_Id :{{ invoice.id }}</a>
                 </td>
                 <td>
                   <h2 class="table-avatar">
-                    <a [href]="'patient-profile.html' + invoice.patientId" class="avatar avatar-sm mr-2">
+                    <a  class="avatar avatar-sm mr-2">
                       <!-- Add your image source dynamically -->
-                      <!-- <img class="avatar-img rounded-circle" src="assets/img/patients/default.jpg" alt="User Image"> -->
+                       <img class="avatar-img rounded-circle" [src]="IMG_URLs+ invoice.patient.imageName" alt="User Image">
                     </a>
-                    <a [href]="'patient-profile.html' + invoice.patientId">{{ invoice.patient }} <span>{{ invoice.patientId }}</span></a>
+                    <a [href]="'patient-profile.html' + invoice.patient.id">{{ invoice.patient.patientName }} <span>Patient_Id :{{ invoice.patient.id }}</span></a>
                   </h2>
                 </td>
                 <td>{{ invoice.amount }}</td>
-                <td>{{ invoice.paidOn }}</td>
+                <td>{{ invoice.invoiceGenerateDate }}</td>
                 <td class="text-right">
                   <div class="table-action">
-                    <a [href]="'invoice-view.html' + invoice.invoiceNo" class="btn btn-sm bg-info-light">
+                    <a (click)="generatePDF(invoice,'open')"class="btn btn-sm bg-info-light">
                       <i class="far fa-eye"></i> View
                     </a>
-                    <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                    <a (click)="generatePDF(invoice,'print')" class="btn btn-sm bg-primary-light">
                       <i class="fas fa-print"></i> Print
                     </a>
                   </div>
@@ -62,6 +60,6 @@
           </table>
         </div>
         <!-- /Invoice Table -->
-      </div>
-    </div>
-  </div>
+
+
+

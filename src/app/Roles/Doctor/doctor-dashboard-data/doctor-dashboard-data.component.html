@@ -18,7 +18,7 @@
 <div class="row">
 
     <div class="col-md-12">
-   
+
       <div class="card dash-card">
         <div class="card-body">
           <div class="row">
@@ -84,15 +84,15 @@
                           <td>
                             <h2 class="table-avatar">
                               <a href="patient-profile.html" class="avatar avatar-sm mr-2">
-                                <img class="avatar-img rounded-circle" src="{{ appointment.patientAvatar }}" alt="User Image">
+                                <img class="avatar-img rounded-circle" [src]="IMG_URLs+ appointment.patient.imageName" alt="User Image">
                               </a>
-                              <a href="patient-profile.html">{{ appointment.patientName }} <span>{{ appointment.id }}</span></a>
+                              <a href="patient-profile.html">{{ appointment.patient.patientName }} <span>Patient Id :{{ appointment.patient.id }}</span></a>
                             </h2>
                           </td>
-                          <td>{{ appointment.appointmentDate }} <span class="d-block text-info">{{ appointment.appointmentTime }}</span></td>
+                          <td>{{ appointment.appointmentDate }} <span class="d-block text-info">{{ appointment.timeslote.startTime }}</span></td>
                           <td>{{ appointment.purpose }}</td>
                           <td>{{ appointment.status }}</td>
-                          <td class="text-center">{{ appointment.paidAmount }}</td>
+                          <td class="text-center">{{ appointment.doctor.rate+60 }}</td>
                           <td class="text-right">
                             <div class="table-action">
                               <a href="javascript:void(0);" class="btn btn-sm bg-info-light" >
@@ -136,15 +136,15 @@
                           <td>
                             <h2 class="table-avatar">
                               <a href="patient-profile.html" class="avatar avatar-sm mr-2">
-                                <img class="avatar-img rounded-circle" src="{{ appointment.patientAvatar }}" alt="User Image">
+                                <img class="avatar-img rounded-circle" [src]="IMG_URLs+ appointment.patient.imageName" alt="User Image">
                               </a>
-                              <a href="patient-profile.html">{{ appointment.patientName }} <span>{{ appointment.pid}}</span></a>
+                              <a href="patient-profile.html">{{ appointment.patient.patientName }} <span>Patient Id :{{ appointment.patient.id}}</span></a>
                             </h2>
                           </td>
-                          <td>{{ appointment.appointmentDate }} <span class="d-block text-info">{{ appointment.appointmentTime }}</span></td>
+                          <td>{{ appointment.appointmentDate }} <span class="d-block text-info">{{ appointment.timeslote.startTime }}</span></td>
                           <td>{{ appointment.purpose }}</td>
                           <td>{{ appointment.status}}</td>
-                          <td class="text-center">{{ appointment.paidAmount }}</td>
+                          <td class="text-center">{{ appointment.doctor.rate+60 }}</td>
                           <td class="text-right">
                             <div class="table-action">
                               <a href="javascript:void(0);" class="btn btn-sm bg-info-light" >

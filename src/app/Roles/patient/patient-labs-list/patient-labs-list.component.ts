@@ -33,10 +33,7 @@ export class PatientLabsListComponent {
       (data: any) => {
         this.labs = data.contents;
         console.log(data);
-
         console.log(this.labs);
-        //this.students=data;
-        //this.length=data.totalElements;
       },
       (error) => {
         console.error(error);
@@ -44,15 +41,13 @@ export class PatientLabsListComponent {
     )
   }
 
-
-
   // searching the students
   filter() {
 
-    if(this.searching.labName===""&&this.searching.location.area==""){
+    if (this.searching.labName === "" && this.searching.location.area == "") {
       this.getAllLab()
     }
-    else{
+    else {
 
       this.labService.searchLab(this.pageIndex, this.pageSize, this.searching, this.sortBy).subscribe(
         (data: any) => {
@@ -98,7 +93,7 @@ export class PatientLabsListComponent {
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
 
-      this.filter()
+    this.filter()
   }
 
 

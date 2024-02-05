@@ -1,5 +1,5 @@
 <!-- Home Banner -->
-<section class="section section-search">
+<section class="section section-search" style="margin-top: 1%;">
   <div class="container-fluid">
     <div class="banner-wrapper">
       <div class="banner-header text-center">
@@ -13,12 +13,13 @@
 
       <!-- Search -->
       <div class="search-box">
-        <form (submit)="searching()">
+        <form >
           <div class="form-group search-location">
             <input
               type="text"
               class="form-control"
               placeholder="Search Location"
+              (keyup)="searching()"
             />
             <span class="form-text">Based on your Location</span>
           </div>
@@ -28,12 +29,14 @@
               class="form-control"
               [(ngModel)]="searchTerm"
               name="searchTerm"
+              (keyup)="searching()"
               placeholder="Search Doctors, Clinics, Hospitals, Diseases, etc"
             />
             <span class="form-text">Ex: Dental or Sugar Checkup, etc</span>
           </div>
 
-          <button type="submit"  class="btn btn-primary search-btn">
+          <button type="submit" (click)="searching()" class="btn btn-primary search-btn">
+
             <i class="fas fa-search"   data-toggle="modal" data-target="#exampleModal"></i> <span>Search</span>
           </button>
         </form>
