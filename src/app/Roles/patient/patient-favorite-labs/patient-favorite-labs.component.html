@@ -1,34 +1,10 @@
-<!-- Page Content -->
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
 
                 <!-- Search Filter -->
-                <div class="card search-filter">
-                    <div class="card-header">
-                        <h4 class="card-title mb-0">Search Filter</h4>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <h4>Lab Name</h4>
-                        <mat-form-field class="example-full-width">
-                          <span matPrefix>  </span>
-                         
-                          <input type="tel" matInput placeholder="name" name= "labName" [(ngModel)]= "searching.labName" (input)="filter()">
-                          <button matSuffix mat-button color="primary"><mat-icon >search</mat-icon></button>
-                          </mat-form-field>
-                      
-                          <h4>Search By area</h4>
-                          <mat-form-field class="example-full-width">
-                           
-                            <span matPrefix>  </span>
-                           
-                            <input type="tel" matInput placeholder="enter area" name= "area"  [(ngModel)]= "searching.location.area" (input)="filter()">
-                        <!-- <button matSuffix mat-button color="primary"><mat-icon >search</mat-icon></button> -->
-                            </mat-form-field>
-                       
-                    </div>
-                </div>
+              <app-patient-sidebar></app-patient-sidebar>
                 <!-- /Search Filter -->
 
             </div>
@@ -80,12 +56,10 @@
                                         </ul>
                                     </div>
                                     <div class="clinic-booking">
-                                        <a class="apt-btn" (click)="makeLabFavorite(lab.id)">Make Lab Favorite</a>
+                                        <a class="apt-btn"  (click)="removeFromFab(lab.id)">Remove From Favorite</a>
 
-                                        <div *ngIf="labButtonClicked[lab.id]">
-                                          <p>{{ responseMessages[lab.id] }}</p>
-                                        </div>
                                       
+                                    
                                         <a class="apt-btn" [routerLink]="'/patientmaindashboard/labTestList/'+lab.id">View LabTest</a>
                                     </div>
                                 </div>

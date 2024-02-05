@@ -111,4 +111,27 @@ export class LabServiceService {
     const url=`${baseUrl}/lab/search/${pageNo}/${pageSize}/${sortBy}`;
     return this._http.post(url,lab);
   }
+
+
+  //To make lab favorite
+  makeLabFavorite(labId: number, patientId: number): Observable<any> {
+    const url = `${baseUrl}/lab/${labId}/favorite/${patientId}`;
+    return this._http.post(url, {});
+  }
+
+  //To get all the favorite Labs
+  allFavoriteLab(patientId:number,pageNo:number , pageSize:number,sortBy : string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const url =`${baseUrl}/lab/favorites/${patientId}/${pageNo}/${pageSize}/${sortBy}`;
+    return this._http.get<PageAppointmentResponse>(url,{headers});
+  }
+ 
+
+
+  //To remove Lab from favorite
+  removeFavLab(patientId:number,labId:number){
+    return this._http.delete(`${baseUrl}/lab/${labId}/remove/${patientId}`);
+  }
 }

@@ -63,6 +63,7 @@ import { PatientLabsListComponent } from './Roles/patient/patient-labs-list/pati
 import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.component';
 import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-list/patient-lab-test-list.component';
 import { LabCheckoutComponent } from './Roles/patient/lab-checkout/lab-checkout.component';
+import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-labs/patient-favorite-labs.component';
 
 
 
@@ -234,6 +235,11 @@ const routes: Routes = [
     {
       path:"lablist",
       component:PatientLabsListComponent
+    },
+
+    {
+      path:"favlab",
+      component:PatientFavoriteLabsComponent
     },
     {
       path:"labTestList/:id",
