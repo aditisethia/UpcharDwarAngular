@@ -30,7 +30,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let invoice of doctorinvoice">
+              <tr *ngFor="let invoice of doctorInvoiceResponse">
                 <td>
                   <a [href]="'invoice-view.html' + invoice.id">invoice_Id :{{ invoice.id }}</a>
                 </td>
@@ -38,9 +38,9 @@
                   <h2 class="table-avatar">
                     <a  class="avatar avatar-sm mr-2">
                       <!-- Add your image source dynamically -->
-                       <img class="avatar-img rounded-circle" [src]="IMG_URLs+ invoice.patient.imageName" alt="User Image">
+                       <img class="avatar-img rounded-circle" [src]="IMG_URLs+ invoice.imageName" alt="User Image">
                     </a>
-                    <a [href]="'patient-profile.html' + invoice.patient.id">{{ invoice.patient.patientName }} <span>Patient_Id :{{ invoice.patient.id }}</span></a>
+                    <a [href]="'patient-profile.html' + invoice.patientId">{{ invoice.patientName}} <span>Patient_Id :{{ invoice.patientId }}</span></a>
                   </h2>
                 </td>
                 <td>{{ invoice.amount }}</td>

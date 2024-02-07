@@ -127,7 +127,7 @@ export class LabServiceService {
     const url =`${baseUrl}/lab/favorites/${patientId}/${pageNo}/${pageSize}/${sortBy}`;
     return this._http.get<PageAppointmentResponse>(url,{headers});
   }
- 
+
 
 
   //To remove Lab from favorite
