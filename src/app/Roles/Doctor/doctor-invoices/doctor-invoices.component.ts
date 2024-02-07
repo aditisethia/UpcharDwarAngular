@@ -5,6 +5,7 @@ import { InvoiceService } from 'src/app/services/Invoice-Services/invoice.servic
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { DoctorInvoice_Response } from 'src/app/payload/response/Response/doctorInvoice_Response';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class DoctorInvoicesComponent implements OnInit {
   drid: any;
   doctorinvoice: DoctorInvoice[] = [];
   IMG_URLs = this.labService.IMAGE_URL;
-
+  doctorInvoiceResponse: DoctorInvoice_Response []=[];
   constructor(private labService: LabServiceService, private invoiceservice: InvoiceService, private scheduleservice: DoctorScheduleService) { }
 
 
@@ -47,7 +48,7 @@ export class DoctorInvoicesComponent implements OnInit {
 
 
 
-  generatePDF(invoice: DoctorInvoice,action:string): void {
+  generatePDF(invoice: DoctorInvoice_Response,action:string): void {
     console.log(pdfMake);
     const documentDefinition = this.getDocumentDefinition(invoice);
     switch (action) {
@@ -59,19 +60,19 @@ export class DoctorInvoicesComponent implements OnInit {
     }
 
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    pdfMake.createPdf(documentDefinition).download('invoice.pdf');
+    pdfMake.createPdf(documentDefinition).download(invoice.patientName.ps);
   }
 
   getinvoicefordoctor(drid: any): void {
     this.invoiceservice.getInvoicebyDOctorId(drid).subscribe((data: any) => {
       console.log(data);
-      this.doctorinvoice = data.content;
+      this.doctorInvoiceResponse = data.content;
       console.log('doctorInvoices------>>>>>>...');
       console.log(this.doctorinvoice);
     });
   }
 
-  getDocumentDefinition(invoice: DoctorInvoice): any {
+  getDocumentDefinition(invoice: DoctorInvoice_Response): any {
     return {
       content: [
         {
@@ -104,14 +105,11 @@ export class DoctorInvoicesComponent implements OnInit {
           style: 'subheader'
         },
         {
-          text: `Patient Name: ${invoice.patient.patientName}`,
+          text: `Patient Name: ${invoice.patientName}`,
           margin: [0, 5]
         },
         ,
-        {
-          text: `Address: ${invoice.patient.address} ${invoice.patient.city} ${invoice.patient.country}`,
-          margin: [0, 5]
-        },
+
 
         //  adding appointment information
         {
@@ -119,19 +117,16 @@ export class DoctorInvoicesComponent implements OnInit {
           style: 'subheader'
         },
         {
-          text:  `Appointment Date: ${invoice.appointment?.appointmentDate || 'N/A'}`,
+          text:  `Appointment Date: ${invoice.invoiceGenerateDate}`,
           margin: [0, 5]
         },
         ,
         {
-          text:  `Appointment Fees: ${invoice.doctor.rate+60}`,
+          text:  `Appointment Fees: ${invoice.amount}`,
           margin: [0, 5]
         },
         ,
-        {
-          text: `Appointment Time: ${invoice.appointment?.timeslote?.startTime || 'N/A'} - ${invoice.appointment?.timeslote?.endTime || 'N/A'}`,
-          margin: [0, 5]
-        },
+
 
       ],
       styles: {
