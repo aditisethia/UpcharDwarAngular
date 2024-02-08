@@ -6,17 +6,15 @@
         <span>A code has been sent to</span>
         <small>*******9897</small>
       </div>
-      <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-        <!-- Bind the input fields to the otp variable using ngModel -->
-        <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" [(ngModel)]="otpFirst" />
-        <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" [(ngModel)]="otpSecond" />
-        <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" [(ngModel)]="otpThird" />
-        <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" [(ngModel)]="otpFourth" />
-      </div>
-      <div class="mt-4">
-        <!-- Call the verifyEmail function on button click -->
-        <button class="btn btn-danger px-4 validate" (click)="verifyEmail()">Validate</button>
-      </div>
+      <form >
+             
+        <div class="form-group text-center">
+          <ng-otp-input   (onInputChange)="onOtpChange($event)"  name="otp"  [config]="{length:4}" ></ng-otp-input><br/>
+            <button class="btn btn-primary account-btn" 
+            (click)="verifyEmail()" type="submit">Enter</button>
+        </div>
+        
+    </form>
     </div>
     <div class="card-2">
       <div class="content d-flex justify-content-center align-items-center">

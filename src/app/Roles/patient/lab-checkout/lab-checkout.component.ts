@@ -34,10 +34,11 @@ export class LabCheckoutComponent {
     console.log("hello at makepayment");
 
     const amount = (60 + this.appointmentData.labTest.rates) * 100; // Set your desired amount
+    this.appointmentData.amount=amount;
     this.razorpayService.createOrder(amount).subscribe((order: any) => {
       console.log("order-->>>>>"+order);
       console.log(order);
-      this.order.id=order.id;
+      this.order.id=order.id; 
 
 console.log("fuckinng id---->>>>>>"+this.order.id);
 
@@ -83,7 +84,16 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
   capturePayment(paymentId: string, orderId: string): void {
     this.razorpayService.capturePayment(paymentId, orderId).subscribe((response: any) => {
       console.log('Payment captured successfully:', response);
-      // Handle success or failure
+      console.log(this.appointmentData);
+      
+      this.appointmentService.addBooking(this.appointmentData).subscribe((data:any)=>{
+        console.log(data);
+  
+        })
+    }, (error: any) => {
+
+      console.log(error);
+
     });
     return
   }

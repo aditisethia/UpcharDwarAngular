@@ -10,4 +10,5 @@ export class LabAppointment_Request {
     labInvoice: any;
     patientLabAppointmentFile: any;
     lab :Lab=new Lab;
+    amount:any;
   }
