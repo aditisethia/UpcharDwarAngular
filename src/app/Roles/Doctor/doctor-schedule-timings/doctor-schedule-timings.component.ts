@@ -44,11 +44,11 @@ export class DoctorScheduleTimingsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.ScheduleRequest.doctor = { id: 0 }; // Initialize the doctor property
+    this.ScheduleRequest.doctor = {id:0}; // Initialize the doctor property
     var userString = localStorage.getItem('user');
     if (userString) {
       var user = JSON.parse(userString);
-      console.log(user.email + user.id);
+      console.log(user.email  +"  ---->" + user.id);
       if (user.id) {
         this.scheduleservice.getdoctorbyuserid(user.id).subscribe((data: any) => {
           this.doctor = data.doctor;

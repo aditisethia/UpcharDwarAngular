@@ -1,36 +1,31 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ChangePasswordRequest } from 'src/app/payload/Request/ChangePasswordRequest';
+import { ResetPasswordRequest } from 'src/app/payload/Request/ResetPassword_Request';
+import { ForgetpasswordService } from 'src/app/services/user/forgetpassword.service';
 import { UserServiceService } from 'src/app/services/user/user-service.service';
 import Toast from 'src/app/utils/Sweet-alert-message';
 
 @Component({
-  selector: 'app-patient-change-password',
-  templateUrl: './patient-change-password.component.html',
-  styleUrls: ['./patient-change-password.component.css']
+  selector: 'app-forget-changepassword',
+  templateUrl: './forget-changepassword.component.html',
+  styleUrls: ['./forget-changepassword.component.css']
 })
-export class PatientChangePasswordComponent {
+export class ForgetChangepasswordComponent {
   email: any = "";
-  oldPassword: string ="";
   newPassword: string = "";
   confirmPassword: string = "";
-   changePasswordRequest:ChangePasswordRequest = new ChangePasswordRequest;
-   user:any;
-  constructor(private forgetService:UserServiceService,private router:Router,private snack:MatSnackBar){}
+   resetRequest = new ResetPasswordRequest;
+  constructor(private forgetService:ForgetpasswordService,private router:Router,private snack:MatSnackBar){}
   ngOnInit(): void {
- let u=localStorage.getItem('user');
- if(u)
- this.user=JSON.parse(u)
- console.log(this.user);
- 
+  
   }
 
 
   formSubmit(){
    
   alert()
-    if(this.changePasswordRequest.email.trim()=='' || this.changePasswordRequest.email==null)
+    if(this.resetRequest.email.trim()=='' || this.resetRequest.email==null)
     {
       this.snack.open('email is required !!','',{
         duration:3000,
@@ -39,22 +34,21 @@ export class PatientChangePasswordComponent {
     }
   }
   changePassword() {
-
-    this.changePasswordRequest.email=this.user.email;
-  
+    this.resetRequest.email=localStorage.getItem('email');
+    this.resetRequest.newPassword=this.newPassword;
+   // alert(this.email);
     //alert(this.newPassword);
-   
+    alert(this.confirmPassword);
      // Check if newPassword and confirmPassword match
-     
-  if (this.changePasswordRequest.newPassword !== this.confirmPassword) {
+  if (this.newPassword !== this.confirmPassword) {
     // Display an error message or handle it as needed
     console.error('New password and confirm password do not match');
     //this.sweet.alertMessage('success','New password and confirm password do not match');
     return;
   }
     
-    this.forgetService.changePassword(this.changePasswordRequest).subscribe((data:any)=>{
-     
+    this.forgetService.reset(this.resetRequest).subscribe((data:any)=>{
+       alert("sdfghjk")
       Toast.fire({
         icon: data,
         title: 'Password Change Succesfully',
@@ -69,5 +63,7 @@ export class PatientChangePasswordComponent {
       
       );
      }
-   
+     
+
 }
+

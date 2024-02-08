@@ -1,10 +1,11 @@
+
 import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { DoctorInvoice } from './../../../payload/Request/DoctorInvoice';
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from 'src/app/services/Invoice-Services/invoice.service';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 
 @Component({

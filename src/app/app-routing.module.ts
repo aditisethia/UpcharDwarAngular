@@ -64,6 +64,9 @@ import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.co
 import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-list/patient-lab-test-list.component';
 import { LabCheckoutComponent } from './Roles/patient/lab-checkout/lab-checkout.component';
 import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-labs/patient-favorite-labs.component';
+import { OtpForForgetpasswordComponent } from './common/pages/otp-for-forgetpassword/otp-for-forgetpassword.component';
+import { ForgetChangepasswordComponent } from './common/pages/forget-changepassword/forget-changepassword.component';
+import { ForgetVarificationComponent } from './common/pages/forget-varification/forget-varification.component';
 
 
 
@@ -81,6 +84,19 @@ const routes: Routes = [
     path: "otp",
     component:OtpValidationComponent,
   },
+    {
+      path: "otpforgetpassword",
+      component:OtpForForgetpasswordComponent
+    },
+    {
+      path:"forgetchangepassword",
+      component:ForgetChangepasswordComponent
+    },
+
+    {
+      path:"verify-otp-for-forget-password",
+      component:ForgetVarificationComponent
+    },
   {
     path:"login",
     component:LoginComponent,

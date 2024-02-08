@@ -45,7 +45,7 @@ export class SearchDoctorComponent {
   search() {
     // Implement your search logic here
     console.log('Search button clicked!');
-    console.log(this.searchKeyword);
+    console.log(this.searchdoctor);
 
   this.searchservice.serchDoctor(this.searchKeyword).subscribe((data: any) => {
     this.searchdoctor = data.slice(0, 4); // Take only the first 4 items

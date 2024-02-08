@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ForgetpasswordService } from 'src/app/services/user/forgetpassword.service';
 import { OtpServiceService } from 'src/app/services/user/otp-service.service';
 
 @Component({
-  selector: 'app-otp-validation',
-  templateUrl: './otp-validation.component.html',
-  styleUrls: ['./otp-validation.component.css']
+  selector: 'app-otp-for-forgetpassword',
+  templateUrl: './otp-for-forgetpassword.component.html',
+  styleUrls: ['./otp-for-forgetpassword.component.css']
 })
-export class OtpValidationComponent implements OnInit {
+export class OtpForForgetpasswordComponent {
 
-  constructor(private _verify:OtpServiceService ,private router:Router,){
+  constructor(private _verify:ForgetpasswordService ,private router:Router){
   }
 
 otpregistration={
@@ -32,7 +33,7 @@ this.otpregistration.otp=event;
   // verify user by email and otp
   verifyEmail() {
     //this.otpregistration.email = localStorage.getItem('email');
-    //alert(this.email)
+    alert(this.email)
     if (this.email != undefined || this.email != null)
     //this.otp = this.otp1 + this.otp2 + this.otp3 + this.otp4;
      //alert(this.otp)
@@ -42,7 +43,7 @@ this.otpregistration.otp=event;
       response => {
         console.log('Verification success:', response);
         //localStorage.getItem('userEmail');
-        this.router.navigate(['/login'])
+        this.router.navigate(['forgetchangepassword'])
         // Handle success, e.g., display a success message
       },
       error => {
@@ -51,8 +52,6 @@ this.otpregistration.otp=event;
         // Handle error, e.g., display an error message
       }
     )
-     
-
     
   }
 
@@ -79,3 +78,4 @@ this.otpregistration.otp=event;
 
     
 }
+

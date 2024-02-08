@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ForgetpasswordService } from 'src/app/services/user/forgetpassword.service';
 import { LoginService } from 'src/app/services/user/login.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginComponent {
   };
 
   status:any;
-  constructor(private snack: MatSnackBar, private login: LoginService, private router: Router) { }
+  constructor(private snack: MatSnackBar, private login: LoginService, private router: Router, private forgetpassword:ForgetpasswordService) { }
 
   ngOnInit(): void {
 
@@ -61,6 +62,8 @@ export class LoginComponent {
 
 
   }
+
+
 
   getCurrentUser() {
 

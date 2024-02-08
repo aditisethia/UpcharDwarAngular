@@ -120,6 +120,10 @@ import { ListLabTestComponent } from './Roles/lab/list-lab-test/list-lab-test.co
 import { PatientLabTestListComponent } from './Roles/patient/patient-lab-test-list/patient-lab-test-list.component';
 import { LabCheckoutComponent } from './Roles/patient/lab-checkout/lab-checkout.component';
 import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-labs/patient-favorite-labs.component';
+import { NgOtpInputModule } from 'ng-otp-input';
+import { OtpForForgetpasswordComponent } from './common/pages/otp-for-forgetpassword/otp-for-forgetpassword.component';
+import { ForgetChangepasswordComponent } from './common/pages/forget-changepassword/forget-changepassword.component';
+import { ForgetVarificationComponent } from './common/pages/forget-varification/forget-varification.component';
 
 
 
@@ -207,6 +211,9 @@ import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-l
     LabCheckoutComponent,
 
     PatientFavoriteLabsComponent,
+      OtpForForgetpasswordComponent,
+      ForgetChangepasswordComponent,
+      ForgetVarificationComponent,
   
 
 
@@ -236,8 +243,9 @@ import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-l
     MatPaginatorModule,
     MatChipsModule,
     DatePipe,
-    MatCardModule
-
+    MatCardModule,
+    NgOtpInputModule,
+    MatSnackBarModule
 
   ],
   providers: [
