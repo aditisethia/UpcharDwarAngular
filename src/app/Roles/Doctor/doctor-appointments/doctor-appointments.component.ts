@@ -70,6 +70,8 @@ console.log(this.drid);
   this.appointmentService.getDoctorAppointments(this.drid,this.pageNo,this.pageSize).subscribe(
     (data: any) => {
          this.appointments = data.content;
+         console.log("at appointment controller");
+
            console.log(data);
 
         },

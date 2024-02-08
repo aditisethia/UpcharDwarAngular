@@ -11,6 +11,5 @@ export class Appointment_Request {
   timeslote: TimeSlotRequest = new TimeSlotRequest;
   patient: Patient = new Patient;
   doctor: Doctor_Request = new Doctor_Request;
-  doctorInvoice: any;
   patientAppointmentFile: any;
 }

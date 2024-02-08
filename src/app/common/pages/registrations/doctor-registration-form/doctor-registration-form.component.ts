@@ -45,27 +45,10 @@ export class DoctorRegistrationFormComponent implements OnInit {
    this.doctor.awards =[];
        this.doctor.email = data.email;
       this.doctor.name = data.name;
-
-
   });
-
-
     this.doctor = new DoctorRequest();
     this.doctor.awards = [];
-
-
-    //});
     this.getAllSpecilities();
-
-
-  //   this.loginService.currentUser.subscribe((data:any) => {
-
-  //     this.doctor = data;
-  //     console.log(data);
-  //     this.doctor.awards =[];
-  //     this.doctor.email = data.email;
-  //     this.doctor.name = data.name;
-  //   })
 
    }
 
@@ -88,9 +71,7 @@ export class DoctorRegistrationFormComponent implements OnInit {
       this.qualification.push(new DoctorQualification());
     else if (type == 2) {
       this.doctor.awards.push('');
-
       console.log(this.doctor);
-
     }
 
   }

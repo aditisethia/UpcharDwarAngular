@@ -126,7 +126,6 @@ import { ForgetChangepasswordComponent } from './common/pages/forget-changepassw
 import { ForgetVarificationComponent } from './common/pages/forget-varification/forget-varification.component';
 
 
-
 @NgModule({
   declarations: [
     ListLabTestComponent,

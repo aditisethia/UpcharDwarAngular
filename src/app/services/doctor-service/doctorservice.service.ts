@@ -16,6 +16,10 @@ export class DoctorserviceService {
 
   constructor(private _http: HttpClient) { }
 
+  setInvoice(Invoice:any){
+    return this._http.post(`${baseUrl}/invoice/create`,Invoice);
+  }
+
   getALLSpeciality() {
     return this._http.get(`${baseUrl}/speciality/all`);
   }
@@ -77,7 +81,7 @@ export class DoctorserviceService {
 
 
 
-  public getdoctorbyydrId(drId:any){
+  public getdoctorbyydrId(drId: any) {
 
     return this._http.get(`${baseUrl}/doctor/${drId}`)
 
@@ -87,7 +91,7 @@ export class DoctorserviceService {
 
 
 
-//for image concatnation
+  //for image concatnation
   public IMAGE_URL = 'http://localhost:8080/api/getImageApi/';
 
   public download(filename: string): Observable<HttpEvent<Blob>> {
