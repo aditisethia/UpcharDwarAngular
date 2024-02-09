@@ -1,32 +1,35 @@
+import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Lab } from 'src/app/entity/Lab';
 import { Doctor_Request } from 'src/app/payload/Request/Doctor_Request';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import baseUrl from 'src/app/services/user/helper';
 import { LoginService } from 'src/app/services/user/login.service';
-
+declare let Swiper:any;
 @Component({
   selector: 'app-home-popular-section',
   templateUrl: './home-popular-section.component.html',
   styleUrls: ['./home-popular-section.component.css']
 })
-export class HomePopularSectionComponent implements OnInit {
+export class HomePopularSectionComponent implements AfterViewInit {
 
   user!: User;
   role:any;
   loginstatus: boolean = false;
   dr:any;
   doctors:Doctor_Request[] | undefined;
+  Labs:Lab[]=[];
   IMG_URLs = this.doctorService.IMAGE_URL;
 
 
 
-    constructor(private loginservice:LoginService,private http:HttpClient,private doctorService:DoctorserviceService){}
+    constructor(private labService:LabServiceService, private loginservice:LoginService,private http:HttpClient,private doctorService:DoctorserviceService){}
 
 
 
-    ngOnInit(): void {
-
+    ngAfterViewInit(): void {
+      this.getAllLab();
       this.loginservice.getCurrentUser().subscribe((Data:any)=>{
         this.user=Data;
 
@@ -54,6 +57,36 @@ export class HomePopularSectionComponent implements OnInit {
         console.log(this.doctors);
 
       })
+      var swiper = new Swiper(".slide-content", {
+        slidesPerView: 3,
+        spaceBetween: 25,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints:{
+            0: {
+                slidesPerView: 1,
+            },
+            520: {
+                slidesPerView: 2,
+            },
+            950: {
+                slidesPerView: 3,
+            },
+        },
+      });
+
     }
 
 
@@ -62,6 +95,21 @@ export class HomePopularSectionComponent implements OnInit {
       return this.http.get(url);
 
 
+  }
+
+  getAllLab() {
+    console.log('ts');
+
+    this.labService.getAllLab(0, 10, "labName").subscribe(
+      (data: any) => {
+        this.Labs = data.contents;
+        console.log(data);
+        console.log(this.Labs);
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
   // doctor: Doctor[] = [
   //   { name: 'Ruby Perrin', image: 'assets/img/doctors/doctor-01.jpg', specialization: 'MDS - Periodontology and Oral Implantology, BDS', rating: 5, location: 'Florida, USA', availability: 'Available on Fri, 22 Mar', feeRange: '$300 - $1000' },
