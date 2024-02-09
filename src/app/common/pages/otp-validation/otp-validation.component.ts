@@ -31,7 +31,8 @@ this.otpregistration.otp=event;
   }
   // verify user by email and otp
   verifyEmail() {
-    //this.otpregistration.email = localStorage.getItem('email');
+    // if(l)
+    // this.otpregistration.email = localStorage.getItem('userEmail');
     //alert(this.email)
     if (this.email != undefined || this.email != null)
     //this.otp = this.otp1 + this.otp2 + this.otp3 + this.otp4;
@@ -61,15 +62,27 @@ this.otpregistration.otp=event;
 
  
   ngOnInit(): void {
-   let emailStr =  localStorage.getItem('userEmail')
-   if(emailStr != null)
-   {
-    this.otpregistration.email = emailStr
-    alert('if')
+    const userString = localStorage.getItem('user');
+
+    // Check if the user object exists in localStorage
+    if (userString) {
+        // Parse the user object from JSON
+        const user = JSON.parse(userString);
+    
+        // Access the email property of the user object
+        const userEmail = user.email;
+        this.otpregistration.email = userEmail;
+        console.log("User Email:", userEmail);
+    } else {
+        console.log("User object not found in localStorage");
+    }
+  
+
+   
    }
-   else{
-    alert('else')
-   }
+  //  else{
+  //   alert('else')
+  //  }
   }
 
  
@@ -77,5 +90,3 @@ this.otpregistration.otp=event;
   
 
 
-    
-}

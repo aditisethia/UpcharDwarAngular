@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LabAppointment_Request } from 'src/app/payload/Request/LabAppointment_Request';
 import baseUrl from '../user/helper';
+import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,6 @@ export class LabAppointmentServiceService {
 
     console.log(booking);
     
-    return this._http.post(`${baseUrl}/labBooking/`,booking);
+    return this._http.post(ApiRoutes.ADD_BOOK,booking);
   }
 }

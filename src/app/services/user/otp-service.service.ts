@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import baseUrl from './helper';
+
 import { Observable } from 'rxjs';
+import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,6 @@ export class OtpServiceService {
 
   public verify(otprequest:any): Observable<any> {
 
-    return this.http.post(`${baseUrl}/auth/verify`,otprequest);
+    return this.http.post(ApiRoutes.VERIFY_OTP,otprequest);
   }
 }

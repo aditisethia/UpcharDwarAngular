@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import baseUrl from '../user/helper';
 import { DoctorRequest } from 'src/app/payload/Request/DoctorRequest';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 @Injectable({
   providedIn: 'root'
@@ -17,37 +18,37 @@ export class DoctorserviceService {
   constructor(private _http: HttpClient) { }
 
   setInvoice(Invoice:any){
-    return this._http.post(`${baseUrl}/invoice/create`,Invoice);
+    return this._http.post(ApiRoutes.CREATE_INVOICE,Invoice);
   }
 
   getALLSpeciality() {
-    return this._http.get(`${baseUrl}/speciality/all`);
+    return this._http.get(ApiRoutes.GET_ALL_SPECIALITY);
   }
 
   getTotalPetient() {
-    return this._http.get(`${baseUrl}/appointment/countPatient`)
+    return this._http.get(ApiRoutes.GET_ALL_PATIENT);
   }
 
   getTodaysPatient() {
-    return this._http.get(`${baseUrl}/appointment/countTodaysPetient`)
+    return this._http.get(ApiRoutes.GET_TODAY_TOTAL_PATIENT);
   }
 
   getTotalUpcomingAppointment() {
-    return this._http.get(`${baseUrl}/appointment/countUpcomingAppointments`)
+    return this._http.get(ApiRoutes.GET_TOTAL_UPCOMING_APPOINTMENT);
   }
 
   getUpcomingAppointment() {
-    return this._http.get(`${baseUrl}/appointment/upcomingAppointments`)
-  }
+    return this._http.get(ApiRoutes.GET_UPCOMING_APPOINTMENT);
+    }
 
 
   cancelAppointment(aid: any) {
-    return this._http.get(`${baseUrl}/appointment/cancelAppointment/${aid}`, aid)
+    return this._http.get(ApiRoutes.CANCLE_APPOINTMENT+`${aid}`, aid)
   }
 
 
   getTodaysAppointment() {
-    return this._http.get(`${baseUrl}/appointment/todaysAppointments`)
+    return this._http.get(ApiRoutes.GET_TODAY_APPOINTMENT);
   }
 
   upload(doctor: DoctorRequest) {
@@ -83,7 +84,7 @@ export class DoctorserviceService {
 
   public getdoctorbyydrId(drId: any) {
 
-    return this._http.get(`${baseUrl}/doctor/${drId}`)
+    return this._http.get(ApiRoutes.GET_DR_BY_DR_ID+`${drId}`)
 
   }
 
@@ -95,7 +96,7 @@ export class DoctorserviceService {
   public IMAGE_URL = 'http://localhost:8080/api/getImageApi/';
 
   public download(filename: string): Observable<HttpEvent<Blob>> {
-    return this._http.get(`${this.server}/file/download/${filename}`,
+    return this._http.get(ApiRoutes.DOWNLOAD+`${filename}`,
       {
         reportProgress: true,
         observe: 'events',

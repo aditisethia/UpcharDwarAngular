@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthRequest } from 'src/app/payload/Request/authRequest';
 import { ForgetpasswordService } from 'src/app/services/user/forgetpassword.service';
 import { LoginService } from 'src/app/services/user/login.service';
 
@@ -10,36 +12,38 @@ import { LoginService } from 'src/app/services/user/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginData = {
-    email: '',
-    password: '',
-  };
+ 
 
   status:any;
-  constructor(private snack: MatSnackBar, private login: LoginService, private router: Router, private forgetpassword:ForgetpasswordService) { }
+  constructor(private snack: MatSnackBar, private login: LoginService, private router: Router, private forgetpassword:ForgetpasswordService,private fb:FormBuilder) { }
+
+  loginform!:FormGroup;
+  loginData:AuthRequest=new AuthRequest;
+
+
 
   ngOnInit(): void {
-
+   this. checkLoginFormValidation();
   }
 
+  checkLoginFormValidation()
+  {
+    this.loginform=this.fb.group({
+      email:['',[Validators.required]],
+      password:['',[Validators.required]]
+    })
+  }
+
+
   async formSubmit() {
+    
     console.log("login button submitted");
     localStorage.clear()
-    if (this.loginData.email.trim() == '' || this.loginData.email == null) {
-      this.snack.open("username is required ", '',
-        {
-          duration: 3000,
-        });
-      return;
-    }
-    if (this.loginData.password.trim() == '' || this.loginData.password == null) {
-      this.snack.open("password is required ", '',
-        {
-          duration: 3000,
-        });
-      return;
-    }
-
+    this.loginform.markAllAsTouched();
+  if(!this.loginform.valid)
+  {
+    return;
+  }
     //request to server to genrate token
     this.login.generateToken(this.loginData).subscribe(
       (data: any) => {

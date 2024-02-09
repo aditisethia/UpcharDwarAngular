@@ -88,6 +88,12 @@ Version      : 1.0
 	font-feature-settings: 'liga';
 }
 
+.error {
+    color: #d9534f; 
+    font-size: 10px;
+    margin-top: 5px;
+}
+
 html {
     height: 100%;
 }
