@@ -4,6 +4,7 @@ import baseUrl from './helper';
 import { Observable } from 'rxjs';
 import { ResetPasswordRequest } from 'src/app/payload/Request/ResetPassword_Request';
 import { ChangePasswordRequest } from 'src/app/payload/Request/ChangePasswordRequest';
+import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,11 @@ export class UserServiceService {
 
   public addUser(user:any): Observable<any> {
 
-    return this.http.post(`${baseUrl}/auth/generate-otp`,user);
+    return this.http.post(ApiRoutes.GENERATE_OTP,user);
   }
 
   public changePassword(changePasswordRequest:ChangePasswordRequest){
-    return this.http.post(`${baseUrl}/auth/change-password`,changePasswordRequest);
+    return this.http.post(ApiRoutes.CHANGE_PASSWORD,changePasswordRequest);
   }
 
 }

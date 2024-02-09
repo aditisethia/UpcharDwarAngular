@@ -7,6 +7,7 @@ import { LabRegistrationResponse } from 'src/app/payload/response/Response/LabRe
 import { Lab } from 'src/app/entity/Lab';
 import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
+import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 
 
@@ -124,7 +125,7 @@ export class LabServiceService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    const url =`${baseUrl}/lab/favorites/${patientId}/${pageNo}/${pageSize}/${sortBy}`;
+    const url =ApiRoutes.ALL_FAVORITE_LAB+`${patientId}/${pageNo}/${pageSize}/${sortBy}`;
     return this._http.get<PageAppointmentResponse>(url,{headers});
   }
 

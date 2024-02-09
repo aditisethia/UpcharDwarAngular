@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { PatientResponse } from 'src/app/payload/response/Response/PatientResponse';
 import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
+import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class PatientserviceService {
 
     formData.append("data", new Blob([JSON.stringify(patient)], { type: 'application/json' }));
 
-    return this._http.post(`${baseUrl}/patient/save1`, formData, { headers });
+    return this._http.post(ApiRoutes.UPLOAD, formData, { headers });
 
   }
 
@@ -42,13 +43,13 @@ export class PatientserviceService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    const url = `${baseUrl}/appointment/all/patient/${pageNo}/${pageSize}/${sortBy}`;
+    const url = ApiRoutes.GET_ALL_APPOINTMENT_OF_PATIENT+`${pageNo}/${pageSize}/${sortBy}`;
     console.log('service')
     return this._http.get<PageAppointmentResponse>(url,{headers});
   }
 
   getpatientbyemail(email:any){
-    const url =`${baseUrl}/patient/by-email/${email}`
+    const url =ApiRoutes.GET_PATIENT_BY_EMAIL+`${email}`
 
     return this._http.get(url);
   }

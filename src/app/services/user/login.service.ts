@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import baseUrl from './helper';
 import { Router } from '@angular/router';
+import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,14 @@ export class LoginService {
   constructor(private http: HttpClient,private router:Router) { }
    //current user:which is logged in
   public getCurrentUser(){
-    return this.http.get(`${baseUrl}/auth/current-user`)
+    return this.http.get(ApiRoutes.CURRENT_USER);
   }
 
 
   //generate token
 
   public generateToken(loginData: any) {
-    console.log("...........");
-
-    return this.http.post(`${baseUrl}/auth/login`, loginData);
+    return this.http.post(ApiRoutes.AUTH_LOGIN, loginData);
   }
 
   //setlogin user: set token in localstorage

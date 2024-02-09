@@ -19,39 +19,55 @@
                             <!-- Register Form -->
 
 
-                            <form (ngSubmit)="onSubmit()" >
+                            <form [formGroup]="regForm" >{{user|json}}
                                 
                                   <h4>Ragister As</h4>
-                                <mat-radio-group [(ngModel)]="user.roleId" name="role">
+                                <mat-radio-group [(ngModel)]="user.roleId" formControlName="roleId" >
                                     <mat-radio-button value="2">Doctor</mat-radio-button>
                                     <mat-radio-button value="3">Patient</mat-radio-button>
                                     <mat-radio-button value="4">Lab</mat-radio-button>
+                                    <div class="error" *ngIf="regForm.get('roleId')?.hasError('required') && regForm.get('roleId')?.touched">
+                                        Role is required.
+                                      </div>
                                   </mat-radio-group>
 
                                 <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" [(ngModel)]="user.name"
-                                        name="patientName" required>
+                                    <input type="text" class="form-control floating" formControlName="name" [(ngModel)]="user.name"
+                                         required>
                                     <label class="focus-label">Name</label>
+
+                                    <div class="error" *ngIf="regForm.get('name')?.hasError('required') && regForm.get('name')?.touched">
+                                        User Name is required.
+                                      </div>
                                 </div>
                                 <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" [(ngModel)]="user.phone" name="phone"
+                                    <input type="text" class="form-control floating" formControlName="phone" [(ngModel)]="user.phone"
                                         required>
                                     <label class="focus-label">Phone</label>
+                                    <div class="error" *ngIf="regForm.get('phone')?.hasError('required') && regForm.get('phone')?.touched">
+                                        Phone no is required.
+                                      </div>
                                 </div>
                                 <div class="form-group form-focus">
-                                    <input type="email" class="form-control floating" [(ngModel)]="user.email" name="email"
+                                    <input type="email" class="form-control floating" formControlName="email" [(ngModel)]="user.email" name="email"
                                         required>
                                     <label class="focus-label">Email</label>
+                                    <div class="error" *ngIf="regForm.get('email')?.hasError('required') && regForm.get('email')?.touched">
+                                        User Email is required.
+                                      </div>
                                 </div>
                                 
                               
                                 <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" [(ngModel)]="user.password"
+                                    <input type="text" class="form-control floating" formControlName="password" [(ngModel)]="user.password"
                                         name="password" required>
                                     <label class="focus-label">Password</label>
+                                    <div class="error" *ngIf="regForm.get('password')?.hasError('required') && regForm.get('password')?.touched">
+                                        Password  is required.
+                                      </div>
                                 </div>
 
-                                <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
+                                <button class="btn btn-primary btn-block btn-lg login-btn" type="submit" (click)="onSubmit()">Signup</button>
                             </form>
 
 

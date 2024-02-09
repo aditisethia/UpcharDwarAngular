@@ -1,4 +1,4 @@
-<app-home-navbar></app-home-navbar>
+<!-- <app-home-navbar></app-home-navbar> -->
 <div class="content" style="margin-top: 4%;">
     <div class="container-fluid">
         
@@ -13,32 +13,38 @@
                         </div>
                         <div class="col-md-12 col-lg-6 login-right">
                             <div class="login-header">
-                                <h3>Login <span>Doccure</span></h3>
+                                <h3>Login <span>Doccure</span></h3>{{loginData|json}}
                             </div>
-                            <form  (submit)="formSubmit()">
+                            <form  [formGroup]="loginform">
                                 <div class="form-group form-focus">
-                                    <input type="email" class="form-control floating" [(ngModel)]="loginData.email" name="email">
+                                    <input type="email" class="form-control floating" formControlName="email" [(ngModel)]="loginData.email" name="email">
+                                    <div class="error" *ngIf="loginform.get('email')?.hasError('required') && loginform.get('email')?.touched">
+                                        User Email is required.
+                                      </div>
                                     <label class="focus-label">Email</label>
                                 </div>
                                 <div class="form-group form-focus">
-                                    <input type="password" class="form-control floating" [(ngModel)]="loginData.password" name="password">
+                                    <input type="password" class="form-control floating" formControlName="password" [(ngModel)]="loginData.password" name="password">
                                     <label class="focus-label">Password</label>
+                                    <div class="error" *ngIf="loginform.get('password')?.hasError('required') && loginform.get('password')?.touched">
+                                        Password is required.
+                                      </div>
                                 </div>
                                 <div class="text-right">
                                     <a class="forgot-link" [routerLink]="['/verify-otp-for-forget-password']">Forgot Password ?</a>
                                 </div>
-                                <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Login</button>
+                                <button class="btn btn-primary btn-block btn-lg login-btn" type="submit" (click)="formSubmit()">Login</button>
                                 <div class="login-or">
                                     <span class="or-line"></span>
                                     <span class="span-or">or</span>
                                 </div>
                                 <div class="row form-row social-login">
-                                    <div class="col-6">
+                                    <!-- <div class="col-6">
                                         <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
                                     </div>
                                     <div class="col-6">
                                         <a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="text-center dont-have">Don’t have an account? <a [routerLink]="['/register']">Register</a></div>
                             </form>

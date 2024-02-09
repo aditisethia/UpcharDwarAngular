@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { data } from 'jquery';
+import { UserRequest } from 'src/app/payload/Request/userRequest';
 import { UserServiceService } from 'src/app/services/user/user-service.service';
 import Swal from 'sweetalert2';
 
@@ -13,33 +15,36 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit{
-  user={
-  name:'',
-  password : '',
-  phone:'',
-  email:  '',
-  roleId:0,
-  };
-  constructor(  private userService:UserServiceService, private snack:MatSnackBar,private router: Router){
+ 
+  constructor(  private userService:UserServiceService, private snack:MatSnackBar,private router: Router,private fb:FormBuilder){
 
   }
   ngOnInit(): void {
-
+  this.checkReegisterFormValidation();
   }
 
+user:UserRequest=new UserRequest;
+regForm!:FormGroup;
+checkReegisterFormValidation()
+{
+   this.regForm=this.fb.group({
+    name:['',[Validators.required]],
+    password:['',[Validators.required]],
+    phone:['',[Validators.required]],
+    email:['',[Validators.required]],
+    roleId:['',[Validators.required]]
 
+   })
+}
 
 
   onSubmit() {
-    console.log(this.user);
-
-    localStorage.setItem('fakeuser', JSON.stringify(this.user));
-    localStorage.setItem('userEmail', this.user.email);
-    if(this.user.name==''|| this.user.name==null){
-      this.snack.open("name is required",'',{duration:3000 });
-      return
-
-      }
+    localStorage.setItem('user',JSON.stringify(this.user));
+   this.regForm.markAllAsTouched();
+   if(!this.regForm.valid)
+   {
+    return;
+   }
  //addUser:UserService
 this.userService.addUser(this.user).subscribe(
   (data:any)=>{ //success
@@ -47,7 +52,10 @@ this.userService.addUser(this.user).subscribe(
 
     console.log(data);
    // alert('success');
-   Swal.fire('successfully done !!','user id is ' +data.id,'success')
+   if(data.statusCodeValue==400){
+   Swal.fire(data.body.message ,'error')
+   return;
+   }
    this.router.navigate(['/otp']);
   },
   (error)=>{

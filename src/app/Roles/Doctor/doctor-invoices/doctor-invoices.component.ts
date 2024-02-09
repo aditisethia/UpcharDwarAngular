@@ -7,7 +7,7 @@ import { InvoiceService } from 'src/app/services/Invoice-Services/invoice.servic
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
 
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+
 import { DoctorInvoice_Response } from 'src/app/payload/response/Response/doctorInvoice_Response';
 
 
