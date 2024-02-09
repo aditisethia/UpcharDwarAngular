@@ -126,7 +126,7 @@ export class DoctorInvoicesComponent implements OnInit {
         },
         ,
         {
-          text:  `Appointment Fees: ${invoice.amount}`,
+          text:  `Appointment Fees: Rs. ${invoice.amount}`,
           margin: [0, 5]
         },
         ,

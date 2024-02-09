@@ -1,4 +1,5 @@
 export class DoctorInvoice_Response {
+  [x: string]: any;
   id:any;
   ammount:any;
   invoiceGenerateDate: any;

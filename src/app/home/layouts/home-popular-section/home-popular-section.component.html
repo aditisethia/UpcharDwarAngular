@@ -1,5 +1,85 @@
+<div style="text-align: center; color: #0de0fe;"><h2 style="color: #0de0fe;">Our Best Doctors...</h2></div>
+
+<div class="slide-container swiper card-center ">
+  <div class="slide-content">
+      <div class="card-wrapper swiper-wrapper">
+          <div class="card swiper-slide" *ngFor="let data of doctors">
+              <div class="image-content">
+                  <span class="overlay"></span>
+                  <div class="card-image">
+                      <img [src]="IMG_URLs +data.imageName" alt="" class="card-img">
+                  </div>
+              </div>
+              <div class="card-content">
+                  <h2 class="name">{{data.name}}</h2>
+                  <p class="description">Doctor With Specility Of {{data.speciality.spName}} {{data.speciality.spDescription}} From City Of {{data.city}} {{data.postalcode}} .</p>
+                  <button class="button" [routerLink]="'/patientmaindashboard/doctorprofile/'+data.id">View Profile</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <div class="swiper-button-next swiper-navBtn"></div>
+  <div class="swiper-button-prev swiper-navBtn"></div>
+  <div class="swiper-pagination"></div>
+
+</div>
+
+
+<section class="section " style="margin-top: 1%;">
+  <div class="container-fluid">
+    <div class="banner-wrapper">
+      <div class="banner-header text-center">
+
+<img src="https://static.vecteezy.com/system/resources/previews/002/700/981/non_2x/healthcare-web-banner-design-a-man-do-healthcare-consultation-with-a-doctor-medical-examination-medical-checkup-header-or-footer-banner-free-vector.jpg" alt="">
+        </div></div></div></section>
+
+
+
+
+        <div style="text-align: center; color: #0de0fe;"><h2 style="color: #0de0fe;">Our Best Labs...</h2></div>
+
+        <div class="slide-container swiper card-center ">
+          <div class="slide-content">
+              <div class="card-wrapper swiper-wrapper">
+                  <div class="card swiper-slide" *ngFor="let data of Labs">
+                      <div class="image-content">
+                          <span class="overlay"></span>
+                          <div class="card-image">
+                              <img [src]="IMG_URLs +data.imageName" alt="" class="card-img">
+                          </div>
+                      </div>
+                      <div class="card-content">
+                          <h2 class="name">{{data.labName}}</h2>
+                          <p class="description">Doctor With Specility Of {{data.labTests}} {{data.labTests}} From City Of {{data.location.city}} {{data.location.country}} .</p>
+                          <button class="button" [routerLink]="'/patientmaindashboard/labTestList/'+data.id">View Profile</button>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          <div class="swiper-button-next swiper-navBtn"></div>
+          <div class="swiper-button-prev swiper-navBtn"></div>
+          <div class="swiper-pagination"></div>
+
+        </div>
+
+
+        <section class="section " style="margin-top: 1%;">
+          <div class="container-fluid">
+            <div class="banner-wrapper">
+              <div class="banner-header text-center">
+
+        <img src="https://static.vecteezy.com/system/resources/previews/002/700/981/non_2x/healthcare-web-banner-design-a-man-do-healthcare-consultation-with-a-doctor-medical-examination-medical-checkup-header-or-footer-banner-free-vector.jpg" alt="">
+                </div></div></div></section>
+
+
+
+
+
+
 <!-- specialities.component.html -->
-<section class="section section-doctor">
+<!-- <section class="section section-doctor">
     <div class="container-fluid">
         <div >
             <div class="section-header ">
@@ -15,12 +95,13 @@
                 <a href="javascript:;">Read More..</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row"> -->
 
 
-            <!-- Iterate over the doctors array using *ngFor directive -->
-            <div class="col-lg-4" *ngFor="let doctor of doctors">
-                <!-- Doctor Widget -->
+
+
+            <!-- <div class="col-lg-4" *ngFor="let doctor of doctors">
+
                 <mat-card style="margin-bottom: 20px;">
                     <div class="profile-widget">
                         <div class="doc-img">
@@ -68,8 +149,8 @@
                         </div>
                     </div>
                 </mat-card>
-                <!-- /Doctor Widget -->
+
             </div>
         </div>
     </div>
-</section>
+</section>-->

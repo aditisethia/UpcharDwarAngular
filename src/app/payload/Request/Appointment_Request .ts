@@ -11,5 +11,5 @@ export class Appointment_Request {
   timeslote: TimeSlotRequest = new TimeSlotRequest;
   patient: Patient = new Patient;
   doctor: Doctor_Request = new Doctor_Request;
-  patientAppointmentFile: any;
+  patientAppointmentFile: any; //setting here data from backend asatise of this data for history
 }
