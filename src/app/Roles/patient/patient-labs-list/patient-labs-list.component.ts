@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { Lab } from 'src/app/entity/Lab';
 import { Location } from 'src/app/entity/Location';
 import { GetLabRequest } from 'src/app/payload/Request/GetLabRequest';
@@ -24,7 +25,7 @@ export class PatientLabsListComponent {
   responseMessage: any;
   
   favoriteLabIds: Set<number> = new Set<number>();
-  constructor(private labService: LabServiceService , private loginservice:LoginService , private patientservice:PatientserviceService) { }
+  constructor(private labService: LabServiceService , private loginservice:LoginService , private patientservice:PatientserviceService,private router:Router) { }
 
   ngOnInit(): void {
     this.filter();
@@ -148,7 +149,9 @@ makeLabFavorite(labId: number): void {
     }
   }
 
-
+  navigateToprofileWithId(id: number) {
+    this.router.navigate(['/patientmaindashboard/labprofile', id]);
+  }
 
 
 

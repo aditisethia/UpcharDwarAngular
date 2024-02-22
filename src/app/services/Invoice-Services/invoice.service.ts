@@ -15,4 +15,13 @@ export class InvoiceService{
     return this._http.get(ApiRoutes.GET_INVOICE_BY_DR_ID+`${doctorId}`);
 
   }
+
+  generateInvoice(Invoice:any){
+    return this._http.post(ApiRoutes.GENERATE_LAB_INVOICE,Invoice);
+  }
+
+
+  getInvoiceByLabId(labId:any){
+    return this._http.get(ApiRoutes.GET_INVOICE_BY_LAB_ID+`${labId}`);
+  }
 }

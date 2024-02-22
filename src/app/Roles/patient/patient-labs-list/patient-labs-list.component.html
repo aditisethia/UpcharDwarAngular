@@ -45,9 +45,10 @@
                               
                                 <div class="doc-info-left">
                                     <div class="doctor-img">
-                                        <a href="#" class="booking-doc-img">
+                                        <a class="booking-doc-img" (click)="navigateToprofileWithId(lab.id)">
                                             <div><figure><img alt="jobBox" [src]="IMG_URLs + lab.imageName" height="150px" width="100px"></figure></div>
                                         </a>
+                                        
                                     </div>
                                     <div class="doc-info-cont">
                                         <h3 class="doc-name">{{ lab.labName }}</h3>

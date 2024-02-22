@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-body">
+      <div class="doctor-widget">
+        <div class="doc-info-left">
+          <div class="doctor-img">
+            <a href="doctor-profile.html">
+              <img  [src]="IMG_URLs +doctor.imageName" class="img-fluid" alt="User Image">
+            </a>
+          </div>
+          <div class="doc-info-cont">
+            <h4 class="doc-name"><a href="doctor-profile.html">{{ doctor.name }}</a></h4>
+            <p class="doc-speciality">{{ doctor.speciality.spName }}</p>
+            <p class="doc-department"><img src="assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">Orthopaedics</p>
+            <!-- <div class="rating">
+              <i *ngFor="let star of [1, 2, 3, 4, 5]" [class]="star <= doctor.rating ? 'fas fa-star filled' : 'fas fa-star'"></i>
+              <span class="d-inline-block average-rating">({{ doctor.feedbackCount }})</span>
+            </div> -->
+            <div class="clinic-details">
+              <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ doctor.city }}</p>
+              <ul class="clinic-gallery">
+
+              </ul>
+            </div>
+            <div class="clinic-services">
+              <span *ngFor="let service of doctor.awards">{{ service }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="doc-info-right">
+          <div class="clini-infos">
+            <!-- <ul>
+              <li><i class="far fa-thumbs-up"></i> {{ doctor.thumbsUp }}%</li>
+              <li><i class="far fa-comment"></i> {{ doctor.feedbackCount }} Feedback</li>
+              <li><i class="fas fa-map-marker-alt"></i> {{ doctor.location }}</li>
+              <li><i class="far fa-money-bill-alt"></i> {{ doctor.costRange }} <i class="fas fa-info-circle" data-toggle="tooltip" title="{{ doctor.tooltip }}"></i></li>
+            </ul> -->
+          </div>
+          <div class="clinic-booking">
+            <a class="view-pro-btn" [routerLink]="'/patientmaindashboard/doctorprofile/'+doctor.id">View Profile</a>
+            <a class="apt-btn" [routerLink]="'/patientmaindashboard/doctorappointmentbooking/'+doctor.id">Book Appintment
+         </a>
+        </div>
+      </div>
+    </div>
+  </div>
+

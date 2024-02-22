@@ -3,6 +3,7 @@ import { LabTest } from "src/app/entity/LabTest";
 import { Patient } from "src/app/entity/Patient";
 
 export class LabAppointment_Request {
+    id:any;
     appointmentDate!: any;
     purpose!: string;
     patient: Patient = new Patient;
