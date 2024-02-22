@@ -1,0 +1,61 @@
+						 			<!-- Breadcrumb -->
+                                     <div class="breadcrumb-bar">
+                                        <div class="container-fluid">
+                                          <div class="row align-items-center">
+                                            <div class="col-md-12 col-12">
+                                              <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                                <ol class="breadcrumb">
+                                                  <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                                                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                                </ol>
+                                              </nav>
+                                              <h2 class="breadcrumb-title">Dashboard</h2>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- /Breadcrumb -->
+                    
+                    
+                            <!-- Invoice Table -->
+                            <div class="table-responsive">
+                              <table class="table table-hover table-center mb-0">
+                                <thead>
+                                  <tr>
+                                    <th>Invoice No</th>
+                                    <th>Patient</th>
+                                    <th>Amount</th>
+                                    <th>Paid On</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let invoice of labInvoiceResponse">
+                                    <td>
+                                      <a [href]="'invoice-view.html' + invoice.invoiceId">invoice_Id :{{ invoice.invoiceId }}</a>
+                                    </td>
+                                    <td>
+                                      <h2 class="table-avatar">
+                                        <a  class="avatar avatar-sm mr-2">
+                                          <!-- Add your image source dynamically -->
+                                           <img class="avatar-img rounded-circle" [src]="IMG_URLs+ invoice.imageName" alt="User Image">
+                                        </a>
+                                        <a [href]="'patient-profile.html' + invoice.patientId">{{ invoice.patientName}} <span>Patient_Id :{{ invoice.patientId }}</span></a>
+                                      </h2>
+                                    </td>
+                                    <td>{{ invoice.totalAmount }}</td>
+                                    <td>{{ invoice.invoiceGenerateDate }}</td>
+                                    <td class="text-right">
+                                      <div class="table-action">
+                                        <a (click)="generatePDF(invoice,'open')"class="btn btn-sm bg-info-light">
+                                          <i class="far fa-eye"></i> View
+                                        </a>
+                                        <a (click)="generatePDF(invoice,'print')" class="btn btn-sm bg-primary-light">
+                                          <i class="fas fa-print"></i> Print
+                                        </a>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>

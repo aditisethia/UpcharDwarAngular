@@ -104,14 +104,14 @@ import { DoctorProfileSidebarComponent } from './Roles/Doctor/doctor-profile-sid
 import { DoctorProfilesettingComponent } from './Roles/Doctor/doctor-profilesetting/doctor-profilesetting.component';
 import { DoctorScheduleTimingsComponent } from './Roles/Doctor/doctor-schedule-timings/doctor-schedule-timings.component';
 import { MatCardModule } from '@angular/material/card';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatIconModule} from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 import { DatePipe } from '@angular/common';
 import { LabRegistrationComponent } from './common/pages/registrations/lab-registration/lab-registration.component';
 import { MySchedulesComponent } from './Roles/Doctor/my-schedules/my-schedules.component';
@@ -124,6 +124,11 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { OtpForForgetpasswordComponent } from './common/pages/otp-for-forgetpassword/otp-for-forgetpassword.component';
 import { ForgetChangepasswordComponent } from './common/pages/forget-changepassword/forget-changepassword.component';
 import { ForgetVarificationComponent } from './common/pages/forget-varification/forget-varification.component';
+import { LabInvoicesComponent } from './Roles/lab/lab-invoices/lab-invoices.component';
+import { LabProfileComponent } from './Roles/patient/lab-profile/lab-profile.component';
+import { StarRatingComponent } from './common/star-rating/star-rating.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -210,10 +215,14 @@ import { ForgetVarificationComponent } from './common/pages/forget-varification/
     LabCheckoutComponent,
 
     PatientFavoriteLabsComponent,
-      OtpForForgetpasswordComponent,
-      ForgetChangepasswordComponent,
-      ForgetVarificationComponent,
-  
+    OtpForForgetpasswordComponent,
+    ForgetChangepasswordComponent,
+    ForgetVarificationComponent,
+    LabInvoicesComponent,
+    LabProfileComponent,
+    StarRatingComponent
+
+
 
 
 
@@ -244,7 +253,8 @@ import { ForgetVarificationComponent } from './common/pages/forget-varification/
     DatePipe,
     MatCardModule,
     NgOtpInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
 
   ],
   providers: [
@@ -254,4 +264,4 @@ import { ForgetVarificationComponent } from './common/pages/forget-varification/
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

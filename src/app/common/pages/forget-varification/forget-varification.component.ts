@@ -25,6 +25,7 @@ export class ForgetVarificationComponent {
  
     if(this.forgetPassword.email.trim()=='' || this.forgetPassword.email==null)
     {
+      
       this.snack.open('email is required !!','',{
         duration:3000,
       });

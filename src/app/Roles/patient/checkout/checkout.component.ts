@@ -147,7 +147,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   Invoicefillup() {
-
+   
     this.doctorinvoice.amount = this.ammount/100;
     this.doctorinvoice.invoiceStatus = "AWAITED";
     this.doctorinvoice.paymentMethod = "Online-UPI";
