@@ -9,6 +9,7 @@ import { LabReviewService } from 'src/app/services/Lab-service/lab-review.servic
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { PatientserviceService } from 'src/app/services/patient-service/patientservice.service';
 import { LoginService } from 'src/app/services/user/login.service';
+import Toast from 'src/app/utils/Sweet-alert-message';
 
 @Component({
   selector: 'app-lab-profile',
@@ -25,7 +26,7 @@ export class LabProfileComponent {
   labReviews: LabReview[] = [];
   pName: any
   pImage: any;
-
+  loggedInPatientId: any;
 
 
   remainingCharacters: number = 100;
@@ -34,6 +35,8 @@ export class LabProfileComponent {
   starsArray: number[] = Array(5).fill(0).map((_, index) => index + 1);
   selectedRating: number = 0;
   reply:LabReviewReplayResponse=new LabReviewReplayResponse
+
+ 
   constructor(private router:Router,private route: ActivatedRoute, private labService: LabServiceService, private patientservice: PatientserviceService, private loginservice: LoginService,
     private labReviewRatingService: LabReviewService) { }
 
@@ -100,7 +103,7 @@ export class LabProfileComponent {
     this.patientservice.getpatientbyemail(this.pemail).subscribe((data: any) => {
 
       this.pid = data.id;
- 
+       this.loggedInPatientId=this.pid;
       this.pName = data.pName;
       this.pImage = data.imageName;
       // alert(this.pid)
@@ -117,9 +120,10 @@ export class LabProfileComponent {
         console.log(this.labReviews[0].rating);
 
         console.log(this.labReviews);
-
+ 
       });
   }
+
 
 
   getStarIcons(rating: number): string[] {
@@ -172,6 +176,11 @@ export class LabProfileComponent {
       this.labReviews[index].description = data.data.description
       this.labReviews[index].rating = data.data.rating
       console.log('Review submitted successfully:', data);
+      Toast.fire({
+        icon: 'success',
+        title: data.message,
+    
+      })
     });
   }
 
@@ -222,6 +231,45 @@ submitReply(review: LabReview) {
     }
   );
 }
+deleteReview(reviewId: number): void {
+  // Call backend service to delete review
+  this.labReviewRatingService.deleteReviewOfPatient(reviewId).subscribe(
+    (response:any) => {
+      Toast.fire({
+        icon: 'success',
+        title: response.message,
+    
+      })
+    console.log(response);
+    
+    this.loadLabReviews();
+    }, (error)=>{
+     
+    }
+  )
+  };
 
+  deleteReply(replayId:any,reviewId: number): void {
+    // Call backend service to delete review
+    this.labReviewRatingService.deleteReplyOfPatient(replayId,reviewId).subscribe(
+      (response:any) => {
+        Toast.fire({
+          icon: 'success',
+          title: response.message,
+      
+        })
+      console.log(response);
+      
+      this.loadLabReviews();
+      }, (error)=>{
+       
+      }
+    )
+    };
 
+ 
 }
+
+
+
+

@@ -13,5 +13,6 @@ export class GetLabRequest{
     imageName: any=null;
     biography: any=null;
     isDeleted: boolean=false;
+    rating:number=0;
     labReviewRatings: any[]=[];
 }

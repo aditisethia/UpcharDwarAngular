@@ -29,7 +29,7 @@
 						<div class="doctor-img">
 							<a href="#" class="booking-doc-img">
 								<div>
-									<figure><img alt="jobBox" [src]="IMG_URLs + lab.imageName" height="150px"
+									<figure><img alt="jobBox" [src]= lab.imageName height="150px"
 											width="100px"></figure>
 								</div>
 							</a>
@@ -40,14 +40,8 @@
 							<h3 class="bi bi-envelope-open">&nbsp;{{ lab.email }}</h3>
 							<h3 class="bi bi-file-earmark-text-fill">&nbsp;{{lab.biography}}</h3>
 
-							<div *ngIf="lab.labReviewRatings && lab.labReviewRatings.length > 0">
-								<div *ngFor="let labReview of lab.labReviewRatings">
-									<div class="rating">
-										<i class="fas fa-star" *ngFor="let star of starsArray"></i>
-										<span class="d-inline-block average-rating">({{ labReview.rating }})</span>
-									</div>
-									<p>{{ labReview.review }}</p>
-								</div>
+						    <div class="review-count rating">
+								<i [class]="star" *ngFor="let star of getStarIcons(lab.rating)"></i>
 							</div>
 							<div class="clinic-details" *ngIf="lab.location">
 								<p class="doc-location"><i class="fas fa-map-marker-alt"></i>
@@ -121,7 +115,7 @@
 									<p><strong>Location:</strong> {{ lab.location.area }}, {{ lab.location.city }}, {{
 										lab.location.country }}</p>
 									<p><strong>Biography:</strong> {{ lab.biography }}</p>
-									<p><strong>Rating:</strong> {{ lab.labReviewRatings[0].rating }}</p>
+									<!-- <p><strong>Rating:</strong> {{ lab.labReviewRatings[0].rating }}</p> -->
 									<!-- Display reviews if needed -->
 								</div>
 								<!-- /Lab Overview -->
@@ -223,7 +217,7 @@
 							<ul class="comments-list">
 								<li *ngFor="let review of labReviews">
 									<div class="comment">
-										<img class="avatar avatar-sm rounded-circle" [src]="IMG_URLs + review.imageName"
+										<img class="avatar avatar-sm rounded-circle" [src]="review.imageName"
 											alt="User Image">
 										<div class="comment-body">
 											<div class="meta-data">
@@ -233,11 +227,15 @@
 												<i [class]="star" *ngFor="let star of getStarIcons(review.rating)"></i>
 											</div>
 											<p class="comment-content">{{ review.description }}</p>
-											<div class="comment-reply">
-												<a class="comment-btn"
-													(click)="review.showReplyForm = !review.showReplyForm">
-													<i class="fas fa-reply"></i> Reply
+											<div class="buttons-row d-flex align-items-center">
+												<a class="comment-btn reply-btn" (click)="review.showReplyForm = !review.showReplyForm">
+												  <i class="fas fa-reply"></i> Reply
 												</a>
+												<!-- Delete button (shown only for the logged-in patient's reviews) -->
+												<div *ngIf="review.patientId === loggedInPatientId" class="delete-btn">
+												  <i class="bi bi-trash" (click)="deleteReview(review.id)"></i>
+												</div>
+											
 												<div *ngIf="review.showReplyForm">
 													<textarea class="form-control" [(ngModel)]="review.replyContent"
 														placeholder="Write a reply..."></textarea>
@@ -251,13 +249,21 @@
 										<li *ngFor="let reply of review.replyResponse">
 											<div class="comment">
 												<img class="avatar avatar-sm rounded-circle"
-													[src]="IMG_URLs + reply.imageName" alt="User Image">
+													[src]="reply.imageName" alt="User Image">
 												<div class="comment-body">
 													<div class="meta-data">
 														<span class="comment-author">{{ reply.patientName }}</span>
 													</div>
 													
-													<p class="comment-content">{{ reply.description }}</p>
+													<div *ngIf="review.patientId !== loggedInPatientId" class="delete-btn">
+														<p class="comment-content">{{ reply.description }}</p>
+														<i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>
+													  </div>
+													
+													<div *ngIf="review.patientId === loggedInPatientId" class="delete-btn">
+														<p class="comment-content">{{ reply.description }}</p>
+														<i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>
+													  </div>
 												</div>
 											</div>
 										</li>

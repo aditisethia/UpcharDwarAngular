@@ -53,4 +53,6 @@ export class ApiRoutes{
     public  static GET_LABREVIEW_BY_Lab_ID= this.BASE_URL+'/labreviewrating/lab/';
     public  static ADD_LAB_REVIEW=this.BASE_URL+'/labreviewrating/';
     public static ADD_LAB_REPLY=this.BASE_URL+'/labreviewrating/reply';
+    public static DELETE_REVIEW_OF_LAB=this.BASE_URL+'/labreviewrating/';
+  public static DELETE_REPLAY_OF_REVIEW=this.BASE_URL+'/labreviewrating/';
 }

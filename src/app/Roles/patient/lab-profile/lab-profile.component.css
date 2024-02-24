@@ -80,5 +80,13 @@
 .button{
     text-align: center;
 }
-
+/* Adjust the gap between delete and reply buttons */
+.delete-btn {
+    margin-left: 10px; /* You can adjust the margin as per your preference */
+  }
+  
+  /* Ensure reply icon size remains consistent */
+  .reply-btn .fas.fa-reply {
+    font-size: 14px; /* Adjust the font size as needed */
+  }
 

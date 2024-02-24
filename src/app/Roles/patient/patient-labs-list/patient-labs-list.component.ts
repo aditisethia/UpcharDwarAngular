@@ -125,7 +125,24 @@ makeLabFavorite(labId: number): void {
   );
 }
 
+getStarIcons(rating: number): string[] {
+   
 
+  let starsArray: string[] = [];
+  let i = 0
+  for (i = 0; i < rating; i++) {
+    starsArray.push('fas fa-star filled');
+
+  }
+  for (let j = i; j < 5; j++) {
+    starsArray.push('fas fa-star');
+
+
+  }
+
+
+  return starsArray;
+}
 
 
   // searching the students
