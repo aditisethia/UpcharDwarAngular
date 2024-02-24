@@ -55,6 +55,7 @@ export class PatientserviceService {
     return this._http.get(url);
   }
 
-
   
+
+
 }

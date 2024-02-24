@@ -55,15 +55,13 @@
                                         <h3 class="bi bi-envelope-open" >&nbsp;{{ lab.email }}</h3>
                                         <h3 class="bi bi-file-earmark-text-fill">&nbsp;{{lab.biography}}</h3>
 
-                                        <div  *ngIf="lab.labReviewRatings && lab.labReviewRatings.length > 0">
-                                            <div *ngFor="let labReview of lab.labReviewRatings">
-                                                <div class="rating" >
-                                                    <i class="fas fa-star" *ngFor="let star of starsArray"></i>
-                                                    <span class="d-inline-block average-rating" >({{ labReview.rating }})</span>
+                                        
+                                                <div class="review-count rating">
+                                                    <i [class]="star" *ngFor="let star of getStarIcons(lab.rating)"></i>
+                                                    
                                                 </div>
-                                                <p>{{ labReview.review }}</p>
-                                            </div>
-                                        </div>
+                                              
+                                          
                                         <div class="clinic-details" *ngIf="lab.location">
                                             <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{lab.location.area}}{{lab.location.addressLine}}</p>
                                         </div>

@@ -29,7 +29,7 @@ export class PatientChangePasswordComponent {
 
   formSubmit(){
    
-  alert()
+ 
     if(this.changePasswordRequest.email.trim()=='' || this.changePasswordRequest.email==null)
     {
       this.snack.open('email is required !!','',{
@@ -47,9 +47,9 @@ export class PatientChangePasswordComponent {
      // Check if newPassword and confirmPassword match
      
   if (this.changePasswordRequest.newPassword !== this.confirmPassword) {
-    // Display an error message or handle it as needed
+   
     console.error('New password and confirm password do not match');
-    //this.sweet.alertMessage('success','New password and confirm password do not match');
+   
     return;
   }
     

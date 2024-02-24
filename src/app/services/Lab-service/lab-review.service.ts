@@ -26,4 +26,14 @@ export class LabReviewService {
   addReply(reply:any){
     return this._http.post(ApiRoutes.ADD_LAB_REPLY,reply);
   }
+
+
+  deleteReviewOfPatient(reviewId:any){
+    return this._http.delete(ApiRoutes.DELETE_REVIEW_OF_LAB+`${reviewId}`);
+  }
+
+
+  deleteReplyOfPatient(replyId:number,reviewId:number){
+    return this._http.delete(ApiRoutes.DELETE_REPLAY_OF_REVIEW +`${reviewId}`+'/'+`${replyId}`);
+  }
 }
