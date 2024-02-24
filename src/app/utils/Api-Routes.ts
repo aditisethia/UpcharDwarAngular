@@ -4,6 +4,7 @@ export class ApiRoutes{
     public static  IMAGE_URL = 'http://localhost:8080/api/getImageApi/';
 
 
+    public static GET_MESSAGEBY_USERS_IDS = this.BASE_URL+'/chat/messages';
     public static AUTH_LOGIN = this.BASE_URL+'/auth/login';
     public static CURRENT_USER = this.BASE_URL+'/auth/current-user';
     public static GENERATE_OTP=this.BASE_URL+'/auth/generate-otp';
@@ -36,18 +37,21 @@ export class ApiRoutes{
     public static GET_ALL_SPECIALITY=this.BASE_URL+'/speciality/all';
     public static GET_ALL_PATIENT = this.BASE_URL+'/appointment/countPatient';
     public static GET_TODAY_TOTAL_PATIENT=this.BASE_URL+'/appointment/countTodaysPetient';
-    public static GET_TOTAL_UPCOMING_APPOINTMENT =this.BASE_URL+'/appointment/countUpcomingAppointments';     
-    public static GET_UPCOMING_APPOINTMENT=this.BASE_URL+'/appointment/upcomingAppointments'; 
-    public static CANCLE_APPOINTMENT=this.BASE_URL+'/appointment/cancelAppointment/';         
-    public static GET_TODAY_APPOINTMENT=this.BASE_URL+'/appointment/todaysAppointments'; 
+    public static GET_TOTAL_UPCOMING_APPOINTMENT =this.BASE_URL+'/appointment/countUpcomingAppointments';
+    public static GET_UPCOMING_APPOINTMENT=this.BASE_URL+'/appointment/upcomingAppointments';
+    public static CANCLE_APPOINTMENT=this.BASE_URL+'/appointment/cancelAppointment/';
+    public static GET_TODAY_APPOINTMENT=this.BASE_URL+'/appointment/todaysAppointments';
     public static GET_DR_BY_DR_ID=this.BASE_URL+'/doctor/';
-    public static DOWNLOAD=this.BASE_URL+'/file/download/';   
-    public static GET_TODAY_APPOINTMENT_OF_DR=this.BASE_URL+'/appointment/doctor/today/'; 
+    public static DOWNLOAD=this.BASE_URL+'/file/download/';
+    public static GET_TODAY_APPOINTMENT_OF_DR=this.BASE_URL+'/appointment/doctor/today/';
     public static GET_DR_APPOINTMENT=this.BASE_URL+'/appointment/doctor/';
     public static GET_ALL_APPOINTMENT=this.BASE_URL+'/appointments/search/';
     public static ADD_APPOINTMENT=this.BASE_URL+'/appointment/book';
     public static GET_ALL_APPOINTMENT_OF_DR=this.BASE_URL+'/appointment/all/';
     public static GET_APPOINTMENT_OF_PATIENT_ID=this.BASE_URL+'/appointment/patient/';
+    public static GET_PATIENT_BY_USER_GMAIL= this.BASE_URL+'/patient/by-email/';
+    public static GET_ALL_USERS_FROM_USER_TABLE =this.BASE_URL+'/user/getall';
+
     public static GENERATE_LAB_INVOICE=this.BASE_URL+'/invoice/lab/create';
     public static GET_INVOICE_BY_LAB_ID=this.BASE_URL+'/invoice/get/lab/';
     public  static GET_LABREVIEW_BY_Lab_ID= this.BASE_URL+'/labreviewrating/lab/';
@@ -56,3 +60,4 @@ export class ApiRoutes{
     public static DELETE_REVIEW_OF_LAB=this.BASE_URL+'/labreviewrating/';
   public static DELETE_REPLAY_OF_REVIEW=this.BASE_URL+'/labreviewrating/';
 }
+

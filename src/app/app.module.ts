@@ -2,8 +2,6 @@
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +11,7 @@ import { HomeBannerComponent } from './home/layouts/home-banner/home-banner.comp
 import { HomeNavbarComponent } from './home/layouts/home-navbar/home-navbar.component';
 import { HomePopularSectionComponent } from './home/layouts/home-popular-section/home-popular-section.component';
 import { HomeSpecialitiesComponent } from './home/layouts/home-specialities/home-specialities.component';
-
+import {CloudinaryModule} from '@cloudinary/ng';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -124,6 +122,10 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { OtpForForgetpasswordComponent } from './common/pages/otp-for-forgetpassword/otp-for-forgetpassword.component';
 import { ForgetChangepasswordComponent } from './common/pages/forget-changepassword/forget-changepassword.component';
 import { ForgetVarificationComponent } from './common/pages/forget-varification/forget-varification.component';
+
+import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
+import { ChatComponent } from './Roles/Conversation/chat/chat.component';
+
 import { LabInvoicesComponent } from './Roles/lab/lab-invoices/lab-invoices.component';
 import { LabProfileComponent } from './Roles/patient/lab-profile/lab-profile.component';
 import { StarRatingComponent } from './common/star-rating/star-rating.component';
@@ -215,12 +217,16 @@ import {MatDialogModule} from '@angular/material/dialog';
     LabCheckoutComponent,
 
     PatientFavoriteLabsComponent,
-    OtpForForgetpasswordComponent,
-    ForgetChangepasswordComponent,
-    ForgetVarificationComponent,
+
+      OtpForForgetpasswordComponent,
+      ForgetChangepasswordComponent,
+      ForgetVarificationComponent,
+      ChattingComponent,
+      ChatComponent,
     LabInvoicesComponent,
     LabProfileComponent,
     StarRatingComponent
+
 
 
 
@@ -254,7 +260,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     NgOtpInputModule,
     MatSnackBarModule,
+    CloudinaryModule,
+
     MatDialogModule
+
 
   ],
   providers: [

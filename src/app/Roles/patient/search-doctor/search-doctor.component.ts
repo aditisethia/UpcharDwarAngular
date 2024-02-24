@@ -44,7 +44,11 @@ export class SearchDoctorComponent {
 
   search() {
     // Implement your search logic here
-    console.log('Search button clicked!');
+    // if(!this.search||!this.searchKeyword||this.searchKeyword.trim()===''
+    // )
+    // {
+    //   return;
+    // }
     console.log(this.searchdoctor);
 
   this.searchservice.serchDoctor(this.searchKeyword).subscribe((data: any) => {

@@ -28,6 +28,7 @@
           <div class="profile-det-info">
             <h3><a [routerLink]="['/patient-profile', appointment.patientName]">{{ appointment.patientName }}</a></h3>
             <div class="patient-details">
+              <h4>{{appointment.patient.patientName}}</h4>
               <h5><i class="far fa-clock"></i> {{ appointment.appointmentDate | date: 'd MMM yyyy, h:mm a' }}</h5>
               <h5><i class="fas fa-map-marker-alt"></i> {{ appointment.purpose }}</h5>
               <h5><i class="fas fa-envelope"></i> {{ appointment.patient.email }}</h5>

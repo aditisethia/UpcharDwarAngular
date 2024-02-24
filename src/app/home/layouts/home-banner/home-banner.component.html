@@ -1,5 +1,5 @@
 <!-- Home Banner -->
-<section class="section section-search" style="margin-top: 1%;">
+<section class="section section-search" style="margin-top: 1%">
   <div class="container-fluid">
     <div class="banner-wrapper">
       <div class="banner-header text-center">
@@ -13,7 +13,7 @@
 
       <!-- Search -->
       <div class="search-box">
-        <form >
+        <form>
           <div class="form-group search-location">
             <input
               type="text"
@@ -21,9 +21,28 @@
               placeholder="Search Location"
               (keyup)="searching()"
             />
+
             <span class="form-text">Based on your Location</span>
           </div>
           <div class="form-group search-info">
+            <!-- <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="searchTerm"
+              name="searchTerm"
+              (keyup)="searching()"
+              placeholder="Search Doctors, Clinics, Hospitals, Diseases, etc"
+              list="menace" name="menace"
+            />
+            <datalist id="menace" class="datalist-custom">
+              <option
+                *ngFor="let menace of data.doctor"
+                class="datalist-option"
+              >
+                <img [src]="IMG_URLs + menace.imageName" alt="User Image" />
+                {{ menace.name }}
+              </option>
+            </datalist> -->
             <input
               type="text"
               class="form-control"
@@ -31,64 +50,71 @@
               name="searchTerm"
               (keyup)="searching()"
               placeholder="Search Doctors, Clinics, Hospitals, Diseases, etc"
+              id="search-reset"
             />
+            <ul class="result-list" id="search-reset">
+              <li *ngFor="let menace of data.doctor" class="result-item" id="search-reset">
+                <img [src]="IMG_URLs + menace.imageName" alt="User Image" id="search-reset" />
+                <div class="result-details" id="search-reset">
+                  <h4 id="search-reset">{{ menace.name }}</h4>
+                  <!-- Add more details as needed -->
+                </div>
+              </li>
+            </ul>
+
             <span class="form-text">Ex: Dental or Sugar Checkup, etc</span>
           </div>
 
-          <button type="submit" (click)="searching()" class="btn btn-primary search-btn">
-
-            <i class="fas fa-search"   data-toggle="modal" data-target="#exampleModal"></i> <span>Search</span>
+          <button
+            type="submit"
+            (click)="searching()"
+            class="btn btn-primary search-btn"
+          >
+            <i
+              class="fas fa-search"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            ></i>
+            <span>Search</span>
           </button>
         </form>
       </div>
       <!-- /Search -->
-
-
-
     </div>
   </div>
 </section>
 <!-- /Home Banner -->
 
-
-<!-- Modal -->
-<div style="margin-top: 11%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Searching </h3>
+<!-- <div class="modal-content" *ngIf="data">
+  <div class="modal-header">
 
 
-      </div>
-
-      <ul>
-        <li *ngFor="let d of data.doctor">
-          <h2>{{d.name}}</h2>
-
-          <a href="#" (click)="openProfile('doctor',d.id)" class="booking-doc-img">
-            <img _ngcontent-ng-c2320061364="" [src]="IMG_URLs+ d.imageName" alt="User Image" class="avatar-img rounded-circle">
-          </a>
-        </li>
-        <br>
-
-        <li *ngFor="let d of data.lab">
-          <h2>{{d.labName}}</h2>
-
-          <a  (click)="openProfile('lab',d.id)" href="#" class="booking-doc-img">
-            <img _ngcontent-ng-c2320061364="" [src]="IMG_URLs+ d.imageName" alt="User Image" class="avatar-img rounded-circle">
-          </a>
-        </li>
-        <li *ngFor="let d of data.pharmacy">
-          <h2>{{d.pharmaName}}</h2>
-
-          <a href="#" (click)="openProfile('doctor',d.id)" class="booking-doc-img">
-            <img _ngcontent-ng-c2320061364="" [src]="" alt="User Image" class="avatar-img rounded-circle">
-          </a>
-        </li>
-      </ul>
-    </div>
 
   </div>
-</div>
 
+  <ul>
+    <li *ngFor="let d of data.doctor">
+      <h2>{{d.name}}</h2>
 
+      <a href="#" (click)="openProfile('doctor',d.id)" class="booking-doc-img">
+        <img _ngcontent-ng-c2320061364="" [src]="IMG_URLs+ d.imageName" alt="User Image" class="avatar-img rounded-circle">
+      </a>
+    </li>
+    <br>
+
+    <li *ngFor="let d of data.lab">
+      <h2>{{d.labName}}</h2>
+
+      <a  (click)="openProfile('lab',d.id)" href="#" class="booking-doc-img">
+        <img _ngcontent-ng-c2320061364="" [src]="IMG_URLs+ d.imageName" alt="User Image" class="avatar-img rounded-circle">
+      </a>
+    </li>
+    <li *ngFor="let d of data.pharmacy">
+      <h2>{{d.pharmaName}}</h2>
+
+      <a href="#" (click)="openProfile('doctor',d.id)" class="booking-doc-img">
+        <img _ngcontent-ng-c2320061364="" [src]="" alt="User Image" class="avatar-img rounded-circle">
+      </a>
+    </li>
+  </ul>
+</div> -->

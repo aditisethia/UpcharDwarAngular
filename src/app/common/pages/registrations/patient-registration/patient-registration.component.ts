@@ -15,17 +15,21 @@ export class PatientRegistrationComponent {
 
   constructor(private patientService: PatientserviceService,private router:Router) {}
   formSubmit() {
+    console.log(this.user);
+
     this.patientService.upload(this.user).subscribe(
       (data) => {
         console.log('Upload successful:', data);
         console.log(data);
-        this.patientService.patientId.next(data.id);  
+        this.patientService.patientId.next(data.id);
         Swal.fire('Successfully Done!!','patient id is'+this.user.id,'success');
         this.router.navigate(['patientdashboard']);
-     
+
 
       },
       (error) => {
+        console.log(this.user);
+
         console.error('Error during upload:', error);
         // Handle error, e.g., display an error message
       }

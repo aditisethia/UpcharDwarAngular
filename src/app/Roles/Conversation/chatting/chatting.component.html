@@ -1,0 +1,234 @@
+<!-- Page Content -->
+
+<div class="chat-window">
+  <!-- Chat Left -->
+  <div class="chat-cont-left">
+    <div class="col-md-12 col-lg-3 col-xl-3 theiaStickySidebar">
+      <!--  Search Filter -->
+    </div>
+    <form class="chat-search"></form>
+    <h2 style="color: rgb(123, 157, 226)">Search And Chat Doctor</h2>
+    <!-- {{Chatmessageresponse|json}} -->
+    <div class="input-group mb-3 mt-3">
+      <input
+        type="text"
+        class="form-control"
+        (keyup)="search()"
+        [(ngModel)]="searchKeyword"
+        placeholder="Search..."
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="search()"
+          style="
+            background-color: rgb(123, 157, 226);
+            color: rgb(253, 253, 254);
+          "
+        >
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Searching Result Show Here -->
+    <!-- Result -->
+    <div class="mt-3" *ngIf="selfroleId==2">
+      <h3>Search Results:</h3>
+      <ul class="list-group">
+        <li
+          *ngFor="let do of patients"
+          class="list-group-item"
+          (click)="makeleadtopatient(do.email)"
+        >
+          <h2>
+            <a class="booking-doc-img">
+              <img
+                _ngcontent-ng-c2320061364=""
+                [src]="IMG_URLs + do.imageName"
+                alt="User Image"
+                class="avatar-img rounded-circle"
+              />
+              {{ do.patientName }}
+            </a>
+          </h2>
+          <i class="bi bi-bag-check" style="color: rgb(123, 157, 226)"></i>
+          {{ do.age }}&#160;&#160;<i
+            class="bi bi-geo-alt"
+            style="color: rgb(123, 157, 226)"
+          ></i>
+          {{ do.city }}_{{ do.country }}
+        </li>
+      </ul>
+    </div>
+    <div class="mt-3" *ngIf="selfroleId==3">
+      <h3>Search Results:</h3>
+      <ul class="list-group">
+        <li
+          *ngFor="let do of searchdoctor"
+          class="list-group-item"
+          (click)="makeleadtouser(do.id)"
+        >
+          <h2>
+            <a (click)="makeleadtouser(do.id)" class="booking-doc-img">
+              <img
+                _ngcontent-ng-c2320061364=""
+                [src]="IMG_URLs + do.imageName"
+                alt="User Image"
+                class="avatar-img rounded-circle"
+              />
+              {{ do.name }}
+            </a>
+          </h2>
+          <i class="bi bi-bag-check" style="color: rgb(123, 157, 226)"></i>
+          {{ do.speciality.spName }}&#160;&#160;<i
+            class="bi bi-geo-alt"
+            style="color: rgb(123, 157, 226)"
+          ></i>
+          {{ do.city }}_{{ do.country }}
+        </li>
+      </ul>
+    </div>
+    <!-- /Search Filter -->
+  </div>
+  <!-- /Chat Left -->
+
+  <!-- testing send message -->
+  <!-- <button (click)='sendMessage("hello buddys")'
+>click for message</button> -->
+  <!-- Chat Right -->
+  <div class="chat-cont-right" *ngIf="!Leadusertochat.id">
+    <div class="chat-header">
+    <div class="chat-footer" style="margin-top: 70%; margin-left: 40%;">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="btn-file btn" >
+
+        <h2 style="color: rgb(116, 173, 173);"><b> Select An Chat</b></h2>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- /Chat Right -->
+  <div class="chat-cont-right" *ngIf="Leadusertochat.id">
+    <div class="chat-header">
+      <a id="back_user_list" href="javascript:void(0)" class="back-user-list">
+        <i class="material-icons">chevron_left</i>
+      </a>
+      <div class="media">
+        <div class="media-img-wrap">
+          <div class="avatar avatar-online">
+            <img
+              [src]="IMG_URLs + Leadusertochat.image"
+              alt="User Image"
+              class="avatar-img rounded-circle"
+            />
+          </div>
+        </div>
+        <div class="media-body">
+          <div class="user-name">{{ Leadusertochat.name }}</div>
+          <div class="user-status">Online</div>
+        </div>
+      </div>
+      <div class="chat-options">
+        <a
+          href="javascript:void(0)"
+          data-toggle="modal"
+          data-target="#voice_call"
+        >
+          <i class="material-icons">local_phone</i>
+        </a>
+        <a
+          href="javascript:void(0)"
+          data-toggle="modal"
+          data-target="#video_call"
+        >
+          <i class="material-icons">videocam</i>
+        </a>
+        <a href="javascript:void(0)">
+          <i class="material-icons">more_vert</i>
+        </a>
+      </div>
+    </div>
+    <div class="chat-body" >
+      <div class="chat-scroll"  >
+        <ul class="list-unstyled"  *ngFor="let mess of chatmessageresponse">
+          <li class="media sent" *ngIf="mess.senderId==selfuserId">
+            <div class="media-body">
+              <div class="msg-box">
+                <div>
+                  {{ selfroleId }}
+                  <p>{{ mess.content }}</p>
+                  <ul class="chat-msg-info">
+                    <li>
+                      <div class="chat-time">
+                        <span>{{ mess.senderName }}</span>
+                        <span>{{ mess.timestamp }}</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+          <li class="media received" *ngIf="mess.senderId!=selfuserId" >
+            {{ leadId }}{{mess.recipientId}}
+
+            <div class="media-body">
+              <div class="msg-box">
+                <div>
+                  <p>{{ mess.content }}.</p>
+
+                  <ul class="chat-msg-info">
+                    <li>
+                      <div class="chat-time">
+                        <span>{{ mess.recipientName }}</span>
+                        <span>{{ mess.timestamp }}</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="btn-file btn">
+            <i class="fa fa-paperclip"></i>
+            <input type="file" />
+          </div>
+        </div>
+        <input
+          type="text"
+          class="input-msg-send form-control"
+          placeholder="Type something"
+          [(ngModel)]="inputmessage"
+          (keyup.enter)="sendMessage()"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn msg-send-btn"
+            (click)="sendMessage()"
+          >
+            <i class="fab fa-telegram-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Chat Right -->
+
+
+<!-- /Row -->
+
+<!-- /Page Content -->

@@ -137,6 +137,7 @@ export class CheckoutComponent implements OnInit {
     this.doctorService.setInvoice(this.doctorinvoice).subscribe((data: any) => {
       console.log(data);
 
+
     }, (error) => {
       Swal.fire(' Issue', 'error', 'error');
       console.log("Error At Create Invoice" + error);

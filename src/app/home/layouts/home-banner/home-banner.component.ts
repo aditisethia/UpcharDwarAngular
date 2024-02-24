@@ -2,7 +2,7 @@ import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service'
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { LoginService } from 'src/app/services/user/login.service';
 import { SearchService } from './../../../services/search-service/search.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Lab } from 'src/app/entity/Lab';
 import { Doctor } from '../home-popular-section/home-popular-section.component';
 
@@ -22,16 +22,33 @@ export class HomeBannerComponent  implements OnInit{
   };
   show: boolean = false;
 
-  constructor(private searchservice:SearchService,private scheduleservice: DoctorScheduleService,private labService:LabServiceService,private loginService:LoginService) { }
+  constructor(private el: ElementRef,private searchservice:SearchService,private scheduleservice: DoctorScheduleService,private labService:LabServiceService,private loginService:LoginService) { }
   IMG_URLs = this.labService.IMAGE_URL;
 
   ngOnInit(): void {
 
   }
 
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    if ((event.target as HTMLElement).id !== 'search-reset') {
+      this.data =  {
+        doctor : [], // initialize with your data
+        lab: [],
+        pharmacy: [],
+      };
+    }
+  }
+
   searching(){
 
-
+    if(this.searchTerm.trim() == ''){
+      this.data =  {
+        doctor : [], // initialize with your data
+        lab: [],
+        pharmacy: [],
+      };
+    }
 
     if(this.searchTerm!=='')
     this.searchservice.searchitems(this.searchTerm).subscribe((data:any)=>{
@@ -48,6 +65,9 @@ export class HomeBannerComponent  implements OnInit{
     console.log(type);
     console.log(index);
   }
+
+
+
 }
 interface Data {
   doctor: Doctor[];
