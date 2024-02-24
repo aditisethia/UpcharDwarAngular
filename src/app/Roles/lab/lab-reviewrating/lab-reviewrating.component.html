@@ -1,23 +1,51 @@
 <ul class="comments-list">
-    <li *ngFor="let comment of comments">
-        <div class="card">
-      <div class="comment">
-        <img class="avatar rounded-circle" alt="User Image" src="assets/img/patients/patient.jpg">
-        <div class="comment-body">
-          <div class="meta-data">
-            <span class="comment-author"><b>{{ comment.author }}</b></span>
-          <br>
-            <span class="comment-date">Reviewed {{ comment.date }}</span>
-            <div class="review-count rating">
-              <i *ngFor="let star of [1, 2, 3, 4, 5]" class="fas fa-star" [class.filled]="star <= comment.rating"></i>
-            </div>
-          </div>
-          <p class="recommended"><i class="far fa-thumbs-up"></i> I recommend the lab</p>
-          <p class="comment-content">{{ comment.content }}</p>
-          <!-- Add the rest of your comment structure here -->
-        </div>
+  <li *ngFor="let review of comments">
+    <div class="comment">
+      
+        <div class="row">
+          <div class="col-1">
+        <img class="avatar avatar-sm rounded-circle" [src]="IMG_URLs + review.imageName" alt="User Image">
       </div>
-    </div>
-    </li>
-  </ul>
-  
+      <div class="col-4">
+        <span class="comment-author"><b>{{ review.patientName }}</b></span>
+        <div class="review-count rating">
+        <i [class]="star" *ngFor="let star of getStarIcons(review.rating)"></i> 
+        </div>
+        <div class="comment-body">
+          <p class="comment-content">{{ review.description }}</p>
+          <i class="bi bi-trash" (click)="deleteReview(review.id)"></i>
+       </div>
+      </div>
+      </div>
+      </div>
+      
+    
+    <ul class="comments-reply">
+      <p>Replies</p>
+      <li *ngFor="let reply of review.replyResponse">
+       
+       
+        <div class="comment">
+         
+          <div class="row">
+            <div class="col-1">
+          <img class="avatar avatar-sm rounded-circle" [src]=reply.imageName alt="User Image">
+        </div>
+        <div class="col-4">
+          <span class="comment-author"><b>{{ reply.patientName }}</b></span>
+          
+          <div class="comment-body">
+            <p class="comment-content">{{ reply.description }}</p>
+          
+         </div>
+        </div>
+        </div>
+        </div>
+        
+      
+
+
+      </li>
+    </ul>
+  </li>
+</ul>

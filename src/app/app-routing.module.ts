@@ -67,8 +67,13 @@ import { PatientFavoriteLabsComponent } from './Roles/patient/patient-favorite-l
 import { OtpForForgetpasswordComponent } from './common/pages/otp-for-forgetpassword/otp-for-forgetpassword.component';
 import { ForgetChangepasswordComponent } from './common/pages/forget-changepassword/forget-changepassword.component';
 import { ForgetVarificationComponent } from './common/pages/forget-varification/forget-varification.component';
+
 import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
 import { ChatComponent } from './Roles/Conversation/chat/chat.component';
+
+import { LabInvoicesComponent } from './Roles/lab/lab-invoices/lab-invoices.component';
+import { LabProfileComponent } from './Roles/patient/lab-profile/lab-profile.component';
+
 
 
 
@@ -262,6 +267,11 @@ const routes: Routes = [
     ,
 
     {
+      path:"labprofile/:id",
+      component:LabProfileComponent
+    },
+
+    {
       path:"favlab",
       component:PatientFavoriteLabsComponent
     },
@@ -327,6 +337,11 @@ const routes: Routes = [
     {
       path:"labdatadashboard",
       component:LabDashboardDataComponent,
+    },
+    {
+      path:"labinvoices",
+      component:LabInvoicesComponent,
+
     },
 
     {

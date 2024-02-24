@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { LabInvoice } from 'src/app/entity/LabInvoice';
 import { LabAppointment_Request } from 'src/app/payload/Request/LabAppointment_Request';
+import { InvoiceService } from 'src/app/services/Invoice-Services/invoice.service';
 import { LabAppointmentServiceService } from 'src/app/services/Lab-service/lab-appointment-service.service';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { RazorpayService } from 'src/app/services/razorpay/razorpay.service';
+import Swal from 'sweetalert2';
 declare var Razorpay: any;
 @Component({
   selector: 'app-lab-checkout',
@@ -14,17 +17,19 @@ declare var Razorpay: any;
 export class LabCheckoutComponent {
 
   appointmentData: LabAppointment_Request = new LabAppointment_Request;
-
-
+  labInvoice:LabInvoice=new LabInvoice;
+  ammount: any;
+  labId:any;
   order = {
       // Replace with your actual amount
     currency: 'INR',  // Replace with your actual currency
     id: String  // Replace with your actual order ID
   };
-  constructor(private razorpayService: RazorpayService, private appointmentService: LabAppointmentServiceService, private labService:LabServiceService) { }
+ 
+  constructor(private razorpayService: RazorpayService, private appointmentService: LabAppointmentServiceService, private labService:LabServiceService, private invoiceService:InvoiceService) { }
   IMG_URLs = this.labService.IMAGE_URL;
 
-
+  apppointmentid: any;
 
 
 
@@ -35,6 +40,7 @@ export class LabCheckoutComponent {
 
     const amount = (60 + this.appointmentData.labTest.rates) * 100; // Set your desired amount
     this.appointmentData.amount=amount;
+    this.ammount=amount;
     this.razorpayService.createOrder(amount).subscribe((order: any) => {
       console.log("order-->>>>>"+order);
       console.log(order);
@@ -87,8 +93,25 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
       console.log(this.appointmentData);
       
       this.appointmentService.addBooking(this.appointmentData).subscribe((data:any)=>{
+        alert(data.booking_id.bookingId);
         console.log(data);
-  
+        
+        this.apppointmentid = data.booking_id.bookingId;
+       
+        
+        this.Invoicefillup();
+        if (this.Invoicefillup !== null) {
+
+
+       this.createInvoice();
+      
+
+
+
+
+        } else {
+          Swal.fire(' Issue', 'error', 'error')
+        }
         })
     }, (error: any) => {
 
@@ -99,9 +122,35 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
   }
 
 
+  Invoicefillup() {
+
+    this.labInvoice.totalAmount =   this.ammount/100;
+    
+    this.labInvoice.paymentMethod = "Online-UPI";
+    this.labInvoice.patient.id = this.appointmentData.patient.id;
+    this.labInvoice.labTest.id = this.appointmentData.labTest.id;
+    alert('inside'+this.apppointmentid)
+    this.labInvoice .booking.id = this.apppointmentid;
+    console.log(this.labInvoice .booking.id);
+    this.labInvoice.labId=this.labId;
+    this.labInvoice.invoiceId=this.apppointmentid
+    console.log("doctorInvoice------>>>>>>>>" + this.labInvoice.invoiceId);
+    console.log("test at lab checkout-------------------"+this.labId); 
+
+  }
+
+  createInvoice() {
+    this.invoiceService.generateInvoice(this.labInvoice).subscribe((data: any) => {
+      console.log(data);
+
+    }, (error) => {
+      Swal.fire(' Issue', 'error', 'error');
+      console.log("Error At Create Invoice" + error);
+      console.log(error);
 
 
-
+    })
+  }
 
 
 
@@ -112,6 +161,9 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
     this.appointmentService.appointmentData$.subscribe((data: any) => {
       this.appointmentData = data;
       console.log(this.appointmentData);
+      this.labId=this.appointmentData.lab.id;
+      console.log("test at lab checkout-------------------"+this.labId);
+      
 
     });
   }

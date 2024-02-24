@@ -1,4 +1,5 @@
-import { LabReviewRating } from "src/app/entity/LabReviewRating";
+
+
 import { Location } from "src/app/entity/Location";
 
 export class GetLabRequest{
@@ -12,5 +13,6 @@ export class GetLabRequest{
     imageName: any=null;
     biography: any=null;
     isDeleted: boolean=false;
-    labReviewRatings: LabReviewRating[]=[];
+    rating:number=0;
+    labReviewRatings: any[]=[];
 }

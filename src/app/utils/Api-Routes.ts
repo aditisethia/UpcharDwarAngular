@@ -1,4 +1,5 @@
 export class ApiRoutes{
+    
     private static BASE_URL="http://localhost:8080/upchardwar"
     public static  IMAGE_URL = 'http://localhost:8080/api/getImageApi/';
 
@@ -50,4 +51,13 @@ export class ApiRoutes{
     public static GET_APPOINTMENT_OF_PATIENT_ID=this.BASE_URL+'/appointment/patient/';
     public static GET_PATIENT_BY_USER_GMAIL= this.BASE_URL+'/patient/by-email/';
     public static GET_ALL_USERS_FROM_USER_TABLE =this.BASE_URL+'/user/getall';
+
+    public static GENERATE_LAB_INVOICE=this.BASE_URL+'/invoice/lab/create';
+    public static GET_INVOICE_BY_LAB_ID=this.BASE_URL+'/invoice/get/lab/';
+    public  static GET_LABREVIEW_BY_Lab_ID= this.BASE_URL+'/labreviewrating/lab/';
+    public  static ADD_LAB_REVIEW=this.BASE_URL+'/labreviewrating/';
+    public static ADD_LAB_REPLY=this.BASE_URL+'/labreviewrating/reply';
+    public static DELETE_REVIEW_OF_LAB=this.BASE_URL+'/labreviewrating/';
+  public static DELETE_REPLAY_OF_REVIEW=this.BASE_URL+'/labreviewrating/';
 }
+

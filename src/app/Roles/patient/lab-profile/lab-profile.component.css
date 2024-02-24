@@ -1,0 +1,92 @@
+/* Style for review listing */
+.widget.review-listing {
+    margin-bottom: 30px;
+}
+
+/* Style for each comment */
+.comment {
+    margin-bottom: 30px;
+}
+
+/* Style for comment author and date */
+.meta-data {
+    margin-bottom: 10px;
+}
+
+/* Style for star rating */
+.review-count.rating {
+    margin-bottom: 10px;
+}
+
+/* Style for recommended message */
+.recommended {
+    margin-bottom: 10px;
+}
+
+/* Style for comment content */
+.comment-content {
+    margin-bottom: 10px;
+}
+
+/* Style for comment reply button */
+.comment-reply .comment-btn {
+    margin-right: 10px;
+}
+
+/* Style for recommend buttons */
+.recommend-btn {
+    margin-top: 10px;
+}
+
+/* Style for form group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Style for star rating input */
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+/* Style for star rating label */
+.star-rating label {
+    color: #ddd;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Style for active star rating label */
+.star-rating label.active {
+    color: #f1c40f;
+}
+
+/* Style for review description textarea */
+#review_desc {
+    resize: none;
+}
+
+/* Style for terms accept checkbox */
+.terms-accept {
+    margin-top: 10px;
+}
+
+/* Style for submit section */
+.submit-section {
+    margin-top: 20px;
+}
+.hidden {
+    display: none;
+}
+.button{
+    text-align: center;
+}
+/* Adjust the gap between delete and reply buttons */
+.delete-btn {
+    margin-left: 10px; /* You can adjust the margin as per your preference */
+  }
+  
+  /* Ensure reply icon size remains consistent */
+  .reply-btn .fas.fa-reply {
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+

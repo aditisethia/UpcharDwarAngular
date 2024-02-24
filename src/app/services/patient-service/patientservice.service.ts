@@ -24,14 +24,15 @@ export class PatientserviceService {
     if (patient.imageName!= null) {
 
       formData.append("files", patient.imageName);
+      console.log(patient.imageName);
+      
     }
-    else {
-      formData.append("files", 'null');
-    }
-
+   
+ patient.imageName=''
     formData.append("data", new Blob([JSON.stringify(patient)], { type: 'application/json' }));
+   // formData.append("data",JSON.stringify(patient));
 
-    return this._http.post(ApiRoutes.UPLOAD, formData, { headers });
+    return this._http.post(ApiRoutes.UPLOAD, formData,{headers});
 
   }
 
@@ -50,5 +51,8 @@ export class PatientserviceService {
 
     return this._http.get(url);
   }
+
+  
+
 
 }
