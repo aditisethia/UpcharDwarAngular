@@ -3,3 +3,47 @@
   height: 50px; /* Adjust the height as per your requirement */
   object-fit: cover; /* Preserve aspect ratio while resizing */
 }
+
+.search-container {
+  position: relative;
+}
+
+.form-control {
+  width: 100%;
+  /* padding: 8px; */
+  box-sizing: border-box;
+}
+
+.result-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.result-item img {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.result-details {
+  flex-grow: 1;
+}
+
+/* Optional: Add styles for hover effect */
+.result-item:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}

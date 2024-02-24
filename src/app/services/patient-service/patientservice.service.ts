@@ -1,9 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PatientRequest } from 'src/app/payload/Request/ParientRequest';
-import baseUrl from '../user/helper';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PatientResponse } from 'src/app/payload/response/Response/PatientResponse';
 import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 import { ApiRoutes } from 'src/app/utils/Api-Routes';
@@ -19,7 +16,7 @@ export class PatientserviceService {
   constructor(private _http:HttpClient) { }
 
 
-  upload(patient:PatientRequest): Observable<any> {
+  upload(patient:any): Observable<any> {
     const headers = new HttpHeaders({
       'enctype': 'multipart/from-data'
     });

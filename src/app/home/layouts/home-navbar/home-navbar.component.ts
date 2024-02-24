@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/user/login.service';
 })
 export class HomeNavbarComponent implements OnInit {
 
-  user!: User;
+  user: User = new User;
   role:any;
   loginstatus: boolean = false;
   constructor(private loginservice:LoginService){}
@@ -19,7 +19,7 @@ export class HomeNavbarComponent implements OnInit {
     this.loginservice.getCurrentUser().subscribe((Data:any)=>{
       this.user=Data;
 
-      console.log(this.user);
+      // console.log(this.user);
       if(this.user){
         this.loginstatus=true;
       }
@@ -27,8 +27,9 @@ export class HomeNavbarComponent implements OnInit {
       const role: { roleId: number; roleName: string } | undefined = userRole?.role;
       // Storing 'role' in another variable
       const anotherVariable: { roleId: number; roleName: string } | undefined = role;
-      console.log(this.role=anotherVariable.roleName);
-      console.log(this.role);
+      this.role=anotherVariable.roleName;
+      //  console.log(this.role=anotherVariable.roleName);
+      // console.log(this.role);
 
     },
     (error:any)=>{
@@ -44,14 +45,14 @@ export class HomeNavbarComponent implements OnInit {
 }
 
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  status: string;
+export class User {
+  id: number=0;
+  name: string='';
+  email: string='';
+  password: string='';
+  status: string='';
   role: any; // You can replace 'any' with the actual type of the 'role' property
-  userRole: UserRole[];
+  userRole: UserRole[] = [];
 }
 
 // Define the interface for the 'UserRole' array

@@ -77,12 +77,16 @@ export class AppointmentserviceService {
     this.appointmentData.next(data);
   }
 
-  getAppointmentsByPatientId(patientId: number, page: number, size: number): Observable<Appointment_Request[]> {
+  getAppointmentsByPatientId(patientId: any, page: number, size: number): Observable<Appointment_Request[]> {
     const url = ApiRoutes.GET_APPOINTMENT_OF_PATIENT_ID+`${patientId}`;
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
-
     return this._http.get<Appointment_Request[]>(url, { params });
+  }
+
+  getappointmentbystatusanddrid(doctorId:any){
+
+    return this._http.get(`${baseUrl}/appointment/doctor/status/${doctorId}`);
   }
 }

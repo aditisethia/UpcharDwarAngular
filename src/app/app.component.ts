@@ -1,13 +1,20 @@
-import { Component } from '@angular/core';
+import { WebSocketService } from 'src/app/services/Conversation/web-socket.service';
+import { Component, OnInit } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+
+  constructor(private webSocketService:WebSocketService){}
+  ngOnInit(): void {
+
+    // this.webSocketService.connect();
+  }
   title = 'UpcharDwarfront';
 
 

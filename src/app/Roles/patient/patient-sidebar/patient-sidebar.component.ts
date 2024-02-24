@@ -10,13 +10,13 @@ import { DoctorserviceService } from 'src/app/services/doctor-service/doctorserv
   templateUrl: './patient-sidebar.component.html',
   styleUrls: ['./patient-sidebar.component.css']
 })
-export class PatientSidebarComponent implements OnInit{
+export class PatientSidebarComponent implements OnInit {
 
   email!: string;
   patient: Patient = new Patient;
 
 
-  constructor(private doctorService:DoctorserviceService,private  router: Router,private loginService:LoginService,private patientservice:PatientserviceService){}
+  constructor(private doctorService: DoctorserviceService, private router: Router, private loginService: LoginService, private patientservice: PatientserviceService) { }
   IMG_URLs = this.doctorService.IMAGE_URL;
 
 
@@ -26,22 +26,23 @@ export class PatientSidebarComponent implements OnInit{
 
     if (userString) {
       var user = JSON.parse(userString);
-      console.log(user.email + user.id);
-   this.email=user.email;
+      // console.log(user.email + user.id);
+      this.email = user.email;
       if (user.id) {
+        sessionStorage.setItem('email',this.email)
 
-   this.patientservice.getpatientbyemail(this.email).subscribe((patient:any)=>{
+        this.patientservice.getpatientbyemail(this.email).subscribe((patient: any) => {
 
-    this.patient=patient;
-    console.log(patient);
+          this.patient = patient;
+          // console.log(patient);
 
-   })
+        })
 
+      }
     }
   }
-  }
-  logout(){
-      this.loginService.logout();
+  logout() {
+    this.loginService.logout();
   }
 
 
