@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   messages: any[] = [];
   private stompClient: any;
 
-  constructor(private router: Router, private userService: ChatService, private webSocketService: WebSocketService) { }
+  constructor(private router: Router, private userService: ChatService,  private webSocketService: WebSocketService) { }
 
   ngOnInit(): void {
     this.currentUser = this.userService.getCurrentUser();

@@ -7,6 +7,7 @@ export class ChatMessageResponse {
   recipientName: string;
   content: string;
   timestamp: string;
+  photos:string | undefined;
   status: string;
 
   constructor(

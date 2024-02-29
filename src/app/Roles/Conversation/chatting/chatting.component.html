@@ -160,8 +160,12 @@
           <li class="media sent" *ngIf="mess.senderId==selfuserId">
             <div class="media-body">
               <div class="msg-box">
+
                 <div>
                   {{ selfroleId }}
+                  <a *ngIf="mess.photos" href="{{ mess.photos }}" target="_blank">
+                    <img [src]="mess.photos" alt="Image Description">
+                  </a>
                   <p>{{ mess.content }}</p>
                   <ul class="chat-msg-info">
                     <li>
@@ -183,6 +187,9 @@
             <div class="media-body">
               <div class="msg-box">
                 <div>
+                  <a *ngIf="mess.photos" href="{{ mess.photos }}" target="_blank">
+                    <img [src]="mess.photos" alt="Image Description">
+                  </a>
                   <p>{{ mess.content }}.</p>
 
                   <ul class="chat-msg-info">
@@ -200,31 +207,34 @@
         </ul>
       </div>
     </div>
-    <div class="chat-footer">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="btn-file btn">
-            <i class="fa fa-paperclip"></i>
-            <input type="file" />
-          </div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="btn-file btn">
+          <i class="fa fa-paperclip"></i>
+          <input type="file" (change)="onFileChange($event)">
         </div>
-        <input
-          type="text"
-          class="input-msg-send form-control"
-          placeholder="Type something"
-          [(ngModel)]="inputmessage"
-          (keyup.enter)="sendMessage()"
-        />
-        <div class="input-group-append">
-          <button
-            class="btn msg-send-btn"
-            (click)="sendMessage()"
-          >
-            <i class="fab fa-telegram-plane"></i>
-          </button>
+        <div *ngIf="selectedPhoto" class="file-preview">
+          <!-- Display selected file preview here -->
+          <img *ngIf="isImageType(selectedPhoto.type)" [src]="filePreview" alt="File Preview">
+          <span *ngIf="!isImageType(selectedPhoto.type)">{{ selectedPhoto.name }}</span>
+          <button class="btn btn-cut" (click)="cutFile()">Cut</button>
         </div>
       </div>
+
+      <input
+        type="text"
+        class="input-msg-send form-control"
+        placeholder="Type something"
+        [(ngModel)]="inputmessage"
+        (keyup.enter)="sendMessage()"
+      />
+      <div class="input-group-append">
+        <button class="btn msg-send-btn" (click)="buttons()">
+          <i class="fab fa-telegram-plane"></i>
+        </button>
+      </div>
     </div>
+
   </div>
   <!-- /Chat Right -->
 
