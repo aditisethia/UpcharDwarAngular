@@ -135,4 +135,9 @@ export class LabServiceService {
   removeFavLab(patientId:number,labId:number){
     return this._http.delete(`${baseUrl}/lab/${labId}/remove/${patientId}`);
   }
+
+
+  getAllBooking(labId:number){
+    return this._http.get(ApiRoutes.GET_BOOKING_OF_LAB +`${labId}`)
+  }
 }

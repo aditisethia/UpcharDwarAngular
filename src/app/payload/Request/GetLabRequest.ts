@@ -4,7 +4,7 @@ import { Location } from "src/app/entity/Location";
 
 export class GetLabRequest{
     id: number=0;
-    labName: any=null;
+    labName: string='';
     email: string='';
     isApproved: boolean=true;
     phone: any=null;

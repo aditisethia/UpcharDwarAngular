@@ -1,7 +1,5 @@
-
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +9,7 @@ import { HomeBannerComponent } from './home/layouts/home-banner/home-banner.comp
 import { HomeNavbarComponent } from './home/layouts/home-navbar/home-navbar.component';
 import { HomePopularSectionComponent } from './home/layouts/home-popular-section/home-popular-section.component';
 import { HomeSpecialitiesComponent } from './home/layouts/home-specialities/home-specialities.component';
-import {CloudinaryModule} from '@cloudinary/ng';
+
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -104,7 +102,7 @@ import { DoctorScheduleTimingsComponent } from './Roles/Doctor/doctor-schedule-t
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
@@ -122,14 +120,12 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { OtpForForgetpasswordComponent } from './common/pages/otp-for-forgetpassword/otp-for-forgetpassword.component';
 import { ForgetChangepasswordComponent } from './common/pages/forget-changepassword/forget-changepassword.component';
 import { ForgetVarificationComponent } from './common/pages/forget-varification/forget-varification.component';
-
-import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
-import { ChatComponent } from './Roles/Conversation/chat/chat.component';
-
 import { LabInvoicesComponent } from './Roles/lab/lab-invoices/lab-invoices.component';
 import { LabProfileComponent } from './Roles/patient/lab-profile/lab-profile.component';
 import { StarRatingComponent } from './common/star-rating/star-rating.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ChatComponent } from './Roles/Conversation/chat/chat.component';
+import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
 
 
 
@@ -215,18 +211,15 @@ import {MatDialogModule} from '@angular/material/dialog';
     PatientLabsListComponent,
     PatientLabTestListComponent,
     LabCheckoutComponent,
-
+ChatComponent,
+ChattingComponent,
     PatientFavoriteLabsComponent,
-
-      OtpForForgetpasswordComponent,
-      ForgetChangepasswordComponent,
-      ForgetVarificationComponent,
-      ChattingComponent,
-      ChatComponent,
+    OtpForForgetpasswordComponent,
+    ForgetChangepasswordComponent,
+    ForgetVarificationComponent,
     LabInvoicesComponent,
     LabProfileComponent,
     StarRatingComponent
-
 
 
 
@@ -246,7 +239,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSnackBarModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    FormsModule,
     MatButtonModule,
     NgApexchartsModule,
     MatDatepickerModule,
@@ -260,10 +252,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     NgOtpInputModule,
     MatSnackBarModule,
-    CloudinaryModule,
-
     MatDialogModule
-
 
   ],
   providers: [

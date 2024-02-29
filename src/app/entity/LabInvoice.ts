@@ -4,7 +4,7 @@ import { Patient } from "./Patient";
 
 export class LabInvoice {
     invoiceId:any;
-    booking: LabAppointment_Request = new LabAppointment_Request();
+    booking:LabAppointment_Request=new LabAppointment_Request;
     labTest: LabTest = new LabTest();
     totalAmount: any;
     labId:any;

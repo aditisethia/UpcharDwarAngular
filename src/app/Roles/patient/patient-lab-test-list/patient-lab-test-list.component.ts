@@ -44,6 +44,7 @@ export class PatientLabTestListComponent implements OnInit {
       (data: any) => {
         this.lab = data.Lab;
         this.labAppointmentRequest.lab = this.lab;
+        this.labAppointmentRequest.labName=this.lab.labName;
       }
     );
 
@@ -146,6 +147,12 @@ export class PatientLabTestListComponent implements OnInit {
       if (result.isConfirmed || this.labAppointmentRequest.lab !== null || this.labAppointmentRequest.patient !== null || this.labAppointmentRequest.labTest !== null) {
         const inputValue = result.value;
         this.labAppointmentRequest.purpose = inputValue;
+        this.labAppointmentRequest.lab.id=this.labId;
+        this.labAppointmentRequest.labId=this.labId;
+        console.log(this.labAppointmentRequest.lab.id+"-------------->");
+        console.log(this.labId);
+        
+        
         console.log(this.labAppointmentRequest);
         this.appointmentService.setAppointmentData(this.labAppointmentRequest);
 

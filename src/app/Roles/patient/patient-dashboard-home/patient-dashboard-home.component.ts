@@ -4,6 +4,8 @@ import { AppointmentserviceService } from 'src/app/services/doctor-service/appoi
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import { UserServiceService } from 'src/app/services/user/user-service.service';
 import { Patient } from 'src/app/entity/Patient';
+import { LabAppointmentServiceService } from 'src/app/services/Lab-service/lab-appointment-service.service';
+import { LabBookingListResponse } from 'src/app/payload/response/Response/LabBookingListResponse';
 
 @Component({
   selector: 'app-patient-dashboard-home',
@@ -19,11 +21,12 @@ export class PatientDashboardHomeComponent implements OnInit {
   useremail: any;
   id: any;
   Appointment_Request: Appointment_Request[] = [];
+  bookings:LabBookingListResponse[]=[];
   patient: Patient = new Patient;
   page = 0;
   size = 10;
 
-  constructor(private userservivce: UserServiceService, private appointmentService: AppointmentserviceService, private doctorService: DoctorserviceService) { }
+  constructor(private userservivce: UserServiceService, private appointmentService: AppointmentserviceService, private doctorService: DoctorserviceService,private bookingService:LabAppointmentServiceService) { }
   IMG_URLs = this.doctorService.IMAGE_URL;
 
   ngOnInit(): void {
@@ -43,7 +46,9 @@ export class PatientDashboardHomeComponent implements OnInit {
 
           // console.log(data);
 
-          if (this.id) { this.getAppointments(this.id); }
+          if (this.id) { this.getAppointments(this.id);
+          this.getBookingByPatientId (this.id);
+        }
 
         });
       }
@@ -68,5 +73,11 @@ export class PatientDashboardHomeComponent implements OnInit {
   getStatusBadgeClass(status: string): string {
     // Define logic to determine the badge class based on appointment status
     return status === 'Confirm' ? 'bg-success-light' : (status === 'Pending' ? 'bg-warning-light' : 'bg-danger-light');
+  }
+
+  getBookingByPatientId(patientId:number){
+   this.bookingService.totalBookingForPatient(patientId).subscribe((data:any)=>{
+    this.bookings=data.content;
+   });
   }
 }

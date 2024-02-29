@@ -8,8 +8,9 @@ export class LabAppointment_Request {
     purpose!: string;
     patient: Patient = new Patient;
     labTest: LabTest = new LabTest;
-    labInvoice: any;
     patientLabAppointmentFile: any;
     lab :Lab=new Lab;
     amount:any;
+    labId:number=0;
+    labName!:string;
   }
