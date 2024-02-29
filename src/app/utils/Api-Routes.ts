@@ -59,5 +59,11 @@ export class ApiRoutes{
     public static ADD_LAB_REPLY=this.BASE_URL+'/labreviewrating/reply';
     public static DELETE_REVIEW_OF_LAB=this.BASE_URL+'/labreviewrating/';
   public static DELETE_REPLAY_OF_REVIEW=this.BASE_URL+'/labreviewrating/';
+ public static GET_BOOKING_OF_LAB=this.BASE_URL+'/labBooking/lab/today/';
+  static CHANGE_LAB_BOOKING_STATUS=this.BASE_URL;
+  static TOTAL_BOOKING_OF_LAB =this.BASE_URL+'/labBooking/totalBookig/';
+  static COUNT_OF_TODAYS_BOOKINGS=this.BASE_URL+'/labBooking/todaysTotalBookings/';
+  static COUNT_SUCCESSFUL_SERVICE_OF_LAB = this.BASE_URL+'/labBooking/success/';
+  static GET_ALL_BOOKING_OF_PATIENT=this.BASE_URL+'/labBooking/patientTotalBooking/';
 }
 

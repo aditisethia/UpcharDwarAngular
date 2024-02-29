@@ -123,7 +123,9 @@ import { ForgetVarificationComponent } from './common/pages/forget-varification/
 import { LabInvoicesComponent } from './Roles/lab/lab-invoices/lab-invoices.component';
 import { LabProfileComponent } from './Roles/patient/lab-profile/lab-profile.component';
 import { StarRatingComponent } from './common/star-rating/star-rating.component';
+
 import { MatDialogModule } from '@angular/material/dialog';
+
 import { ChatComponent } from './Roles/Conversation/chat/chat.component';
 import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
 
@@ -211,8 +213,10 @@ import { ChattingComponent } from './Roles/Conversation/chatting/chatting.compon
     PatientLabsListComponent,
     PatientLabTestListComponent,
     LabCheckoutComponent,
+
     ChatComponent,
     ChattingComponent,
+
     PatientFavoriteLabsComponent,
     OtpForForgetpasswordComponent,
     ForgetChangepasswordComponent,

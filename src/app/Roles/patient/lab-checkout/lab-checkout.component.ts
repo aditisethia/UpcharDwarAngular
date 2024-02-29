@@ -124,14 +124,14 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
 
   Invoicefillup() {
 
-    this.labInvoice.totalAmount =   this.ammount/100;
+    this.labInvoice.totalAmount =   this.appointmentData.amount/100;
     
     this.labInvoice.paymentMethod = "Online-UPI";
     this.labInvoice.patient.id = this.appointmentData.patient.id;
     this.labInvoice.labTest.id = this.appointmentData.labTest.id;
     alert('inside'+this.apppointmentid)
     this.labInvoice .booking.id = this.apppointmentid;
-    console.log(this.labInvoice .booking.id);
+    
     this.labInvoice.labId=this.labId;
     this.labInvoice.invoiceId=this.apppointmentid
     console.log("doctorInvoice------>>>>>>>>" + this.labInvoice.invoiceId);

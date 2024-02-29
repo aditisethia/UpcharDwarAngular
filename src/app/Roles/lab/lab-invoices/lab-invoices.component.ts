@@ -28,8 +28,9 @@ export class LabInvoicesComponent {
       this.labId=this.lab.id;
       console.log(data.Lab);
       console.log(this.labId+"labIDINLIST");
+      this.getinvoiceforLab(this.labId);
     });
-    this.getinvoiceforLab(this.labId);
+  
 }
 
 generatePDF(invoice: LabInvoiceResponse,action:string): void {
