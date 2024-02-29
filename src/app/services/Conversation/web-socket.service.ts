@@ -34,16 +34,6 @@ export class WebSocketService {
     return this.stompClient.send('/app/chat', {}, JSON.stringify(message));
   }
 
-  subscribeMessage(destination:string){
-    return new Observable<any>((observer) => {
-      this.stompClient.subscribe(destination, (messages: { body: any; }) => {
-        // Handle incoming messages
-        console.log(messages);
-        observer.next(JSON.parse(messages.body));
-      })
-    });
-  }
-
   getmessage(senderId:any,RecieverId:any){
     return this.http.get(ApiRoutes.GET_MESSAGEBY_USERS_IDS+`/${senderId}/${RecieverId}`);
   }
@@ -56,6 +46,20 @@ export class WebSocketService {
 
     return this.http.get(ApiRoutes.GET_ALL_USERS_FROM_USER_TABLE);
 
+  }
+
+
+  uploadPhoto(chatMessage: any, photo: File): Observable<string> {
+    const formData = new FormData();
+    console.log(chatMessage);
+  console.log(photo);
+
+    formData.append('chatMessage', JSON.stringify(chatMessage));
+     formData.append('photo', photo);
+    console.log(formData);
+
+
+    return this.http.post<any>(`${baseUrl}/chat/api/chat/upload-photo`, formData);
   }
 
 }

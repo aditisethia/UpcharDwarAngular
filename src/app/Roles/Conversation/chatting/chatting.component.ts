@@ -20,8 +20,7 @@ import Swal from 'sweetalert2';
 import SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { Client } from 'stompjs';
-import { Cloudinary } from 'cloudinary-core';
-import { image } from '@cloudinary/url-gen/qualifiers/source';
+
 
 @Component({
   selector: 'app-chatting',
@@ -50,33 +49,90 @@ export class ChattingComponent implements OnInit {
   private stompClient: any;
   constructor(private patientservice: PatientserviceService, private userservice: UserServiceService, private scheduleservice: DoctorScheduleService, private appointmentService: AppointmentserviceService, private searchservice: SearchService, private http: HttpClient, private doctorService: DoctorserviceService, private webSocketService: WebSocketService, private labService: LabServiceService) { }
   IMG_URLs = this.labService.IMAGE_URL;
+  imageName: any;
   userpatient: UserRequest = new UserRequest;
-  latestmessage:any;
-  // const cloudinary = new Cloudinary();
+  latestmessage: any;
+  binaryData: any;
+  selectedPhoto!: any;
+  filePreview: string | ArrayBuffer | null = null;
+  chatMessage: any = {}; // Your ChatMessage object
 
-  //clodinary'
-  // Cloudinary.config({
-  //   cloud_name: 'your-cloud-name',
-  //   api_key: 'your-api-key',
-  //   api_secret: 'your-api-secret',
-  // });
+
 
 
   ngOnInit(): void {
-    const cld = new Cloudinary({ cloud_name: 'dpdh2nryr', api_key: '225387359941256', api_secret: 'O9anrUbSZg3WzQ6fdFSs2hvjKsw' });
-
-    const imageUrl = cld.url('../../../../assets/img-01.jpg', { width: 300, height: 200, crop: 'fill' });
-console.log(imageUrl);
-
     this.getself();
 
     this.getallUsers();
     this.webSocketService.initializeWebSocketConnection();
 
   }
+
+  cutFile() {
+    this.selectedPhoto = null;
+    this.filePreview = null;
+  }
+  buttons(){
+
+  this.sendMessage();
+  this.uploadPhoto();
+  }
+
+
+
+  onFileChange(event: any): void {
+    this.selectedPhoto = event.target.files[0];
+      if (this.isImageType(this.selectedPhoto.type)) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.filePreview = e.target?.result || null; // Handle undefined result
+      };
+      reader.readAsDataURL(this.selectedPhoto);
+    } else {
+      this.filePreview = null;
+    }
+
+  }
+
+  isImageType(fileType: string): boolean {
+    return fileType.startsWith('image/');
+  }
+
+
+  uploadPhoto(): void {
+    const options = { hour12: false, timeZone: 'Asia/Kolkata' };  // set time zone for india
+    var currentuser = localStorage.getItem('user');
+    if (currentuser) {
+      const userDetails = JSON.parse(currentuser);
+
+    const message: any = {
+      senderId: this.selfuserId,
+      recipientId: this.leadId,
+      senderName: userDetails.name,
+      recipientName: this.Leadusertochat.name,
+      content: this.inputmessage,
+      timestamp: new Date().toLocaleString('en-IN', options), // Convert timestamp to string
+    };
+    this.chatMessage=message;
+  }
+
+    if (this.selectedPhoto) {
+      this.webSocketService.uploadPhoto(this.chatMessage, this.selectedPhoto)
+        .subscribe(response => {
+          console.log(response);
+        }, error => {
+          console.error(error);
+        });
+    } else {
+      console.warn('No photo selected.');
+    }
+  }
+
+
   getmessages() {
     console.log("leadId:::", this.leadId);
     console.log("selfroleId:::::", this.selfroleId);
+
 
 
     if (this.leadId || this.selfroleId)
@@ -153,16 +209,19 @@ console.log(imageUrl);
       const userDetails = JSON.parse(currentuser);
       // Access the roleId from the userRole array
 
-      if (this.inputmessage.trim() !== "") {
-        const message:any = {
+       if (this.inputmessage.trim() !== "") {
+
+        const message: any = {
           senderId: this.selfuserId,
           recipientId: this.leadId,
           senderName: userDetails.name,
           recipientName: this.Leadusertochat.name,
           content: this.inputmessage,
+
           timestamp: new Date().toLocaleString('en-IN', options), // Convert timestamp to string
         };
 
+        console.log(message);
         // Send the message using STOMP
         this.webSocketService.sendmessage(message);
         this.inputmessage = '';
@@ -183,7 +242,7 @@ console.log(imageUrl);
     this.connect();
   }
 
-   connect(): void {
+  connect(): void {
     const socket = new SockJS('http://localhost:8080/ws');
     this.stompClient = Stomp.over(socket);
     this.stompClient.connect({}, () => this.onConnected(), (err: any) => this.onError(err));
@@ -192,24 +251,24 @@ console.log(imageUrl);
 
   onConnected() {
 
-      console.log('user/' + this.selfuserId + '_' + this.leadId + '/queue/messages');
+    console.log('user/' + this.selfuserId + '_' + this.leadId + '/queue/messages');
 
-      this.stompClient.subscribe('/user/' + this.selfuserId+ '_' + this.leadId + '/queue/messages',  (message: any) => {
-        // Handle incoming messages
-        console.log('Received message:', message.body);
-        const newMessage: ChatMessageResponse = JSON.parse(message.body);
-        console.log(newMessage);
-        this.chatmessageresponse.unshift(newMessage);
+    this.stompClient.subscribe('/user/' + this.selfuserId + '_' + this.leadId + '/queue/messages', (message: any) => {
+      // Handle incoming messages
+      console.log('Received message:', message.body);
+      const newMessage: ChatMessageResponse = JSON.parse(message.body);
+      console.log(newMessage);
+      this.chatmessageresponse.unshift(newMessage);
 
-       // console.log(this.chatmessageresponse);
+      // console.log(this.chatmessageresponse);
 
 
-      });
+    });
 
-    }
-    onError = (err: any): void => {
-      console.log(err);
-    }
+  }
+  onError = (err: any): void => {
+    console.log(err);
+  }
 
   getallUsers() {
 
