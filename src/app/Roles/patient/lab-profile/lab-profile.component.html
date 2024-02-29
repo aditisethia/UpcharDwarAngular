@@ -235,7 +235,7 @@
 												<div *ngIf="review.patientId === loggedInPatientId" class="delete-btn">
 												  <i class="bi bi-trash" (click)="deleteReview(review.id)"></i>
 												</div>
-											
+
 												<div *ngIf="review.showReplyForm">
 													<textarea class="form-control" [(ngModel)]="review.replyContent"
 														placeholder="Write a reply..."></textarea>
@@ -254,12 +254,12 @@
 													<div class="meta-data">
 														<span class="comment-author">{{ reply.patientName }}</span>
 													</div>
-													
+
 													<div *ngIf="review.patientId !== loggedInPatientId" class="delete-btn">
 														<p class="comment-content">{{ reply.description }}</p>
 														<i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>
 													  </div>
-													
+
 													<div *ngIf="review.patientId === loggedInPatientId" class="delete-btn">
 														<p class="comment-content">{{ reply.description }}</p>
 														<i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>

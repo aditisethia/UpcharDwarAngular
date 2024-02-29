@@ -19,3 +19,110 @@
   overflow-y: auto; /* Enable vertical scrolling */
   height: 100%; /* Set a fixed or max height to enable scrolling */
 }
+
+
+/* Style for the chat body */
+.chat-body {
+  height: 400px; /* Set a fixed height or adjust as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Style for each chat message */
+.media {
+  margin-bottom: 10px;
+}
+
+/* Style for sent messages */
+.sent {
+  text-align: right;
+}
+
+/* Style for received messages */
+.received {
+  text-align: left;
+}
+
+/* Style for the message box */
+.msg-box {
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+  max-width: 70%; /* Adjust as needed */
+}
+
+/* Style for the message content */
+.msg-box p {
+  margin: 0;
+}
+
+/* Style for the chat message info */
+.chat-msg-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style for the chat time */
+.chat-time {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Style for images in the chat */
+.msg-box img {
+  max-width: 80%; /* Ensure the image does not exceed the container width */
+  border-radius: 6px; /* Rounded corners for images */
+  margin-top: 8px; /* Adjust as needed */
+}
+
+/* Style for the file preview */
+.file-preview {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.file-preview img {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 5px;
+}
+
+/* Adjust the styling based on your design preferences */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-file {
+  cursor: pointer;
+}
+
+.input-msg-send {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.msg-send-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.msg-send-btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-cut {
+  margin-left: 5px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cut:hover {
+  background-color: #bd2130;
+}
