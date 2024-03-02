@@ -1,97 +1,93 @@
- <div class="header-left">
-
- <div class="widget-profile pro-widget-content" >
-            <div class="profile-info-widget">
-                <a href="#" class="booking-doc-img">
-                  <img
-                  [src]="IMG_URLs + patient.imageName"
-                  alt="User Image"
-                />
-                </a>
-                <div class="profile-det-info">
-                    <h3>{{patient.name}}</h3>
-                    <div class="patient-details">
-                        <h5><i class="fas fa-birthday-cake"></i> {{patient.age}}</h5>
-                        <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> {{patient.city}}_{{patient.country}}</h5>
-                    </div>
-                </div>
-            </div>
+<div class="header-left">
+  <div class="widget-profile pro-widget-content">
+    <div class="profile-info-widget">
+      <a [href]="IMG_URLs + patient.imageName" target="_blank" class="booking-doc-img">
+        <img [src]="IMG_URLs + patient.imageName" alt="User Image" />
+      </a>
+      <div class="profile-det-info">
+        <h3>{{ patient.name }}</h3>
+        <div class="patient-details">
+          <h5><i class="fas fa-birthday-cake"></i> {{ patient.age }}</h5>
+          <h5 class="mb-0">
+            <i class="fas fa-map-marker-alt"></i> {{ patient.city }}_{{
+              patient.country
+            }}
+          </h5>
         </div>
-        <div class="dashboard-widget">
-            <nav class="dashboard-menu">
-                <ul>
-                    <li >
-                        <a [routerLink]="'/patientmaindashboard/patientdashboard'">
-                            <i class="fas fa-columns"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard-widget">
+    <nav class="dashboard-menu">
+      <ul>
+        <li>
+          <a [routerLink]="'/patientmaindashboard/patientdashboard'">
+            <i class="fas fa-columns"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
 
-                    <li>
+        <li>
+          <a routerLink="/patientmaindashboard/searchdoctor"
+            ><i class="fas fa-users"></i><span>Search Doctor</span></a
+          >
+        </li>
 
-                      <a routerLink="/patientmaindashboard/searchdoctor"
-                      ><i class="fas fa-users"></i><span>Search Doctor</span></a
-                    >
-                    </li>
+        <!-- <li>
+          <a href="favourites.html">
+            <i class="fas fa-bookmark"></i>
+            <span>Favourites</span>
+          </a>
+        </li> -->
 
-                    <li>
-                        <a href="favourites.html">
-                            <i class="fas fa-bookmark"></i>
-                            <span>Favourites</span>
-                        </a>
-                    </li>
+        <li>
+          <a [routerLink]="'/patientmaindashboard/favlab'">
+            <i class="fas fa-bookmark"></i>
+            <span>Favourite Labs</span>
+          </a>
+        </li>
 
-                    <li>
-                        <a [routerLink]="'/patientmaindashboard/favlab'">
-                            <i class="fas fa-bookmark"></i>
-                            <span>Favourite Labs</span>
-                        </a>
-                    </li>
+        <li>
+          <a [routerLink]="'/patientmaindashboard/lablist'">
+            <i class="fas fa-columns"></i>
+            <span>All Labs</span>
+          </a>
+        </li>
 
-                    <li >
-                        <a [routerLink]="'/patientmaindashboard/lablist'">
-                            <i class="fas fa-columns"></i>
-                            <span>All Labs</span>
-                        </a>
-                    </li>
+        <!-- <li>
+          <a [routerLink]="'/patientmaindashboard/labprofile'">
+            <i class="fas fa-columns"></i>
+            <span>labprofile</span>
+          </a>
+        </li> -->
+        <li>
+          <a [routerLink]="'/patientmaindashboard/message'">
+            <i class="fas fa-comments"></i>
+            <span>Message</span>
+            <small class="unread-msg">23</small>
+          </a>
+        </li>
 
-                    <li >
-                        <a [routerLink]="'/patientmaindashboard/labprofile'">
-                            <i class="fas fa-columns"></i>
-                            <span>labprofile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="'/patientmaindashboard/message'">
-                            <i class="fas fa-comments"></i>
-                            <span>Message</span>
-                            <small class="unread-msg">23</small>
-                        </a>
-                    </li>
+        <li>
+          <a [routerLink]="'/patientmaindashboard/patientprofilesetting'">
+            <i class="fas fa-user-cog"></i>
+            <span>Profile Settings</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="'/patientmaindashboard/changepassword'">
+            <i class="fas fa-lock"></i>
+            <span>Change Password</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="confirmLogout()">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </li>
 
-
-                    <li>
-                        <a [routerLink]="'/patientmaindashboard/patientprofilesetting'">
-                            <i class="fas fa-user-cog"></i>
-                            <span>Profile Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="'/patientmaindashboard/changepassword'">
-                            <i class="fas fa-lock"></i>
-                            <span>Change Password</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a  (click)="logout()">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-        </div>
-
-
+      </ul>
+    </nav>
+  </div>
 </div>

@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit{
- 
+
   constructor(  private userService:UserServiceService, private snack:MatSnackBar,private router: Router,private fb:FormBuilder){
 
   }
@@ -30,7 +30,6 @@ checkReegisterFormValidation()
    this.regForm=this.fb.group({
     name:['',[Validators.required]],
     password:['',[Validators.required]],
-    phone:['',[Validators.required]],
     email:['',[Validators.required]],
     roleId:['',[Validators.required]]
 

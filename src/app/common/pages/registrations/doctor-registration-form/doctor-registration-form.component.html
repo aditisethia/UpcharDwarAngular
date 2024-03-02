@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <div style="margin-bottom: 9%;">
-    
+
 </div>
 
 <body>
@@ -48,7 +48,7 @@
                                                                                 <div class="change-photo-btn">
                                                                                     <label for="image">Image:</label>
                                                                                     <input type="file" (change)="onUploadFiles($event,2)" name="files" multiple class="form-control" />
-                                                                                   
+
                                                                                 </div>
                                                                                 <small
                                                                                     class="form-text text-muted">Allowed
@@ -80,7 +80,7 @@
                                                                                 <input type="text" name="firstName" class="form-control" [placeholder]="doctor.name">
                                                                     </div>
                                                                 </div>
-                                                               
+
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>Phone Number</label>
@@ -115,10 +115,10 @@
                                         <!-- {{doctor.qualifications |json}} -->
                                         <div class="submit-section">
                                             <button (click)="nextLevel()" type="submit"
-                                           
+
                                                 class="btn btn-primary submit-btn">Next</button>
                                         </div>
-                                      
+
                                     </div>
 
                                     <!-- Level 2 form fields -->
@@ -217,7 +217,7 @@
                                         <div class="card services-card">
                                             <div class="card-body">
                                               <h4 class="card-title">Doctor's Specialization</h4>
-                                              
+
                                               <div class="form-group">
                                                 <label>Select Specialization</label>
                                                 <select class="form-control" name="doctor.speciality.id">
@@ -229,8 +229,8 @@
                                               </div>
                                             </div>
                                           </div>
-                                          
-                                          
+
+
                                         <!-- /Services and Specialization -->
 
                                         <div class="submit-section">
@@ -282,7 +282,7 @@
                                                   </div>
                                                 </div>
                                               </div>
-                                          
+
                                               <!-- Add more button -->
                                               <div class="add-more">
                                                 <a  class="add-education" (click)="addNewColumn(1)"><i class="fa fa-plus-circle"></i> Add More</a>
@@ -312,7 +312,7 @@
                                                                         <input type="text" class="form-control"  [(ngModel)]="doctor.expierenceTo">
                                                                     </div>
                                                                 </div>
-                                                               
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -330,12 +330,12 @@
                                         <div class="card">
                                             <div class="card-body">
                                               <h4 class="card-title">Awards</h4>
-                                              
-                                              <!-- Iterate over each award in the awards array -->
-                                              
 
                                               <!-- Iterate over each award in the awards array -->
-                                             
+
+
+                                              <!-- Iterate over each award in the awards array -->
+
                                               <div *ngFor="let award of doctor.awards; let i = index" class="awards-info">
                                                 <div class="row form-row awards-cont">
                                                   <div class="col-12 col-md-5">
@@ -349,22 +349,22 @@
                                                   </div>
                                                 </div>
                                               </div>
-                                              
-                                              
+
+
                                               <!-- Add more button -->
                                               <div class="add-more">
                                                 <a  class="add-award" (click)="addNewColumn(2)"><i class="fa fa-plus-circle"></i> Add More</a>
                                               </div>
 
                                            <!-- ................ -->
-                                           
+
 
                                            <!-- ................ -->
 
-                                              
+
                                             </div>
                                           </div>
-                                          
+
                                         <!-- /Awards -->
 
                                         <div class="submit-section">
@@ -386,11 +386,11 @@
                                         <div *ngIf="fileStatus.status==='progress'">
                                             <div class="progress">
                                               <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                                  {{ fileStatus.requestType }} {{ fileStatus.percent }} 
+                                                  {{ fileStatus.requestType }} {{ fileStatus.percent }}
                                                 </div>
                                             </div>
                                           </div> <hr>
-                                    
+
                                           <form enctype="multipart/form-data">
                                             <fieldset>
                                               <div class="form-group">
@@ -400,9 +400,9 @@
                                               </div>
                                             </fieldset>
                                           </form>
-        
 
-                                      
+
+
                                         <div class="submit-section">
                                             <button (click)="nextLevel()" type="submit"
                                                 class="btn btn-primary submit-btn">Next</button>
@@ -412,11 +412,11 @@
                                                 class="btn btn-primary submit-btn">submit</button>
                                         </div>
                                         </div>
-                                        
 
-                                   
+
+
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>

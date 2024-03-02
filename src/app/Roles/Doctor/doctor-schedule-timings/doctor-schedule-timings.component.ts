@@ -161,10 +161,3 @@ export class DoctorScheduleTimingsComponent implements OnInit {
 
 
 }
-
-
-
-
-
-
-
