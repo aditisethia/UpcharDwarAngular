@@ -53,6 +53,8 @@ export class DoctorScheduleTimingsComponent implements OnInit {
         this.scheduleservice.getdoctorbyuserid(user.id).subscribe((data: any) => {
           this.doctor = data.doctor;
           this.drid = data.doctor.id;
+          console.log(this.doctor.id+"------------>");
+          
           console.log(data);
           console.log(this.doctor+this.drid);
           this.ScheduleRequest.doctor.id = data.doctor.id;
@@ -117,6 +119,8 @@ export class DoctorScheduleTimingsComponent implements OnInit {
     console.log(this.drid + "at save schedule");
 
     this.ScheduleRequest.doctor.id = this.doctor.id;
+    console.log(this.ScheduleRequest.doctor.id+"---------------->");
+    
     if (formValues.selectedDate && this.timeSlots.length > 0) {
       this.ScheduleRequest.selectedDate = formValues.selectedDate;
       this.ScheduleRequest.timeSlots = this.timeSlots;

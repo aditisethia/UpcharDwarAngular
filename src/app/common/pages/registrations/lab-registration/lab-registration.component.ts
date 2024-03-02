@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Lab } from 'src/app/entity/Lab';
 import { Location } from 'src/app/entity/Location';
 import { LabRegistrationRequest } from 'src/app/payload/Request/LabRegistrationRequest';
@@ -29,7 +30,8 @@ export class LabRegistrationComponent implements OnInit {
   constructor(
     private _labService: LabServiceService,
     private loginService: LoginService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _route:Router
   ) {}
 
   ngOnInit() {
@@ -115,6 +117,7 @@ export class LabRegistrationComponent implements OnInit {
       (data: any) => {
         console.log(data);
         Swal.fire(data.message, '', 'success');
+        this._route.navigate(["/notvarified"]);
       },
       (error: HttpErrorResponse) => {
         console.log(error);

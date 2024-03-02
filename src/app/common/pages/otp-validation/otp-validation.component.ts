@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResendOtpRequest } from 'src/app/payload/Request/ResendOtpRequest';
 import { OtpServiceService } from 'src/app/services/user/otp-service.service';
+import Toast from 'src/app/utils/Sweet-alert-message';
 
 @Component({
   selector: 'app-otp-validation',
@@ -9,14 +11,18 @@ import { OtpServiceService } from 'src/app/services/user/otp-service.service';
 })
 export class OtpValidationComponent implements OnInit {
 
-  constructor(private _verify:OtpServiceService ,private router:Router,){
+  constructor(private _verify:OtpServiceService ,private router:Router,private otpVar:OtpServiceService){
   }
 
 otpregistration={
   email:"",
   otp:"",
-}
+};
+  
 
+resendOtpReq:ResendOtpRequest={
+  email:'',
+}
   verificationMessage: string | undefined;
 
 
@@ -32,7 +38,7 @@ this.otpregistration.otp=event;
   // verify user by email and otp
   verifyEmail() {
     // if(l)
-    // this.otpregistration.email = localStorage.getItem('userEmail');
+    //this.otpregistration.email = localStorage.getItem('userEmail');
     //alert(this.email)
     if (this.email != undefined || this.email != null)
     //this.otp = this.otp1 + this.otp2 + this.otp3 + this.otp4;
@@ -41,17 +47,23 @@ this.otpregistration.otp=event;
    
      this._verify.verify(this.otpregistration).subscribe(
       response => {
-        console.log('Verification success:', response);
+        if(response.body.message=="invalid"||response.body.message=="link expired"||response.body.message=="user already exist with this email"){
+          Toast.fire({
+            icon: 'error',
+            title: response.body.message,
+         
+          }
+          
+          )
+          this.router.navigate(['/otp'])
+        }
+        else{
         //localStorage.getItem('userEmail');
         this.router.navigate(['/login'])
-        // Handle success, e.g., display a success message
-      },
-      error => {
-        console.log(error);
-        // console.error('Verification error:', error);
-        // Handle error, e.g., display an error message
+        }
       }
-    )
+     
+    );
      
 
     
@@ -72,6 +84,7 @@ this.otpregistration.otp=event;
         // Access the email property of the user object
         const userEmail = user.email;
         this.otpregistration.email = userEmail;
+        this.resendOtpReq.email=userEmail;
         console.log("User Email:", userEmail);
     } else {
         console.log("User object not found in localStorage");
@@ -83,8 +96,20 @@ this.otpregistration.otp=event;
   //  else{
   //   alert('else')
   //  }
-  }
 
+resendOtp(){
+  this.otpVar.resendOtp(this.resendOtpReq).subscribe((data:any)=>{
+    Toast.fire({
+      icon: 'success',
+      title: data.body.message,
+   
+    }
+    
+  )
+});
+
+  }
+}
  
 
   
