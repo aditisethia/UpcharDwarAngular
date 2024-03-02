@@ -75,6 +75,7 @@ export class ChattingComponent implements OnInit {
   buttons(){
 
   this.sendMessage();
+  if(this.selectedPhoto)
   this.uploadPhoto();
   }
 

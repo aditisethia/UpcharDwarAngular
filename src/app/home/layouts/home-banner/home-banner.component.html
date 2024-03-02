@@ -16,11 +16,14 @@
         <form>
           <div class="form-group search-location">
             <input
-              type="text"
-              class="form-control"
-              placeholder="Search Location"
-              (keyup)="searching()"
-            />
+            type="text"
+            class="form-control"
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
+            (keyup)="searching()"
+            placeholder="Search Location"
+            id="search-reset"
+          />
 
             <span class="form-text">Based on your Location</span>
           </div>
@@ -52,11 +55,20 @@
               placeholder="Search Doctors, Clinics, Hospitals, Diseases, etc"
               id="search-reset"
             />
-            <ul class="result-list" id="search-reset">
+            <ul class="result-list" id="search-reset" >
               <li *ngFor="let menace of data.doctor" class="result-item" id="search-reset">
                 <img [src]="IMG_URLs + menace.imageName" alt="User Image" id="search-reset" />
                 <div class="result-details" id="search-reset">
                   <h4 id="search-reset">{{ menace.name }}</h4>
+                  <!-- Add more details as needed -->
+                </div>
+              </li>
+            </ul>
+            <ul class="result-list" id="search-reset" >
+              <li *ngFor="let menace of data.lab" class="result-item" id="search-reset">
+                <img [src]="IMG_URLs + menace.imageName" alt="User Image" id="search-reset" />
+                <div class="result-details" id="search-reset">
+                  <h4 id="search-reset">{{ menace.labName}}</h4>
                   <!-- Add more details as needed -->
                 </div>
               </li>

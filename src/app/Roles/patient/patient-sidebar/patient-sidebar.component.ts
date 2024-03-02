@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PatientserviceService } from 'src/app/services/patient-service/patientservice.service';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-patient-sidebar',
@@ -45,7 +46,21 @@ export class PatientSidebarComponent implements OnInit {
     this.loginService.logout();
   }
 
-
+  confirmLogout() {
+    Swal.fire({
+      title: 'Logout',
+      text: 'Are you sure you want to logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6' ,
+      confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.logout();
+      }
+    });
+  }
 
 
 }
