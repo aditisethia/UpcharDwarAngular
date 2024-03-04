@@ -11,7 +11,11 @@
         <div class="col-md-12 col-12">
           <nav aria-label="breadcrumb" class="page-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a [routerLink]="'/patientmaindashboard/patientdashboard'">Home</a></li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="'/patientmaindashboard/patientdashboard'"
+                  >Home</a
+                >
+              </li>
               <li class="breadcrumb-item active" aria-current="page">
                 Doctors List
               </li>
@@ -29,17 +33,28 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 col-lg-3 col-xl-3 theiaStickySidebar">
-
-          <!--  Search Filter -->
+          <!-- Search Filter -->
           <h2 style="color: rgb(123, 157, 226)">Search Doctor</h2>
+
           <div class="input-group mb-3 mt-3">
             <input
               type="text"
               class="form-control"
               (keyup)="search()"
               [(ngModel)]="searchKeyword"
-              placeholder="Search..."
+              placeholder="Search Doctor with name,speciality,city...."
             />
+
+            <!-- City Filter Dropdown -->
+            <div class="input-group-append mr-2">
+              <select (change)="search()" [(ngModel)]="selectedCity">
+                <option [value]="'ALL'">All Cities</option>
+                <option *ngFor="let city of city" [value]="city">
+                  {{ city }}
+                </option>
+              </select>
+            </div>
+
             <div class="input-group-append">
               <button
                 class="btn btn-outline-secondary"
@@ -47,24 +62,47 @@
                 (click)="search()"
                 style="
                   background-color: rgb(123, 157, 226);
-                  color: rgb(253, 253, 254);"
+                  color: rgb(253, 253, 254);
+                "
               >
                 Search
               </button>
             </div>
           </div>
+          <h5 style="color: rgb(123, 157, 226)">
+            Search Doctor with name,speciality,city....
+          </h5>
 
           <!-- Searching Result Show Here -->
           <!-- Result -->
           <div class="mt-3">
-            <h3>Search Results:</h3>
             <ul class="list-group">
               <li *ngFor="let do of searchdoctor" class="list-group-item">
-                <h2><a  [routerLink]="'/patientmaindashboard/doctorprofile/' + do.id" class="booking-doc-img">
-                  <img _ngcontent-ng-c2320061364="" [src]="IMG_URLs+ do.imageName" alt="User Image" class="avatar-img rounded-circle">
-                  {{do.name}}  </a> </h2>  <i class="bi bi-bag-check" style="color:rgb(123, 157, 226)"></i> {{do.speciality.spName}}&#160;&#160;<i class="bi bi-geo-alt" style="color:rgb(123, 157, 226)"></i>  {{do.city}}_{{do.country}}
-
-
+                <h2>
+                  <a
+                    [routerLink]="
+                      '/patientmaindashboard/doctorprofile/' + do.id
+                    "
+                    class="booking-doc-img"
+                  >
+                    <img
+                      _ngcontent-ng-c2320061364=""
+                      [src]="IMG_URLs + do.imageName"
+                      alt="User Image"
+                      class="avatar-img rounded-circle"
+                    />
+                    {{ do.name }}
+                  </a>
+                </h2>
+                <i
+                  class="bi bi-bag-check"
+                  style="color: rgb(123, 157, 226)"
+                ></i>
+                {{ do.speciality.spName }}&#160;&#160;<i
+                  class="bi bi-geo-alt"
+                  style="color: rgb(123, 157, 226)"
+                ></i>
+                {{ do.city }}_{{ do.country }}
               </li>
             </ul>
           </div>
@@ -73,15 +111,25 @@
 
         <div class="col-md-12 col-lg-8 col-xl-9">
           <div style="overflow-y: auto; max-height: 600px">
-            <div *ngFor="let doctor of doctor">
+            <div *ngFor="let doctor of searchdoctor">
               <div class="card">
                 <div class="card-body">
                   <div class="doctor-widget">
                     <div class="doc-info-left">
                       <div class="doctor-img">
-                        <a  [routerLink]="'/patientmaindashboard/doctorprofile/' + doctor.id" class="booking-doc-img1">
-                          <img _ngcontent-ng-c2320061364="" [src]="IMG_URLs+ doctor.imageName" alt="User Image" class="avatar-img1 rounded-circle">
-                          </a>
+                        <a
+                          [routerLink]="
+                            '/patientmaindashboard/doctorprofile/' + doctor.id
+                          "
+                          class="booking-doc-img1"
+                        >
+                          <img
+                            _ngcontent-ng-c2320061364=""
+                            [src]="IMG_URLs + doctor.imageName"
+                            alt="User Image"
+                            class="avatar-img1 rounded-circle"
+                          />
+                        </a>
                       </div>
                       <div class="doc-info-cont">
                         <h4 class="doc-name">
@@ -93,15 +141,9 @@
                           >
                         </h4>
                         <p class="doc-speciality">
-                          {{ doctor.speciality.spName }}
+                          Speciality :: {{ doctor.speciality.spName }}
                         </p>
-                        <p class="doc-department">
-                          <img
-                            src="assets/img/specialities/specialities-03.png"
-                            class="img-fluid"
-                            alt="Speciality"
-                          />Orthopaedics
-                        </p>
+
                         <div class="clinic-details">
                           <p class="doc-location">
                             <i class="fas fa-map-marker-alt"></i>

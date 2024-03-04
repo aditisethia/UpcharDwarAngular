@@ -35,7 +35,7 @@ export class PatientSidebarComponent implements OnInit {
         this.patientservice.getpatientbyemail(this.email).subscribe((patient: any) => {
 
           this.patient = patient;
-          // console.log(patient);
+           console.log(patient);
 
         })
 

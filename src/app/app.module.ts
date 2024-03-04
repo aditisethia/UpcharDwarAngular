@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
-import { HomeBannerComponent } from './home/layouts/home-banner/home-banner.component';
 import { HomeNavbarComponent } from './home/layouts/home-navbar/home-navbar.component';
 import { HomePopularSectionComponent } from './home/layouts/home-popular-section/home-popular-section.component';
 import { HomeSpecialitiesComponent } from './home/layouts/home-specialities/home-specialities.component';
@@ -128,6 +127,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { ChatComponent } from './Roles/Conversation/chat/chat.component';
 import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
+import { RouterModule } from '@angular/router';
+import { HomeBannerComponent } from './home/layouts/home-banner/home-banner.component';
 
 
 
@@ -138,7 +139,7 @@ import { ChattingComponent } from './Roles/Conversation/chatting/chatting.compon
     HomeComponent,
     HomeNavbarComponent,
     HomeSpecialitiesComponent,
-    HomeBannerComponent,
+
     HomePopularSectionComponent,
     FooterComponent,
     DoctorDashboardComponent,
@@ -223,7 +224,8 @@ import { ChattingComponent } from './Roles/Conversation/chatting/chatting.compon
     ForgetVarificationComponent,
     LabInvoicesComponent,
     LabProfileComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    HomeBannerComponent
 
 
 
@@ -256,7 +258,8 @@ import { ChattingComponent } from './Roles/Conversation/chatting/chatting.compon
     MatCardModule,
     NgOtpInputModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule
 
   ],
   providers: [

@@ -72,6 +72,7 @@ export class DoctorserviceService {
 
 
 
+
     formData.append("data", new Blob([JSON.stringify(doctor)], { type: 'application/json' }));
 
 
@@ -79,6 +80,11 @@ export class DoctorserviceService {
 
   }
 
+
+  public getallcity(){
+
+    return this._http.get(`http://localhost:8080/upchardwar/doctor/cities`);
+  }
 
 
 
