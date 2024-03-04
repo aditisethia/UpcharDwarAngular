@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { PageAppointmentRequest } from 'src/app/payload/Request/PageAppointmentRequest';
 import { PageAppointmentResponse } from 'src/app/payload/response/Response/pageAppointmentResponse';
 import { ApiRoutes } from 'src/app/utils/Api-Routes';
+import baseUrl from '../user/helper';
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +26,33 @@ export class PatientserviceService {
 
       formData.append("files", patient.imageName);
       console.log(patient.imageName);
-      
+
     }
-   
+
+
  patient.imageName=''
     formData.append("data", new Blob([JSON.stringify(patient)], { type: 'application/json' }));
    // formData.append("data",JSON.stringify(patient));
 
     return this._http.post(ApiRoutes.UPLOAD, formData,{headers});
+
+  }
+  update(id:any,patient:any): Observable<any> {
+    const headers = new HttpHeaders({
+      'enctype': 'multipart/from-data'
+    });
+    const formData = new FormData();
+    if (patient.imageName!= null) {
+
+      formData.append("files", patient.imageName);
+      console.log(patient.imageName);
+
+    }
+    patient.imageName=''
+    formData.append("data", new Blob([JSON.stringify(patient)], { type: 'application/json' }));
+   // formData.append("data",JSON.stringify(patient));
+
+    return this._http.put(`${baseUrl}/patient/${id}`, formData,{headers});
 
   }
 
@@ -52,7 +72,7 @@ export class PatientserviceService {
     return this._http.get(url);
   }
 
-  
+
 
 
 }

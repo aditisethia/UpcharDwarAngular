@@ -9,8 +9,8 @@
           </div>
           <div class="doc-info-cont">
             <h4 class="doc-name"><a href="doctor-profile.html">{{ doctor.name }}</a></h4>
-            <p class="doc-speciality">{{ doctor.speciality.spName }}</p>
-            <p class="doc-department"><img src="assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">Orthopaedics</p>
+            <p class="doc-speciality">Speciality :: {{ doctor.speciality.spName }}</p>
+
             <!-- <div class="rating">
               <i *ngFor="let star of [1, 2, 3, 4, 5]" [class]="star <= doctor.rating ? 'fas fa-star filled' : 'fas fa-star'"></i>
               <span class="d-inline-block average-rating">({{ doctor.feedbackCount }})</span>

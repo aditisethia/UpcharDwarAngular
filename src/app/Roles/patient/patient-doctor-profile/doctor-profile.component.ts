@@ -17,7 +17,7 @@ import { LoginService } from 'src/app/services/user/login.service';
 })
 export class DoctorProfileComponent {
 
-  doctorInfos: DoctorRequest | undefined;
+  doctorInfos: DoctorRequest = new DoctorRequest;
   Averagedoctorrating: number | undefined;
   drid: any | undefined;
   IMG_URLs = this.doctorService.IMAGE_URL;

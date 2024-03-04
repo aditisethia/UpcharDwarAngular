@@ -1,5 +1,5 @@
 import { Component ,Input, OnInit} from '@angular/core';
-import { Doctor } from 'src/app/entity/Doctor';
+import { RouterModule } from '@angular/router';
 
 import { Doctor_Request } from 'src/app/payload/Request/Doctor_Request';
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
@@ -11,6 +11,7 @@ import { DoctorserviceService } from 'src/app/services/doctor-service/doctorserv
   templateUrl: './doctor.component.html',
   styleUrls: ['./doctor.component.css']
 })
+
 export class DoctorComponent {
   @Input()
   doctor!: Doctor_Request;

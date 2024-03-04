@@ -1,10 +1,11 @@
+import { Router } from '@angular/router';
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
 import { LabServiceService } from 'src/app/services/Lab-service/lab-service.service';
 import { LoginService } from 'src/app/services/user/login.service';
 import { SearchService } from './../../../services/search-service/search.service';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Lab } from 'src/app/entity/Lab';
-import { Doctor } from '../home-popular-section/home-popular-section.component';
+import { Doctor } from 'src/app/entity/Doctor';
 
 @Component({
   selector: 'app-home-banner',
@@ -22,7 +23,7 @@ export class HomeBannerComponent  implements OnInit{
   };
   show: boolean = false;
 
-  constructor(private el: ElementRef,private searchservice:SearchService,private scheduleservice: DoctorScheduleService,private labService:LabServiceService,private loginService:LoginService) { }
+  constructor(private route :Router, private el: ElementRef,private searchservice:SearchService,private scheduleservice: DoctorScheduleService,private labService:LabServiceService,private loginService:LoginService) { }
   IMG_URLs = this.labService.IMAGE_URL;
 
   ngOnInit(): void {
@@ -38,6 +39,11 @@ export class HomeBannerComponent  implements OnInit{
         pharmacy: [],
       };
     }
+  }
+
+  navigateToProfiled(id:any){
+ this.route.navigate(['/patientmaindashboard/doctorprofile/',id]);
+
   }
 
   searching(){
