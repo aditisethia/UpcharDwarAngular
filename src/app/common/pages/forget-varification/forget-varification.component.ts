@@ -34,22 +34,29 @@ export class ForgetVarificationComponent {
     alert(this.forgetPassword.email)
     this.forgetPasswordService.generateOtp(this.forgetPassword.email).subscribe((data:any)=>
     {
-    
-      this.forgetPassword=data;
+     alert(this.forgetPassword.email)
+      if(data.message=="Otp Send successfully"){
+        
       localStorage.setItem('email',this.forgetPassword.email);
-    //  Swal.fire('Successfully Done!!','','success');
-      Toast.fire({
-      icon: 'success',
-      title: 'otp generated Succesfully',
+        Toast.fire({
+          icon: 'success',
+          title: data.message,
+       
+        })
+        this.router.navigate(['otpforgetpassword']);
+      }
+
+      else{
+        Toast.fire({
+          icon: 'error',
+          title: data.message,
+       
+        })
+        this.router.navigate(['verify-otp-for-forget-password']);
+      }
    
-    }
     
-    )
-    this.router.navigate(['otpforgetpassword']);
   
-    },(error: any)=>{
-     console.log(error);
-    
     }
     
     );

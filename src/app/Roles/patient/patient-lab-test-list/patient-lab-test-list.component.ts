@@ -123,6 +123,11 @@ export class PatientLabTestListComponent implements OnInit {
   }
 
   bookLabTest(labTestId: number){
+       if(this.labAppointmentRequest.patient==null){
+        alert("Please Login First");
+        this.route.navigate(['/']);
+       }
+       else{
     this.labTestService.getLabTestById(labTestId ).subscribe((data: any) => {
       this.labAppointmentRequest.labTest = data.LABTEST;
       console.log(data);
@@ -154,14 +159,17 @@ export class PatientLabTestListComponent implements OnInit {
         
         
         console.log(this.labAppointmentRequest);
+
         this.appointmentService.setAppointmentData(this.labAppointmentRequest);
 
         this.route.navigate(['/patientmaindashboard/labcheckout'])
 
       }
+    
+    
     });
 
-  
+       }
   }
 
 

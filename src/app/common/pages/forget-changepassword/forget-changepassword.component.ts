@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
 import { ResetPasswordRequest } from 'src/app/payload/Request/ResetPassword_Request';
 import { ForgetpasswordService } from 'src/app/services/user/forgetpassword.service';
 import { UserServiceService } from 'src/app/services/user/user-service.service';
@@ -41,9 +42,12 @@ export class ForgetChangepasswordComponent {
     alert(this.confirmPassword);
      // Check if newPassword and confirmPassword match
   if (this.newPassword !== this.confirmPassword) {
-    // Display an error message or handle it as needed
-    console.error('New password and confirm password do not match');
-    //this.sweet.alertMessage('success','New password and confirm password do not match');
+    Toast.fire({
+      icon: 'error',
+      title:'New password and confirm password do not match',
+  
+    })
+   
     return;
   }
     

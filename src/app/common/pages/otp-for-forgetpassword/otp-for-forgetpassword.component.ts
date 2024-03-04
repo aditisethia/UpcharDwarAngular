@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ForgetpasswordService } from 'src/app/services/user/forgetpassword.service';
 import { OtpServiceService } from 'src/app/services/user/otp-service.service';
+import Toast from 'src/app/utils/Sweet-alert-message';
 
 @Component({
   selector: 'app-otp-for-forgetpassword',
@@ -40,18 +41,26 @@ this.otpregistration.otp=event;
  
    
      this._verify.verify(this.otpregistration).subscribe(
-      response => {
-        console.log('Verification success:', response);
-        //localStorage.getItem('userEmail');
-        this.router.navigate(['forgetchangepassword'])
-        // Handle success, e.g., display a success message
-      },
-      error => {
-        console.log(error);
-        // console.error('Verification error:', error);
-        // Handle error, e.g., display an error message
-      }
-    )
+   
+       
+        response => {
+          if(response.body.message=="invalid"||response.body.message=="link expired"||response.body.message=="user already exist with this email"){
+            Toast.fire({
+              icon: 'error',
+              title: response.body.message,
+           
+            }
+            
+            )
+            this.router.navigate(['otpforgetpassword']);
+          }
+          else{
+          //localStorage.getItem('userEmail');
+          this.router.navigate(['/forgetchangepassword'])
+          }
+        }
+       
+      );
     
   }
 
@@ -60,7 +69,8 @@ this.otpregistration.otp=event;
 
  
   ngOnInit(): void {
-   let emailStr =  localStorage.getItem('userEmail')
+   let emailStr =  localStorage.getItem('email')
+   alert(emailStr)
    if(emailStr != null)
    {
     this.otpregistration.email = emailStr

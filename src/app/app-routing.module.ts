@@ -73,6 +73,8 @@ import { ChatComponent } from './Roles/Conversation/chat/chat.component';
 
 import { LabInvoicesComponent } from './Roles/lab/lab-invoices/lab-invoices.component';
 import { LabProfileComponent } from './Roles/patient/lab-profile/lab-profile.component';
+import { NotVarifiedComponent } from './common/pages/not-varified/not-varified.component';
+import { PatientGuard } from './helper/patient-gaurd.gaurd';
 
 
 
@@ -82,7 +84,10 @@ const routes: Routes = [
     path: "",
     component: HomeComponent
   },
-
+  {
+   path:"notvarified",
+   component:NotVarifiedComponent,
+  },
 
   {
 
@@ -256,6 +261,7 @@ const routes: Routes = [
   },
   { path: "patientmaindashboard",
   component: PatientMainDashboardComponent,
+  canActivate: [PatientGuard],
   children:[
     {
       path:"lablist",

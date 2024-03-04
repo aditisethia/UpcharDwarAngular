@@ -54,6 +54,8 @@ export class HomePopularSectionComponent implements AfterViewInit {
         console.log(data);
         this.dr=data;
         this.doctors=this.dr.content;
+        console.log("test---------------------");
+        
         console.log(this.doctors);
 
       })

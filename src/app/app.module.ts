@@ -127,8 +127,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { ChatComponent } from './Roles/Conversation/chat/chat.component';
 import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
+
 import { RouterModule } from '@angular/router';
 import { HomeBannerComponent } from './home/layouts/home-banner/home-banner.component';
+
+import { NotVarifiedComponent } from './common/pages/not-varified/not-varified.component';
+
 
 
 
@@ -225,7 +229,11 @@ import { HomeBannerComponent } from './home/layouts/home-banner/home-banner.comp
     LabInvoicesComponent,
     LabProfileComponent,
     StarRatingComponent,
-    HomeBannerComponent
+
+    HomeBannerComponent,
+
+    NotVarifiedComponent,
+ 
 
 
 
