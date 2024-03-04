@@ -1,0 +1,13 @@
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* background: url('path/to/your-arrow-icon.png') no-repeat right center; Change the path to your custom arrow icon */
+  padding-right: 30px; /* Adjust the padding based on the width of your arrow icon */
+  border-radius: 5px;
+  border: 1px solid #ced4da; /* Add a border color */
+}
+
+.custom-select:hover, .custom-select:focus {
+  border-color: #707070; /* Change the border color on hover and focus */
+}

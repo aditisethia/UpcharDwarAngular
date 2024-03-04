@@ -1,8 +1,5 @@
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { event } from 'jquery';
-import { Doctor } from 'src/app/entity/Doctor';
 import { DoctorRequest } from 'src/app/payload/Request/DoctorRequest';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import Swal from 'sweetalert2';
@@ -10,8 +7,6 @@ import { saveAs } from 'file-saver';
 import { Speciality } from 'src/app/entity/speciality';
 import { DoctorQualification } from 'src/app/entity/DoctorQualification';
 import { LoginService } from 'src/app/services/user/login.service';
-import { FormsModule } from '@angular/forms';
-
 @Component({
   selector: 'app-doctor-registration-form',
   templateUrl: './doctor-registration-form.component.html',
@@ -42,9 +37,12 @@ export class DoctorRegistrationFormComponent implements OnInit {
   this.loginService.getCurrentUser().subscribe((data:any)=>
   {
    this.doctor=data;
+   console.log(data);
+
    this.doctor.awards =[];
        this.doctor.email = data.email;
       this.doctor.name = data.name;
+
   });
     this.doctor = new DoctorRequest();
     this.doctor.awards = [];

@@ -132,6 +132,7 @@ import { NotVarifiedComponent } from './common/pages/not-varified/not-varified.c
 
 
 
+
 @NgModule({
   declarations: [
     ListLabTestComponent,
@@ -225,7 +226,8 @@ import { NotVarifiedComponent } from './common/pages/not-varified/not-varified.c
     LabInvoicesComponent,
     LabProfileComponent,
     StarRatingComponent,
-    NotVarifiedComponent
+    NotVarifiedComponent,
+  
 
 
 

@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit{
- 
+
   constructor(  private userService:UserServiceService, private snack:MatSnackBar,private router: Router,private fb:FormBuilder){
 
   }
@@ -27,12 +27,13 @@ user:UserRequest=new UserRequest;
 regForm!:FormGroup;
 checkReegisterFormValidation()
 {
-   this.regForm=this.fb.group({
-    name:['',[Validators.required]],
-    password:['',[Validators.required]],
-    phone:['',[Validators.required]],
-    email:['',[Validators.required]],
-    roleId:['',[Validators.required]]
+  this.regForm = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(3)]], // Minimum length set to 3 characters
+    password: ['', [Validators.required, Validators.minLength(6)]], // Minimum length set to 6 characters
+    email: ['', [Validators.required, Validators.pattern(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  )]], // Email validation
+    roleId: ['', [Validators.required]]
 
    })
 }

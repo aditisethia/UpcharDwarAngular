@@ -11,6 +11,7 @@ import { LoginService } from 'src/app/services/user/login.service';
 import { AppointmentserviceService } from 'src/app/services/doctor-service/appointmentservice.service';
 import { PatientserviceService } from 'src/app/services/patient-service/patientservice.service';
 import { TimesloteService } from 'src/app/services/doctor-service/timeslote.service';
+import { error } from 'jquery';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class PatientDoctorAppointmentBookingComponent {
 
 
   ngOnInit(): void {
+
     this.route.paramMap.subscribe((params) => {
       this.drid = this.route.snapshot.params['drid'];
       console.log(this.drid);
@@ -50,11 +52,19 @@ export class PatientDoctorAppointmentBookingComponent {
 
     //getting cyrrent user
     this.loginservice.getCurrentUser().subscribe((currentuser: any) => {
+
       // this.AppointMentRequest.patient = currentuser.id;
       this.pemail = currentuser.email;
       if (this.pemail !== null) {
         this.getpatientbyemail();
       }
+
+
+
+    }, (error) => {
+          Swal.fire('Login Before Appointment','You Need To Login First','info');
+
+      this.router.navigate(['/login']);
 
     });
   }
@@ -134,10 +144,10 @@ export class PatientDoctorAppointmentBookingComponent {
 
   //for selecting timeslote and set purpose
 
-  selectTimeSlot(timeSlot: any,selecteddate:any) {
+  selectTimeSlot(timeSlot: any, selecteddate: any) {
     console.log(timeSlot);
-console.log(selecteddate);
-this.AppointMentRequest.appointmentDate=selecteddate;
+    console.log(selecteddate);
+    this.AppointMentRequest.appointmentDate = selecteddate;
     // this.AppointMentRequest.timeslote.id = timeSlot;
     this.tsservice.gettimeslotesbyuserid(timeSlot).subscribe((data: any) => {
       this.AppointMentRequest.timeslote = data;

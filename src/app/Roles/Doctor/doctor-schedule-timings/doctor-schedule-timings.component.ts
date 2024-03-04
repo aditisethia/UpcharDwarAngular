@@ -1,11 +1,8 @@
-
-
 import { ScheduleRequest } from '../../../payload/Request/ScheduleRequest';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { Doctor } from 'src/app/entity/Doctor';
 import { TimeSlotRequest } from 'src/app/payload/Request/TimeSlotRequest';
 import { DoctorScheduleService } from 'src/app/services/doctor-schedule.service';
@@ -165,10 +162,3 @@ export class DoctorScheduleTimingsComponent implements OnInit {
 
 
 }
-
-
-
-
-
-
-

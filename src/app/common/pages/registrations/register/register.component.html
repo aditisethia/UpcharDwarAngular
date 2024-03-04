@@ -1,88 +1,99 @@
 <app-home-navbar></app-home-navbar>
-<div class="content">
+<div class="content" style="margin-top: 2%">
+  <div class="container-fluid">
     <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-
-                <!-- Register Content -->
-                <div class="account-content" style="margin-top: 3%;">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7 col-lg-6 login-left">
-                            <img src="assets/img/login-banner.png" class="img-fluid" alt="Doccure Register">
-                        </div>
-                        <div class="col-md-12 col-lg-6 login-right">
-                            <div class="login-header">
-                                <!-- <h3>Patient Register <a href="doctor-register.html">Are you a Doctor?</a></h3> -->
-                            </div>
-
-                            <!-- Register Form -->
-
-
-                            <form [formGroup]="regForm" >{{user|json}}
-                                
-                                  <h4>Ragister As</h4>
-                                <mat-radio-group [(ngModel)]="user.roleId" formControlName="roleId" >
-                                    <mat-radio-button value="2">Doctor</mat-radio-button>
-                                    <mat-radio-button value="3">Patient</mat-radio-button>
-                                    <mat-radio-button value="4">Lab</mat-radio-button>
-                                    <div class="error" *ngIf="regForm.get('roleId')?.hasError('required') && regForm.get('roleId')?.touched">
-                                        Role is required.
-                                      </div>
-                                  </mat-radio-group>
-
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" formControlName="name" [(ngModel)]="user.name"
-                                         required>
-                                    <label class="focus-label">Name</label>
-
-                                    <div class="error" *ngIf="regForm.get('name')?.hasError('required') && regForm.get('name')?.touched">
-                                        User Name is required.
-                                      </div>
-                                </div>
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" formControlName="phone" [(ngModel)]="user.phone"
-                                        required>
-                                    <label class="focus-label">Phone</label>
-                                    <div class="error" *ngIf="regForm.get('phone')?.hasError('required') && regForm.get('phone')?.touched">
-                                        Phone no is required.
-                                      </div>
-                                </div>
-                                <div class="form-group form-focus">
-                                    <input type="email" class="form-control floating" formControlName="email" [(ngModel)]="user.email" name="email"
-                                        required>
-                                    <label class="focus-label">Email</label>
-                                    <div class="error" *ngIf="regForm.get('email')?.hasError('required') && regForm.get('email')?.touched">
-                                        User Email is required.
-                                      </div>
-                                </div>
-                                
-                              
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" formControlName="password" [(ngModel)]="user.password"
-                                        name="password" required>
-                                    <label class="focus-label">Password</label>
-                                    <div class="error" *ngIf="regForm.get('password')?.hasError('required') && regForm.get('password')?.touched">
-                                        Password  is required.
-                                      </div>
-                                </div>
-
-                                <button class="btn btn-primary btn-block btn-lg login-btn" type="submit" (click)="onSubmit()">Signup</button>
-                            </form>
-
-
-                            <!-- /Register Form -->
-
-                        </div>
-                    </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <!-- Register Content -->
+          <div class="account-content" style="margin-top: 3%">
+            <div class="row align-items-center justify-content-center">
+              <a [routerLink]="['']" class="home-logo">
+                <i
+                  class="bi bi-house-heart-fill"
+                  style="font-size: 4em; color: #7ba3ed"
+                ></i>
+              </a>
+              <div class="col-md-7 col-lg-6 login-left">
+                <img
+                  src="assets/img/login-banner.png"
+                  class="img-fluid"
+                  alt="Doccure Register"
+                />
+              </div>
+              <div class="col-md-12 col-lg-6 login-right">
+                <div class="login-header">
                 </div>
-                <!-- /Register Content -->
 
+                <!-- Register Form -->
+
+                <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+                  <h4>Register As</h4>
+                  <mat-radio-group [(ngModel)]="user.roleId" formControlName="roleId">
+                    <mat-radio-button value="2">Doctor</mat-radio-button>
+                    <mat-radio-button value="3">Patient</mat-radio-button>
+                    <mat-radio-button value="4">Lab</mat-radio-button>
+                    <div class="error" *ngIf="regForm.get('roleId')?.hasError('required') && regForm.get('roleId')?.touched">
+                      Role is required.
+                    </div>
+                  </mat-radio-group>
+
+                  <div class="form-group form-focus">
+                    <input type="text" class="form-control floating" formControlName="name" [(ngModel)]="user.name" required />
+                    <label class="focus-label">Name</label>
+                    <div class="error" *ngIf="regForm.get('name')?.hasError('required') && regForm.get('name')?.touched">
+                      User Name is required.
+                    </div>
+                  </div>
+
+                  <div class="form-group form-focus">
+                    <input type="email" class="form-control floating" formControlName="email" [(ngModel)]="user.email" name="email" required />
+                    <label class="focus-label">Email</label>
+                    <div class="error" *ngIf="regForm.get('email')?.hasError('required') && regForm.get('email')?.touched">
+                      User Email is required.
+                    </div>
+                    <div class="error" *ngIf="regForm.get('email')?.hasError('email') && regForm.get('email')?.touched">
+                      Invalid email format.
+                    </div>
+                    <div 
+                    class="error" 
+                    *ngIf="
+                        regForm.get('email')?.hasError('pattern') 
+                        && regForm.get('email')?.touched
+                    "
+                >
+                    Invalid email formate.
+                </div>
+                  </div>
+
+                  <div class="form-group form-focus">
+                    <input type="password" class="form-control floating" formControlName="password" [(ngModel)]="user.password" name="password" required />
+                    <label class="focus-label">Password</label>
+                    <div class="error" *ngIf="regForm.get('password')?.hasError('required') && regForm.get('password')?.touched">
+                      Password is required.
+                    </div>
+                    <div class="error" *ngIf="regForm.get('password')?.hasError('minlength') && regForm.get('password')?.touched">
+                      Password must be at least 6 characters long.
+                    </div>
+                    <div class="error" *ngIf="regForm.get('password')?.hasError('invalidFormat') && regForm.get('password')?.touched">
+                      Password must contain at least one letter and one digit.
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
+                </form>
+                <div class="text-center dont-have">
+                  have an account !!! <a [routerLink]="['/login']">Login</a>
+                </div>
+
+                <!-- /Register Form -->
+              </div>
             </div>
+          </div>
+          <!-- /Register Content -->
         </div>
-
+      </div>
     </div>
-   
+  </div>
 </div>
 
 <app-footer></app-footer>
