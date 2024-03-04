@@ -128,6 +128,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { ChatComponent } from './Roles/Conversation/chat/chat.component';
 import { ChattingComponent } from './Roles/Conversation/chatting/chatting.component';
+import { NotVarifiedComponent } from './common/pages/not-varified/not-varified.component';
+
 
 
 
@@ -223,7 +225,9 @@ import { ChattingComponent } from './Roles/Conversation/chatting/chatting.compon
     ForgetVarificationComponent,
     LabInvoicesComponent,
     LabProfileComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    NotVarifiedComponent,
+  
 
 
 

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { ResendOtpRequest } from 'src/app/payload/Request/ResendOtpRequest';
 import { ApiRoutes } from 'src/app/utils/Api-Routes';
 
 @Injectable({
@@ -26,5 +27,9 @@ export class OtpServiceService {
   public verify(otprequest:any): Observable<any> {
 
     return this.http.post(ApiRoutes.VERIFY_OTP,otprequest);
+  }
+
+  public resendOtp(resend:ResendOtpRequest){
+    return this.http.post(ApiRoutes.RESEND_OTP,resend);
   }
 }

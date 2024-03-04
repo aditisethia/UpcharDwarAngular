@@ -73,15 +73,10 @@ export class LoginService {
 
   //get user role
 
-  public getUserRole():any[] {
+  public getUserRole():any {
     let user = this.getUser()
-    let roles: any[]=[];
-   user.userRole.forEach((ur :any)=> {
-         roles.push(ur.role.roleName);
-   });
-
     console.log(user.userRole[0].role.roleName);
-    return roles;
+    return user.userRole[0].role.roleName;
   }
 
 

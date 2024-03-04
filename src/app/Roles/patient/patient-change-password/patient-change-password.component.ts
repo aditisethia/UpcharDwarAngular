@@ -48,26 +48,34 @@ export class PatientChangePasswordComponent {
      
   if (this.changePasswordRequest.newPassword !== this.confirmPassword) {
    
-    console.error('New password and confirm password do not match');
+    Toast.fire({
+      icon: 'success',
+      title: 'New password and confirm password do not match',
+    })
+  
+  
    
     return;
   }
     
     this.forgetService.changePassword(this.changePasswordRequest).subscribe((data:any)=>{
-     
+      console.log(data.message);
+      
+     if(data.message=="Password Change Successfully")
+     {
       Toast.fire({
-        icon: data,
-        title: 'Password Change Succesfully',
-    
+        icon: 'success',
+        title: data.message,
       })
-        this.router.navigate(['login']);
     
-      },(error: any)=>{
-       console.log(error);
-      
-      }
-      
-      );
+     }else{
+      Toast.fire({
+        icon: 'error',
+        title: data.message,
+      })
      }
+      
+     })
+    }
    
 }
