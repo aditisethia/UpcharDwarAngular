@@ -6,6 +6,7 @@ import { Doctor_Request } from 'src/app/payload/Request/Doctor_Request';
 import { DoctorserviceService } from 'src/app/services/doctor-service/doctorservice.service';
 import baseUrl from 'src/app/services/user/helper';
 import { LoginService } from 'src/app/services/user/login.service';
+import { Router } from '@angular/router';
 declare let Swiper:any;
 @Component({
   selector: 'app-home-popular-section',
@@ -24,7 +25,7 @@ export class HomePopularSectionComponent implements AfterViewInit {
 
 
 
-    constructor(private labService:LabServiceService, private loginservice:LoginService,private http:HttpClient,private doctorService:DoctorserviceService){}
+    constructor(private labService:LabServiceService, private loginservice:LoginService,private http:HttpClient,private doctorService:DoctorserviceService, private router:Router){}
 
 
 
@@ -123,7 +124,9 @@ export class HomePopularSectionComponent implements AfterViewInit {
   //   // Add more doctors as needed
   // ];
 
-
+  navigateToprofileWithId(id: number) {
+    this.router.navigate(['/labprofile', id]);
+  }
 
 
 
