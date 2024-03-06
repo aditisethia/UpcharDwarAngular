@@ -167,7 +167,7 @@ getStarIcons(rating: number): string[] {
   }
 
   navigateToprofileWithId(id: number) {
-    this.router.navigate(['/patientmaindashboard/labprofile', id]);
+    this.router.navigate(['/labprofile', id]);
   }
 
 

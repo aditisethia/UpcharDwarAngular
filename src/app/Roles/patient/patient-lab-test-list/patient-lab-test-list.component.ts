@@ -29,7 +29,7 @@ export class PatientLabTestListComponent implements OnInit {
   labTests: LabTestListResponse[] = [];
   labAppointmentRequest: LabAppointment_Request = new LabAppointment_Request;
   todaydate: string | undefined;
-
+  isLoggedIn:boolean=false;
   constructor(private labService: LabServiceService,
     private _route: ActivatedRoute,
     private labTestService: LabTestService,
@@ -38,6 +38,7 @@ export class PatientLabTestListComponent implements OnInit {
     private appointmentService: LabAppointmentServiceService,
     private router: ActivatedRoute) { }
   ngOnInit(): void {
+    this.isLoggedIn = this.loginService.isLoggedIn();
     this.labId = this._route.snapshot.params['id'];
 
     this.labService.getLabByLabId(this.labId).subscribe(
@@ -123,11 +124,19 @@ export class PatientLabTestListComponent implements OnInit {
   }
 
   bookLabTest(labTestId: number){
-       if(this.labAppointmentRequest.patient==null){
-        alert("Please Login First");
-        this.route.navigate(['/']);
-       }
-       else{
+    
+    if (!this.loginService.isLoggedIn()) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Login Required',
+        text: 'Please login to book a lab test.',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.route.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+        }
+      });
+      return;
+    }
     this.labTestService.getLabTestById(labTestId ).subscribe((data: any) => {
       this.labAppointmentRequest.labTest = data.LABTEST;
       console.log(data);
@@ -165,11 +174,9 @@ export class PatientLabTestListComponent implements OnInit {
         this.route.navigate(['/patientmaindashboard/labcheckout'])
 
       }
-    
-    
     });
 
-       }
+  
   }
 
 

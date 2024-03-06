@@ -10,6 +10,7 @@ import { LabServiceService } from 'src/app/services/Lab-service/lab-service.serv
 import { PatientserviceService } from 'src/app/services/patient-service/patientservice.service';
 import { LoginService } from 'src/app/services/user/login.service';
 import Toast from 'src/app/utils/Sweet-alert-message';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lab-profile',
@@ -35,9 +36,11 @@ export class LabProfileComponent {
   starsArray: number[] = Array(5).fill(0).map((_, index) => index + 1);
   selectedRating: number = 0;
   reply:LabReviewReplayResponse=new LabReviewReplayResponse
-
+ isLoggedIn:boolean=false;
  
-  constructor(private router:Router,private route: ActivatedRoute, private labService: LabServiceService, private patientservice: PatientserviceService, private loginservice: LoginService,
+  constructor(private router:Router,private route: ActivatedRoute, private labService: LabServiceService, private patientservice: PatientserviceService,
+     private loginservice: LoginService,
+     
     private labReviewRatingService: LabReviewService) { }
 
   ngOnInit() {
@@ -50,6 +53,7 @@ export class LabProfileComponent {
 
     this.loginservice.getCurrentUser().subscribe((currentuser: any) => {
       // this.AppointMentRequest.patient = currentuser.id;
+      this.isLoggedIn = !!currentuser;
       this.pemail = currentuser.email;
       if (this.pemail !== null) {
         console.log(this.pemail);
@@ -78,6 +82,18 @@ export class LabProfileComponent {
 
   makeLabFavorite(labId: number): void {
     // Set the flag to true when the button is clicked
+    if (!this.loginservice.isLoggedIn()) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Login Required',
+        text: 'Please login to book a lab test.',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+        }
+      });
+      return;
+    }
     this.labButtonClicked[labId] = true;
 
     this.labService.makeLabFavorite(labId, this.pid).subscribe(
