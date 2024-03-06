@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LabInvoice } from 'src/app/entity/LabInvoice';
 import { LabAppointment_Request } from 'src/app/payload/Request/LabAppointment_Request';
 import { InvoiceService } from 'src/app/services/Invoice-Services/invoice.service';
@@ -26,7 +27,7 @@ export class LabCheckoutComponent {
     id: String  // Replace with your actual order ID
   };
  
-  constructor(private razorpayService: RazorpayService, private appointmentService: LabAppointmentServiceService, private labService:LabServiceService, private invoiceService:InvoiceService) { }
+  constructor(private razorpayService: RazorpayService, private appointmentService: LabAppointmentServiceService, private labService:LabServiceService, private invoiceService:InvoiceService,private route:Router) { }
   IMG_URLs = this.labService.IMAGE_URL;
 
   apppointmentid: any;
@@ -97,22 +98,15 @@ console.log("fuckinng id---->>>>>>"+this.order.id);
         console.log(data);
         
         this.apppointmentid = data.booking_id.bookingId;
-       
-        
         this.Invoicefillup();
         if (this.Invoicefillup !== null) {
-
-
        this.createInvoice();
-      
-
-
-
-
         } else {
           Swal.fire(' Issue', 'error', 'error')
         }
-        })
+        Swal.fire('appointment done', 'done', 'success');
+       this.route.navigate(['/patientmaindashboard/patientdashboard'])
+      })
     }, (error: any) => {
 
       console.log(error);

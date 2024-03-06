@@ -40,13 +40,13 @@
                       <div class="image-content">
                           <span class="overlay"></span>
                           <div class="card-image">
-                              <img [src]="IMG_URLs +data.imageName" alt="" class="card-img">
+                              <img [src]="data.imageName" alt="" class="card-img">
                           </div>
                       </div>
                       <div class="card-content">
                           <h2 class="name">{{data.labName}}</h2>
                           <p class="description">Doctor With Specility Of {{data.labTests}} {{data.labTests}} From City Of {{data.location.city}} {{data.location.country}} .</p>
-                          <button class="button" [routerLink]="'/patientmaindashboard/labprofile/'+data.id">View Profile</button>
+                          <button class="button" (click)="navigateToprofileWithId(data.id)">View Profile</button>
                       </div>
                   </div>
 
