@@ -281,13 +281,13 @@ const routes: Routes = [
     }
     ,
 
-    
+
 
     {
       path:"favlab",
       component:PatientFavoriteLabsComponent
     },
-   
+
 
     {
       path:"labcheckout",
