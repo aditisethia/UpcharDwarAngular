@@ -81,6 +81,14 @@ import { PatientGuard } from './helper/patient-gaurd.gaurd';
 
 const routes: Routes = [
   {
+    path:"labprofile/:id",
+    component:LabProfileComponent
+  },
+  {
+    path:"labTestList/:id",
+    component:PatientLabTestListComponent,
+  },
+  {
     path: "",
     component: HomeComponent
   },
@@ -266,25 +274,20 @@ const routes: Routes = [
     {
       path:"lablist",
       component:PatientLabsListComponent
-    },{
+    },
+    {
       path:"message",
       component:ChattingComponent
     }
     ,
 
-    {
-      path:"labprofile/:id",
-      component:LabProfileComponent
-    },
+
 
     {
       path:"favlab",
       component:PatientFavoriteLabsComponent
     },
-    {
-      path:"labTestList/:id",
-      component:PatientLabTestListComponent,
-    },
+
 
     {
       path:"labcheckout",
