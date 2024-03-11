@@ -81,13 +81,13 @@
                 <h2>
                   <a
                     [routerLink]="
-                      '/patientmaindashboard/doctorprofile/' + do.id
+                      '/doctorprofile/' + do.id
                     "
                     class="booking-doc-img"
                   >
                     <img
                       _ngcontent-ng-c2320061364=""
-                      [src]="IMG_URLs + do.imageName"
+                      [src]=" do.imageName"
                       alt="User Image"
                       class="avatar-img rounded-circle"
                     />
@@ -119,13 +119,13 @@
                       <div class="doctor-img">
                         <a
                           [routerLink]="
-                            '/patientmaindashboard/doctorprofile/' + doctor.id
+                            '/doctorprofile/' + doctor.id
                           "
                           class="booking-doc-img1"
                         >
                           <img
                             _ngcontent-ng-c2320061364=""
-                            [src]="IMG_URLs + doctor.imageName"
+                            [src]=" doctor.imageName"
                             alt="User Image"
                             class="avatar-img1 rounded-circle"
                           />
@@ -135,7 +135,7 @@
                         <h4 class="doc-name">
                           <a
                             [routerLink]="
-                              '/patientmaindashboard/doctorprofile/' + doctor.id
+                              '/doctorprofile/' + doctor.id
                             "
                             >{{ doctor.name }}</a
                           >
@@ -164,7 +164,7 @@
                         <a
                           class="view-pro-btn"
                           [routerLink]="
-                            '/patientmaindashboard/doctorprofile/' + doctor.id
+                            '/doctorprofile/' + doctor.id
                           "
                           >View Profile</a
                         >

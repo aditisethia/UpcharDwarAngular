@@ -5,11 +5,11 @@
                         <div class="col-md-12 col-12">
                           <nav aria-label="breadcrumb" class="page-breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                              <li class="breadcrumb-item"><a [routerLink]="'/doctordashboard'">Dashboard</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Invoices</li>
                             </ol>
                           </nav>
-                          <h2 class="breadcrumb-title">Dashboard</h2>
+                          <h2 class="breadcrumb-title">Invoices</h2>
                         </div>
                       </div>
                     </div>
@@ -38,7 +38,7 @@
                   <h2 class="table-avatar">
                     <a  class="avatar avatar-sm mr-2">
                       <!-- Add your image source dynamically -->
-                       <img class="avatar-img rounded-circle" [src]="IMG_URLs+ invoice.imageName" alt="User Image">
+                       <img class="avatar-img rounded-circle" [src]="invoice.imageName" alt="User Image">
                     </a>
                     <a [href]="'patient-profile.html' + invoice.patientId">{{ invoice.patientName}} <span>Patient_Id :{{ invoice.patientId }}</span></a>
                   </h2>

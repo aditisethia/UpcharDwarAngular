@@ -1,9 +1,10 @@
+
 export class ApiRoutes{
-    
+
     private static BASE_URL="http://localhost:8080/upchardwar"
     public static  IMAGE_URL = 'http://localhost:8080/api/getImageApi/';
 
-
+    public static POST_REVIEW_BY_PATIENT=this.BASE_URL+'/reviewrating/add';
     public static GET_MESSAGEBY_USERS_IDS = this.BASE_URL+'/chat/messages';
     public static AUTH_LOGIN = this.BASE_URL+'/auth/login';
     public static CURRENT_USER = this.BASE_URL+'/auth/current-user';
@@ -16,6 +17,7 @@ export class ApiRoutes{
     public static GET_DR_BY_USER_ID = this.BASE_URL+'/doctor/userid/';
     public static GENERATE_TIME_SLOTE_SCHEDULE=this.BASE_URL+'/schedule/create';
     public static GET_SCHEDULE_BY_DR_ID=this.BASE_URL+'/schedule/doctor/';
+    public static GET_UPCOMING_SCHEDULE_BY_DR_ID=this.BASE_URL+'/schedule/doctor/upcoming/';
     public static DELETE_SCHEDULE_BY_ID=this.BASE_URL+'/schedule/';
     public static CREATE_ORDER=this.BASE_URL+'/timeslote/create-order';
     public static CAPTATURE_PAYMENT=this.BASE_URL+'/timeslote/capture-payment';

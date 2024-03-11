@@ -57,7 +57,7 @@
             />
             <ul class="result-list" id="search-reset" >
               <li *ngFor="let menace of data.doctor" class="result-item" id="search-reset" (click)="navigateToProfiled(menace.id)">
-                <img [src]="IMG_URLs + menace.imageName" alt="User Image" id="search-reset" />
+                <img [src]=" menace.imageName" alt="User Image" id="search-reset" />
                 <div class="result-details" id="search-reset">
                   <h4 id="search-reset">{{ menace.name }}  {{menace.city}}</h4>
                   <!-- Add more details as needed -->

@@ -1,4 +1,4 @@
-<app-home-navbar></app-home-navbar>
+
 <div class="content" style="margin-top: 2%">
   <div class="container-fluid">
     <div class="container-fluid">
@@ -7,11 +7,11 @@
           <!-- Register Content -->
           <div class="account-content" style="margin-top: 3%">
             <div class="row align-items-center justify-content-center">
-              <a [routerLink]="['']" class="home-logo">
+              <a [routerLink]="['']" class="home-logo" style="color: #7ba3ed">
                 <i
                   class="bi bi-house-heart-fill"
                   style="font-size: 4em; color: #7ba3ed"
-                ></i>
+                ></i>home
               </a>
               <div class="col-md-7 col-lg-6 login-left">
                 <img
@@ -54,10 +54,10 @@
                     <div class="error" *ngIf="regForm.get('email')?.hasError('email') && regForm.get('email')?.touched">
                       Invalid email format.
                     </div>
-                    <div 
-                    class="error" 
+                    <div
+                    class="error"
                     *ngIf="
-                        regForm.get('email')?.hasError('pattern') 
+                        regForm.get('email')?.hasError('pattern')
                         && regForm.get('email')?.touched
                     "
                 >

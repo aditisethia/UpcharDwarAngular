@@ -1,7 +1,7 @@
 
 import { Appointment_Request } from './../../../payload/Request/Appointment_Request ';
 import { ChatMessageResponse } from './../../../payload/response/Response/ChatMessageResponse';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Doctor_Request } from 'src/app/payload/Request/Doctor_Request';
 import { PatientRequest } from 'src/app/payload/Request/ParientRequest';
@@ -72,18 +72,18 @@ export class ChattingComponent implements OnInit {
     this.selectedPhoto = null;
     this.filePreview = null;
   }
-  buttons(){
+  buttons() {
 
-  this.sendMessage();
-  if(this.selectedPhoto)
-  this.uploadPhoto();
+    this.sendMessage();
+    if (this.selectedPhoto)
+      this.uploadPhoto();
   }
 
 
 
   onFileChange(event: any): void {
     this.selectedPhoto = event.target.files[0];
-      if (this.isImageType(this.selectedPhoto.type)) {
+    if (this.isImageType(this.selectedPhoto.type)) {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.filePreview = e.target?.result || null; // Handle undefined result
@@ -106,43 +106,50 @@ export class ChattingComponent implements OnInit {
     if (currentuser) {
       const userDetails = JSON.parse(currentuser);
 
-    const message: any = {
-      senderId: this.selfuserId,
-      recipientId: this.leadId,
-      senderName: userDetails.name,
-      recipientName: this.Leadusertochat.name,
-      content: this.inputmessage,
-      timestamp: new Date().toLocaleString('en-IN', options), // Convert timestamp to string
-    };
-    this.chatMessage=message;
-  }
+      const message: any = {
+        senderId: this.selfuserId,
+        recipientId: this.leadId,
+        senderName: userDetails.name,
+        recipientName: this.Leadusertochat.name,
+        content: this.inputmessage,
+        timestamp: new Date().toLocaleString('en-IN', options), // Convert timestamp to string
+      };
+      this.chatMessage = message;
+    }
 
     if (this.selectedPhoto) {
       this.webSocketService.uploadPhoto(this.chatMessage, this.selectedPhoto)
-        .subscribe(response => {
+        .subscribe((response: any) => {
           console.log(response);
-        }, error => {
+        }, (error: any) => {
+          if (error instanceof HttpErrorResponse) {
+            try {
+              const errorText = JSON.parse(error.error.text);
+              console.log('Error text:', errorText);
+              // Handle the error text as needed
+            } catch (e) {
+              console.error('Error parsing JSON:', e);
+              console.log('Errors text:', error.error.text);
+              // Handle the error text as needed without parsing
+            }
+          }
           console.error(error);
+          console.log();
+
         });
     } else {
       console.warn('No photo selected.');
     }
   }
 
-
   getmessages() {
     console.log("leadId:::", this.leadId);
     console.log("selfroleId:::::", this.selfroleId);
-
-
-
     if (this.leadId || this.selfroleId)
       this.webSocketService.getmessage(this.selfuserId, this.leadId).subscribe((messages: any) => {
         this.chatmessageresponse = messages;
         console.log(messages);
-
       }), (error: any) => {
-
         Swal.fire('Message Not Found !!', 'Error On Server', 'error')
       }
   }
@@ -150,10 +157,8 @@ export class ChattingComponent implements OnInit {
   makeleadtouser(id: any) {
     this.chatmessageresponse = [];
     this.doctorService.getdoctorbyydrId(id).subscribe((doctor: any) => {
-
       this.leadtochatdoctor = doctor;
       this.setleaddoctor();
-
     }), (error: any) => {
       Swal.fire('doctor found !!', 'doctor not found by doctor id', 'error')
     }
@@ -162,14 +167,13 @@ export class ChattingComponent implements OnInit {
   makeleadtopatient(id: any) {
     this.chatmessageresponse = [];
     this.patientservice.getpatientbyemail(id).subscribe((doctor: any) => {
-
       this.leadtochatpatient = doctor;
       this.setleadpatient();
-
     }), (error: any) => {
       Swal.fire('doctor found !!', 'doctor not found by doctor id', 'error')
     }
   }
+
   setleadpatient() {
     this.Leadusertochat.id = this.leadtochatpatient?.id;
     this.Leadusertochat.name = this.leadtochatpatient?.patientName;
@@ -177,30 +181,26 @@ export class ChattingComponent implements OnInit {
     this.Leadusertochat.image = this.leadtochatpatient?.imageName;
     this.userservice.getuserbtpatientemail(this.Leadusertochat.gmail).subscribe((data: any) => {
       this.flagusers = data;
-
       if (this.flagusers) {
         this.leadId = this.flagusers.id;
       }
       console.log(data);
       console.log(this.flagusers);
-
       console.log(this.leadtochatpatient);
       this.getmessages();
       this.subscribeuser();
     })
 
   }
-  setleaddoctor() {
 
+  setleaddoctor() {
     this.Leadusertochat.id = this.leadtochatdoctor?.userid;
     this.Leadusertochat.name = this.leadtochatdoctor?.name;
     this.Leadusertochat.gmail = this.leadtochatdoctor?.email;
     this.Leadusertochat.image = this.leadtochatdoctor?.imageName;
     this.leadId = this.leadtochatdoctor?.userid;
-
     this.getmessages();
     this.subscribeuser();
-
   }
 
   sendMessage(): void {
@@ -209,31 +209,21 @@ export class ChattingComponent implements OnInit {
     if (currentuser) {
       const userDetails = JSON.parse(currentuser);
       // Access the roleId from the userRole array
-
-       if (this.inputmessage.trim() !== "") {
-
+      if (this.inputmessage.trim() !== "") {
         const message: any = {
           senderId: this.selfuserId,
           recipientId: this.leadId,
           senderName: userDetails.name,
           recipientName: this.Leadusertochat.name,
           content: this.inputmessage,
-
           timestamp: new Date().toLocaleString('en-IN', options), // Convert timestamp to string
         };
-
         console.log(message);
         // Send the message using STOMP
         this.webSocketService.sendmessage(message);
         this.inputmessage = '';
         this.chatmessageresponse.unshift(message)
-        // setTimeout(() => {
-        //   this.getmessages();
-        // }, 200);
-        // Update local messages
-        // this.messages.push(message);
       }
-
     }
   }
 

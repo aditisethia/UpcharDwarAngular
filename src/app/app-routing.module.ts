@@ -75,6 +75,7 @@ import { LabInvoicesComponent } from './Roles/lab/lab-invoices/lab-invoices.comp
 import { LabProfileComponent } from './Roles/patient/lab-profile/lab-profile.component';
 import { NotVarifiedComponent } from './common/pages/not-varified/not-varified.component';
 import { PatientGuard } from './helper/patient-gaurd.gaurd';
+import { doctorguard } from './helper/doctor-gaurd.gaurd';
 
 
 
@@ -87,6 +88,11 @@ const routes: Routes = [
   {
     path:"labTestList/:id",
     component:PatientLabTestListComponent,
+  },
+
+  {
+    path:"doctorprofile/:drid",
+    component:DoctorProfileComponent,
   },
   {
     path: "",
@@ -188,6 +194,7 @@ const routes: Routes = [
   {
     path: "doctordashboard",
     component: DoctorDashboardComponent,
+    canActivate: [doctorguard],
     children: [
       {
         path: "",
@@ -235,10 +242,16 @@ const routes: Routes = [
 
   { path: "doctordashboard",
    component: DoctorDashboardComponent,
+   canActivate: [doctorguard],
    children:[
     {
       path:"",
       component:DoctorDashboardDataComponent
+    },
+
+    {
+      path:"message",
+      component:ChattingComponent
     },
     {
       path:"doctorappointments",
@@ -302,10 +315,6 @@ const routes: Routes = [
     component:PatientDashboardComponent,
    },
 
-   {
-    path:"doctorprofile/:drid",
-    component:DoctorProfileComponent,
-  },
   {
     path:"doctorappointmentbooking/:drid",
     component:PatientDoctorAppointmentBookingComponent,

@@ -8,13 +8,13 @@
               <div class="image-content">
                   <span class="overlay"></span>
                   <div class="card-image">
-                      <img [src]="IMG_URLs +data.imageName" alt="" class="card-img">
+                      <img [src]="data.imageName" alt="" class="card-img">
                   </div>
               </div>
               <div class="card-content">
                   <h2 class="name">{{data.name}}</h2>
                   <p class="description">Doctor With Specility Of {{data.speciality.spName}} {{data.speciality.spDescription}} From City Of {{data.city}} {{data.postalcode}} .</p>
-                  <button class="button" [routerLink]="'/patientmaindashboard/doctorprofile/'+data.id">View Profile</button>
+                  <button class="button" [routerLink]="'/doctorprofile/'+data.id">View Profile</button>
               </div>
           </div>
 

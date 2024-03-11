@@ -9,16 +9,16 @@ import { LoginService } from '../services/user/login.service';
 @Injectable({
   providedIn:'root'
 })
-export class PatientGuard implements CanActivate{
-  
+export class adminguard implements CanActivate{
+
   constructor(private login:LoginService, private router:Router,private snack:MatSnackBar){
 
   }
 
-  
-  
+
+
   canActivate(
-    route: ActivatedRouteSnapshot, 
+    route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
      console.log(this.login.isLoggedIn())
       if(this.login.isLoggedIn() && this.login.getUserRole()=="ADMIN")
@@ -39,5 +39,5 @@ export class PatientGuard implements CanActivate{
 
 
 
- 
+
 };

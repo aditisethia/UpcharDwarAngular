@@ -116,6 +116,7 @@ export class DoctorDashboardDataComponent implements OnInit {
 console.log("test-------------");
 
       console.log(this.ScheduleRequesttoday)
+      this.ScheduleRequesttoday.timeSlots.forEach(slot => slot.isBooked = false);
       this.scheduleservice.generatetimeslotesandschedule(this.ScheduleRequesttoday).subscribe((data: any) => {
         console.log('Schedule saved successfully!', data);
         Swal.fire(({
