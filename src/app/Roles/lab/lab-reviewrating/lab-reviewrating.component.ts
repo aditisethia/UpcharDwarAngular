@@ -77,4 +77,23 @@ deleteReview(reviewId: number): void {
     }
   )
   };
+
+  deleteReply(replayId:any,reviewId: number): void {
+    // Call backend service to delete review
+    
+    this.labReviewRatingService.deleteReplyOfPatient(replayId,reviewId).subscribe(
+      (response:any) => {
+        Toast.fire({
+          icon: 'success',
+          title: response.message,
+      
+        })
+      console.log(response);
+      
+      this.getReviewOfLab(this.labId);
+      }, (error)=>{
+       
+      }
+    )
+    };
 }
