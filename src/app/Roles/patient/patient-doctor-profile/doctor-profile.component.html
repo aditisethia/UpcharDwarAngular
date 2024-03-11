@@ -1,4 +1,5 @@
 <!-- Main Wrapper -->
+<app-home-navbar></app-home-navbar>
 <div class="main-wrapper">
   <!-- Header -->
 
@@ -35,7 +36,7 @@
               <div class="doctor-img">
                 <a href="doctor-profile.html">
                   <img
-                    [src]="IMG_URLs + doctorInfos.imageName"
+                    [src]="doctorInfos.imageName"
                     class="img-fluid"
                     alt="User Image"
                   />
@@ -239,56 +240,99 @@
 
               <!-- Reviews Content -->
               <div role="tabpanel" id="doc_reviews" class="tab-pane fade">
-                <!-- Review Listing -->
                 <div class="widget review-listing">
                   <ul class="comments-list">
-                    <!-- Comment List -->
-                    <li *ngFor="let review of reviews">
+                    <li>  <!--*ngFor="let review of doctorreview" -->
                       <div class="comment">
-                        <img
-                          class="avatar avatar-sm rounded-circle"
-                          alt="User Image"
-                          src="assets/img/patients/patient.jpg"
-                        />
+                        <img class="avatar avatar-sm rounded-circle"
+                          alt="User Image">
                         <div class="comment-body">
                           <div class="meta-data">
-                            <span class="comment-author">{{
-                              review.author
-                            }}</span>
-                            <span class="comment-date"
-                              >Reviewed {{ review.date }}</span
-                            >
-                            <div class="review-count rating">
-                              <i
-                                class="fas fa-star filled"
-                                *ngFor="let _ of [].constructor(review.rating)"
-                              ></i>
-                              <i
-                                class="fas fa-star"
-                                *ngFor="
-                                  let _ of [].constructor(5 - review.rating)
-                                "
-                              ></i>
+                            <span class="comment-author">A</span>
+                          </div>
+                          <div class="review-count rating">
+                            <!-- <i [class]="star" *ngFor="let star of getStarIcons(review.rating)"></i> -->
+                          </div>
+                          <p class="comment-content">B</p>
+                          <div class="buttons-row d-flex align-items-center">
+                            <!-- <a class="comment-btn reply-btn" (click)="review.showReplyForm = !review.showReplyForm"> -->
+                              <i class="fas fa-reply"></i> Reply
+                            <!-- </a> -->
+                            <!-- Delete button (shown only for the logged-in patient's reviews) -->
+                            <!-- <div *ngIf="review.patientId === loggedInPatientId" class="delete-btn">
+                              <i class="bi bi-trash" (click)="deleteReview(review.id)"></i>
+                            </div> -->
+
+                            <div >
+                              <textarea class="form-control"
+                                placeholder="Write a reply..."></textarea>
+                              <button class="btn btn-primary"
+                                >Submit</button>
                             </div>
                           </div>
-                          <p class="recommended" *ngIf="review.recommended">
-                            <i class="far fa-thumbs-up"></i> I recommend the
-                            doctor
-                          </p>
-                          <p class="comment-content">{{ review.content }}</p>
-                          <!-- Comment Reply and other details go here... -->
                         </div>
                       </div>
+                      <!-- <ul class="comments-reply">
+                        <li *ngFor="let reply of review.replyResponse">
+                          <div class="comment">
+                            <img class="avatar avatar-sm rounded-circle"
+                              [src]="reply.imageName" alt="User Image">
+                            <div class="comment-body">
+                              <div class="meta-data">
+                                <span class="comment-author">{{ reply.patientName }}</span>
+                              </div>
+
+                              <div *ngIf="review.patientId !== loggedInPatientId" class="delete-btn">
+                                <p class="comment-content">{{ reply.description }}</p>
+                                <i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>
+                                </div>
+
+                              <div *ngIf="review.patientId === loggedInPatientId" class="delete-btn">
+                                <p class="comment-content">{{ reply.description }}</p>
+                                <i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>
+                                </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul> -->
                     </li>
-                    <!-- /Comment List -->
                   </ul>
-                  <!-- Show All and other details go here... -->
+                  <div class="write-review" >
+                    <h4>Write a review for <strong></strong></h4>
+                    <form (ngSubmit)="submitReview()">
+                      <div class="form-group">
+                        <label>Review</label>
+                        <app-star-rating [currentRating]="selectedRating"
+											(ratingClicked)="selectedRating = $event"></app-star-rating>
+                      </div>
+                      <div class="form-group">
+                        <label>Your review</label>
+                        <textarea id="review_desc" maxlength="100" class="form-control" [(ngModel)]="newdoctorreview.comment"
+                         name="comment" required></textarea>
+                        <div class="d-flex justify-content-between mt-3">
+                          <small class="text-muted"><span id="chars">ab</span>
+                            characters remaining</small>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="form-group">
+                        <div class="terms-accept">
+                          <div class="custom-checkbox">
+                            <input type="checkbox" id="terms_accept"
+                              name="terms_accept" required>
+                            <label for="terms_accept">I have read and accept <a href="#">Terms &amp;
+                                Conditions</a></label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="submit-section">
+                        <button type="submit" class="btn btn-primary submit-btn"
+                          >Add Review</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                <!-- /Review Listing -->
-
-                <!-- Write Review and other details go here... -->
               </div>
-
               <!-- /Reviews Content -->
 
               <!-- Business Hours Content -->

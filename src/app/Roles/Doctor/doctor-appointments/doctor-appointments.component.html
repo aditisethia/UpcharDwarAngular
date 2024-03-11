@@ -5,7 +5,7 @@
                         <div class="col-md-12 col-12">
                           <nav aria-label="breadcrumb" class="page-breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a [routerLink]="'/doctordashboard'">Home</a></li>
+                              <li class="breadcrumb-item"><a [routerLink]="'/doctordashboard'">Dashboard</a></li>
                               <li class="breadcrumb-item active" aria-current="page">Appointments</li>
                             </ol>
                           </nav>
@@ -22,7 +22,7 @@
       <div class="appointment-list" *ngFor="let appointment of appointments">
         <div class="profile-info-widget">
           <a [routerLink]="['/patient-profile', appointment.id]" class="booking-doc-img">
-            <img [src]="IMG_URLs+ appointment.patient.imageName" alt="User Image">
+            <img [src]="appointment.patient.imageName" alt="User Image">
 
           </a>
           <div class="profile-det-info">

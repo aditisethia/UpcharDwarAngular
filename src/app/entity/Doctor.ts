@@ -6,7 +6,7 @@ export class Doctor {
     id: number=0;
     userName: string='';
     name: string='';
-    DOB: any= '';
+    dob: any= '';
     gender: string='';
     phone: string='';
     password: string='';

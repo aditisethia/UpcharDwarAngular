@@ -170,6 +170,12 @@
               alt="User Image"
               class="avatar-img rounded-circle" /></a
           ><a _ngcontent-ng-c1322614984="" >{{user.name}}</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" >View Profile</a></li>
+            <li><a class="dropdown-item" >Profile Settings</a></li>
+            <div class="dropdown-divider"></div>
+            <li><a class="dropdown-item"  (click)="logout()">Logout</a></li>
+          </ul>
 
         </h2>
 

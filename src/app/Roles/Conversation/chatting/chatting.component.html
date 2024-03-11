@@ -34,7 +34,7 @@
 
     <!-- Searching Result Show Here -->
     <!-- Result -->
-    <div class="mt-3" *ngIf="selfroleId==2">
+    <div class="mt-3" *ngIf="selfroleId == 2">
       <h3>Search Results:</h3>
       <ul class="list-group">
         <li
@@ -46,7 +46,7 @@
             <a class="booking-doc-img">
               <img
                 _ngcontent-ng-c2320061364=""
-                [src]="IMG_URLs + do.imageName"
+                [src]="do.imageName"
                 alt="User Image"
                 class="avatar-img rounded-circle"
               />
@@ -62,7 +62,7 @@
         </li>
       </ul>
     </div>
-    <div class="mt-3" *ngIf="selfroleId==3">
+    <div class="mt-3" *ngIf="selfroleId == 3">
       <h3>Search Results:</h3>
       <ul class="list-group">
         <li
@@ -74,7 +74,7 @@
             <a (click)="makeleadtouser(do.id)" class="booking-doc-img">
               <img
                 _ngcontent-ng-c2320061364=""
-                [src]="IMG_URLs + do.imageName"
+                [src]="do.imageName"
                 alt="User Image"
                 class="avatar-img rounded-circle"
               />
@@ -100,18 +100,16 @@
   <!-- Chat Right -->
   <div class="chat-cont-right" *ngIf="!Leadusertochat.id">
     <div class="chat-header">
-    <div class="chat-footer" style="margin-top: 70%; margin-left: 40%;">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="btn-file btn" >
-
-        <h2 style="color: rgb(116, 173, 173);"><b> Select An Chat</b></h2>
-
+      <div class="chat-footer" style="margin-top: 70%; margin-left: 40%">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="btn-file btn">
+              <h2 style="color: rgb(116, 173, 173)"><b> Select An Chat</b></h2>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
   <!-- /Chat Right -->
   <div class="chat-cont-right" *ngIf="Leadusertochat.id">
@@ -123,7 +121,7 @@
         <div class="media-img-wrap">
           <div class="avatar avatar-online">
             <img
-              [src]="IMG_URLs + Leadusertochat.image"
+              [src]=" Leadusertochat.image"
               alt="User Image"
               class="avatar-img rounded-circle"
             />
@@ -154,17 +152,20 @@
         </a>
       </div>
     </div>
-    <div class="chat-body" >
-      <div class="chat-scroll"  >
-        <ul class="list-unstyled"  *ngFor="let mess of chatmessageresponse">
-          <li class="media sent" *ngIf="mess.senderId==selfuserId">
+    <div class="chat-body">
+      <div class="chat-scroll">
+        <ul class="list-unstyled" *ngFor="let mess of chatmessageresponse">
+          <li class="media sent" *ngIf="mess.senderId == selfuserId">
             <div class="media-body">
               <div class="msg-box">
-
                 <div>
                   {{ selfroleId }}
-                  <a *ngIf="mess.photos" href="{{ mess.photos }}" target="_blank">
-                    <img [src]="mess.photos" alt="Image Description">
+                  <a
+                    *ngIf="mess.photos"
+                    href="{{ mess.photos }}"
+                    target="_blank"
+                  >
+                    <img [src]="mess.photos" alt="Image Description" />
                   </a>
                   <p>{{ mess.content }}</p>
                   <ul class="chat-msg-info">
@@ -180,15 +181,18 @@
             </div>
           </li>
 
-
-          <li class="media received" *ngIf="mess.senderId!=selfuserId" >
-            {{ leadId }}{{mess.recipientId}}
+          <li class="media received" *ngIf="mess.senderId != selfuserId">
+            {{ leadId }}{{ mess.recipientId }}
 
             <div class="media-body">
               <div class="msg-box">
                 <div>
-                  <a *ngIf="mess.photos" href="{{ mess.photos }}" target="_blank">
-                    <img [src]="mess.photos" alt="Image Description">
+                  <a
+                    *ngIf="mess.photos"
+                    href="{{ mess.photos }}"
+                    target="_blank"
+                  >
+                    <img [src]="mess.photos" alt="Image Description" />
                   </a>
                   <p>{{ mess.content }}.</p>
 
@@ -211,12 +215,18 @@
       <div class="input-group-prepend">
         <div class="btn-file btn">
           <i class="fa fa-paperclip"></i>
-          <input type="file" (change)="onFileChange($event)">
+          <input type="file" (change)="onFileChange($event)" />
         </div>
         <div *ngIf="selectedPhoto" class="file-preview">
           <!-- Display selected file preview here -->
-          <img *ngIf="isImageType(selectedPhoto.type)" [src]="filePreview" alt="File Preview">
-          <span *ngIf="!isImageType(selectedPhoto.type)">{{ selectedPhoto.name }}</span>
+          <img
+            *ngIf="isImageType(selectedPhoto.type)"
+            [src]="filePreview"
+            alt="File Preview"
+          />
+          <span *ngIf="!isImageType(selectedPhoto.type)">{{
+            selectedPhoto.name
+          }}</span>
           <button class="btn btn-cut" (click)="cutFile()">Cut</button>
         </div>
       </div>
@@ -234,11 +244,8 @@
         </button>
       </div>
     </div>
-
   </div>
   <!-- /Chat Right -->
-
-
-<!-- /Row -->
-
-<!-- /Page Content -->
+  <!-- /Row -->
+  <!-- /Page Content -->
+</div>

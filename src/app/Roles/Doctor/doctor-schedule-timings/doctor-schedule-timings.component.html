@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb" class="page-breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a [routerLink]="'/doctordashboard'">Home</a>
+              <a [routerLink]="'/doctordashboard'">Dashboard</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               Timing Schedule
@@ -42,10 +42,11 @@
 
   <label for="selected-date">Date:</label>
   <input
-    type="date"
-    id="selected-date"
-    formControlName="selectedDate"
-    required
+  type="date"
+  id="selected-date"
+  formControlName="selectedDate"
+  required
+  [min]="getTodayDate()"
   />
 
   <button

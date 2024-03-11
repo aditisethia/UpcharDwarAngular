@@ -4,7 +4,7 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="#" class="booking-doc-img">
-                  <img [src]="IMG_URLs+ doctor.imageName" alt="User Image">
+                  <img [src]="doctor.imageName" alt="User Image">
                 </a>
                 <div class="profile-det-info">
                     <h3>Dr.{{ doctor.name}}</h3>
@@ -61,7 +61,7 @@
                         </a>
                     </li>
                     <li>
-                      <a [routerLink]="'/patientmaindashboard/message'">
+                      <a [routerLink]="'/doctordashboard/message'">
                             <i class="fas fa-comments"></i>
                             <span>Message     !!</span>
                             <small class="unread-msg">23</small>

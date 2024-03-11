@@ -35,12 +35,12 @@ export class LabProfileComponent {
   description: string = '';
   starsArray: number[] = Array(5).fill(0).map((_, index) => index + 1);
   selectedRating: number = 0;
-  reply:LabReviewReplayResponse=new LabReviewReplayResponse
- isLoggedIn:boolean=false;
- 
-  constructor(private router:Router,private route: ActivatedRoute, private labService: LabServiceService, private patientservice: PatientserviceService,
-     private loginservice: LoginService,
-     
+  reply: LabReviewReplayResponse = new LabReviewReplayResponse
+  isLoggedIn: boolean = false;
+
+  constructor(private router: Router, private route: ActivatedRoute, private labService: LabServiceService, private patientservice: PatientserviceService,
+    private loginservice: LoginService,
+
     private labReviewRatingService: LabReviewService) { }
 
   ngOnInit() {
@@ -48,22 +48,17 @@ export class LabProfileComponent {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id);
     this.labById(this.id)
-
     this.loadLabReviews();
-
     this.loginservice.getCurrentUser().subscribe((currentuser: any) => {
       // this.AppointMentRequest.patient = currentuser.id;
       this.isLoggedIn = !!currentuser;
       this.pemail = currentuser.email;
       if (this.pemail !== null) {
         console.log(this.pemail);
-        
         this.getpatientbyemail();
       }
       else {
-
       }
-
     });
   }
 
@@ -72,7 +67,6 @@ export class LabProfileComponent {
       .subscribe((response: any) => {
         this.lab = response.Lab
         console.log(response);
-
       });
   }
 
@@ -95,7 +89,6 @@ export class LabProfileComponent {
       return;
     }
     this.labButtonClicked[labId] = true;
-
     this.labService.makeLabFavorite(labId, this.pid).subscribe(
       (response: any) => {
         if (response.message === 'Lab is already added as a favorite for this patient') {
@@ -114,19 +107,14 @@ export class LabProfileComponent {
 
 
   getpatientbyemail() {
-
     //console.log(this.pemail);
     this.patientservice.getpatientbyemail(this.pemail).subscribe((data: any) => {
-
       this.pid = data.id;
-       this.loggedInPatientId=this.pid;
+      this.loggedInPatientId = this.pid;
       this.pName = data.pName;
       this.pImage = data.imageName;
       // alert(this.pid)
-
-
     })
-
   }
 
   loadLabReviews(): void {
@@ -134,37 +122,24 @@ export class LabProfileComponent {
       .subscribe((data: any) => {
         this.labReviews = data.ReviewRating;
         console.log(this.labReviews[0].rating);
-
         console.log(this.labReviews);
- 
       });
   }
 
-
-
   getStarIcons(rating: number): string[] {
-   
-
     let starsArray: string[] = [];
     let i = 0
     for (i = 0; i < rating; i++) {
       starsArray.push('fas fa-star filled');
-
     }
     for (let j = i; j < 5; j++) {
       starsArray.push('fas fa-star');
-
-
     }
-
-
     return starsArray;
   }
 
-
-
   showMoreReplies(review: any) {
-    review.showAllReplies = !review.showAllReplies; 
+    review.showAllReplies = !review.showAllReplies;
   }
 
   submitReview() {
@@ -181,21 +156,19 @@ export class LabProfileComponent {
       patientId: this.pid,
       labId: this.lab.id,
     };
-    console.log("REVIEW :: "+newReview.description);
-    console.log("REVIEW :: "+newReview.rating);
-    
+    console.log("REVIEW :: " + newReview.description);
+    console.log("REVIEW :: " + newReview.rating);
+
     this.labReviewRatingService.addReview(newReview).subscribe((data: any) => {
-      console.log("DATA :: ",data.data);
-      
-     let index =  this.labReviews.findIndex(obj => obj.id == data.data.id);
-      console.log("INDEX :: ",index);
+      console.log("DATA :: ", data.data);
+      let index = this.labReviews.findIndex(obj => obj.id == data.data.id);
+      console.log("INDEX :: ", index);
       this.labReviews[index].description = data.data.description
       this.labReviews[index].rating = data.data.rating
       console.log('Review submitted successfully:', data);
       Toast.fire({
         icon: 'success',
         title: data.message,
-    
       })
     });
   }
@@ -207,83 +180,68 @@ export class LabProfileComponent {
 
   // Inside your component
 
-submitReply(review: LabReview) {
-  console.log(review);
-  
-  if (!review.replyContent || this.termsAccepted) {
-    alert('Please fill in all fields and accept the terms before replying.');
-    console.log("---------------------------------------------");
-    
+  submitReply(review: LabReview) {
     console.log(review);
-    
-    return;
+    if (!review.replyContent || this.termsAccepted) {
+      alert('Please fill in all fields and accept the terms before replying.');
+      console.log("---------------------------------------------");
+      console.log(review);
+      return;
+    }
+
+    const newReply = {
+      rating: this.selectedRating, // Assuming you have a selectedRating property for the reply rating
+      patientId: this.pid,
+      description: review.replyContent,
+      reviewRatingId: review.id, // Assuming review.id corresponds to the ID of the review being replied to
+      patientName: this.pName,
+      imageName: this.pImage
+    };
+
+
+    this.labReviewRatingService.addReply(newReply).subscribe(
+      (response: any) => {
+        console.log('Reply submitted successfully:', response);
+        review.replyContent = '';
+        review.showReplyForm = false; // Hide the reply form
+        let obj: LabReview = this.labReviews.find(obj => obj.id == response.message.reviewRatingId) as LabReview
+        obj.replyResponse.push(response.message)
+        console.log('----', obj);
+      },
+      (error) => {
+        console.error('Error submitting reply:', error);
+      }
+    );
   }
-
-  const newReply = {
-    rating: this.selectedRating, // Assuming you have a selectedRating property for the reply rating
-    patientId: this.pid,
-    description: review.replyContent,
-    reviewRatingId: review.id, // Assuming review.id corresponds to the ID of the review being replied to
-    patientName: this.pName,
-    imageName: this.pImage
-   
-  };
-
- 
-  this.labReviewRatingService.addReply(newReply).subscribe(
-    (response: any) => {
-      console.log('Reply submitted successfully:', response);
-      review.replyContent = '';
-      review.showReplyForm = false; // Hide the reply form
-      let obj:LabReview= this.labReviews.find(obj=>obj.id == response.message.reviewRatingId) as LabReview
-       obj.replyResponse.push(response.message  )
-       console.log('----',obj);
-       
-    },
-    (error) => {
-    
-      console.error('Error submitting reply:', error);
-     
-    }
-  );
-}
-deleteReview(reviewId: number): void {
-  // Call backend service to delete review
-  this.labReviewRatingService.deleteReviewOfPatient(reviewId).subscribe(
-    (response:any) => {
-      Toast.fire({
-        icon: 'success',
-        title: response.message,
-    
-      })
-    console.log(response);
-    
-    this.loadLabReviews();
-    }, (error)=>{
-     
-    }
-  )
-  };
-
-  deleteReply(replayId:any,reviewId: number): void {
+  deleteReview(reviewId: number): void {
     // Call backend service to delete review
-    this.labReviewRatingService.deleteReplyOfPatient(replayId,reviewId).subscribe(
-      (response:any) => {
+    this.labReviewRatingService.deleteReviewOfPatient(reviewId).subscribe(
+      (response: any) => {
         Toast.fire({
           icon: 'success',
           title: response.message,
-      
         })
-      console.log(response);
-      
-      this.loadLabReviews();
-      }, (error)=>{
-       
+        console.log(response);
+        this.loadLabReviews();
+      }, (error) => {
       }
     )
-    };
+  };
 
- 
+  deleteReply(replayId: any, reviewId: number): void {
+    // Call backend service to delete review
+    this.labReviewRatingService.deleteReplyOfPatient(replayId, reviewId).subscribe(
+      (response: any) => {
+        Toast.fire({
+          icon: 'success',
+          title: response.message,
+        })
+        console.log(response);
+        this.loadLabReviews();
+      }, (error) => {
+      }
+    )
+  };
 }
 
 

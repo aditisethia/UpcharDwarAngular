@@ -31,6 +31,15 @@ export class DoctorScheduleTimingsComponent implements OnInit {
     });
   }
 
+  getTodayDate(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
+
   getFormattedTodayDate(): string {
     const today = new Date();
     const year = today.getFullYear();
@@ -51,7 +60,7 @@ export class DoctorScheduleTimingsComponent implements OnInit {
           this.doctor = data.doctor;
           this.drid = data.doctor.id;
           console.log(this.doctor.id+"------------>");
-          
+
           console.log(data);
           console.log(this.doctor+this.drid);
           this.ScheduleRequest.doctor.id = data.doctor.id;
@@ -117,7 +126,7 @@ export class DoctorScheduleTimingsComponent implements OnInit {
 
     this.ScheduleRequest.doctor.id = this.doctor.id;
     console.log(this.ScheduleRequest.doctor.id+"---------------->");
-    
+
     if (formValues.selectedDate && this.timeSlots.length > 0) {
       this.ScheduleRequest.selectedDate = formValues.selectedDate;
       this.ScheduleRequest.timeSlots = this.timeSlots;

@@ -17,6 +17,11 @@ export class DoctorserviceService {
 
   constructor(private _http: HttpClient) { }
 
+  sendreviewbypatienttodoctor(review:any){
+
+    return this._http.post(ApiRoutes.POST_REVIEW_BY_PATIENT,review);
+  }
+
   setInvoice(Invoice:any){
     return this._http.post(ApiRoutes.CREATE_INVOICE,Invoice);
   }
