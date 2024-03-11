@@ -255,14 +255,11 @@
 														<span class="comment-author">{{ reply.patientName }}</span>
 													</div>
 
-													<div *ngIf="review.patientId !== loggedInPatientId" class="delete-btn">
-														<p class="comment-content">{{ reply.description }}</p>
-														<i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>
-													  </div>
+													
 
-													<div *ngIf="review.patientId === loggedInPatientId" class="delete-btn">
+													<div  class="delete-btn">
 														<p class="comment-content">{{ reply.description }}</p>
-														<i class="bi bi-trash" (click)="deleteReply( reply.id,review.id)"></i>
+														<i class="bi bi-trash" *ngIf="review.patientId === loggedInPatientId || reply.patientId === loggedInPatientId" (click)="deleteReply( reply.id,review.id)"></i>
 													  </div>
 												</div>
 											</div>

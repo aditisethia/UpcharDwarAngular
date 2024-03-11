@@ -66,5 +66,6 @@ export class ApiRoutes{
   static COUNT_SUCCESSFUL_SERVICE_OF_LAB = this.BASE_URL+'/labBooking/success/';
   static GET_ALL_BOOKING_OF_PATIENT=this.BASE_URL+'/labBooking/patientTotalBooking/';
  public static RESEND_OTP=this.BASE_URL+'/auth/resend';
+  static GET_PATIENTS_OF_LAB = this.BASE_URL+'/labBooking/allPatientOfLab/';
 }
 

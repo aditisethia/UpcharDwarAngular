@@ -140,4 +140,8 @@ export class LabServiceService {
   getAllBooking(labId:number){
     return this._http.get(ApiRoutes.GET_BOOKING_OF_LAB +`${labId}`)
   }
+
+  getPatientsOfLab(labId:number){
+    return this._http.get(ApiRoutes.GET_PATIENTS_OF_LAB+`${labId}`)
+  }
 }

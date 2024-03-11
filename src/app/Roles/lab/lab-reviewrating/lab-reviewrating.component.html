@@ -4,7 +4,7 @@
       
         <div class="row">
           <div class="col-1">
-        <img class="avatar avatar-sm rounded-circle" [src]="IMG_URLs + review.imageName" alt="User Image">
+        <img class="avatar avatar-sm rounded-circle" [src]="review.imageName" alt="User Image">
       </div>
       <div class="col-4">
         <span class="comment-author"><b>{{ review.patientName }}</b></span>
@@ -36,7 +36,7 @@
           
           <div class="comment-body">
             <p class="comment-content">{{ reply.description }}</p>
-          
+            <i class="bi bi-trash"  (click)="deleteReply( reply.id,review.id)"> </i>
          </div>
         </div>
         </div>
